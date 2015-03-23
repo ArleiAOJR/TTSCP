@@ -1,0 +1,6 @@
+C:\Users\Arlei\SkyDrive\Mestrado\Topicos em Engenharia de Software\Projeto\WebAppClient\webAppClient\webAppClient\bin\webAppClient.dll.config
+C:\Users\Arlei\SkyDrive\Mestrado\Topicos em Engenharia de Software\Projeto\WebAppClient\webAppClient\webAppClient\bin\webAppClient.dll
+C:\Users\Arlei\SkyDrive\Mestrado\Topicos em Engenharia de Software\Projeto\WebAppClient\webAppClient\webAppClient\bin\webAppClient.pdb
+C:\Users\Arlei\SkyDrive\Mestrado\Topicos em Engenharia de Software\Projeto\WebAppClient\webAppClient\webAppClient\obj\Debug\webAppClient.dll
+C:\Users\Arlei\SkyDrive\Mestrado\Topicos em Engenharia de Software\Projeto\WebAppClient\webAppClient\webAppClient\obj\Debug\webAppClient.pdb
+C:\Users\Arlei\SkyDrive\Mestrado\Topicos em Engenharia de Software\Projeto\WebAppClient\webAppClient\webAppClient\obj\Debug\webAppClient.csprojResolveAssemblyReference.cache
