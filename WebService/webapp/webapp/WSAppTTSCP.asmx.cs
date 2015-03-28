@@ -75,6 +75,32 @@ namespace webapp
         }
 
         [WebMethod]
+        public string dadosMembro(string email)
+        {
+            string dadosReturn="";
+            string caminhoArquivo = System.IO.Path.Combine(folderName, "membros.txt");
+            if (File.Exists(caminhoArquivo))
+            {
+                string[] linhas = System.IO.File.ReadAllLines(caminhoArquivo);
+
+                foreach (string l in linhas)
+                {
+                    //a estrutra da linha é sempre Nome|senha|email|tipo
+                    if ((!String.IsNullOrEmpty(l)) & (l.CompareTo("\0") != 0))
+                    {
+                        string[] dados = l.Split(new Char[] { '|' });
+                        if (dados[2].CompareTo(email) == 0)
+                        {
+                            dadosReturn = dados[0] + "|" + dados[2] + "|" + dados[3];
+                            return dadosReturn;
+                        }
+                    }
+                }
+            }
+            return dadosReturn = "Membro não encontrado!";
+        }
+        
+        [WebMethod]
         public string associaMembroTurma(string email, string turma)
         {
             string caminhoCompleto = System.IO.Path.Combine(folderName, turma, turma+"_membros.txt");
