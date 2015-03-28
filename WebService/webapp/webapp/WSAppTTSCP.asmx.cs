@@ -99,7 +99,35 @@ namespace webapp
             }
             return dadosReturn = "Membro não encontrado!";
         }
-        
+
+        [WebMethod]
+        public string dadosTodosMembros(string turma)
+        {
+            string caminhoArquivoTurma = System.IO.Path.Combine(folderName, turma, turma + "_membros.txt");
+            String listaAlunos = "";
+
+            if (File.Exists(caminhoArquivoTurma))
+            {
+                using (FileStream fs = new FileStream(caminhoArquivoTurma, FileMode.Open, FileAccess.Read))
+                {
+                    using (StreamReader sr = new StreamReader(fs, Encoding.ASCII))
+                    {
+                        string strLinha = null;
+                        while ((strLinha = sr.ReadLine()) != null)
+                        {
+                            listaAlunos = listaAlunos + dadosMembro(strLinha) + "&";         
+                        }
+                    }
+                }
+            }
+            else
+            {
+                return "Não existem alunos associados a esta turma!";
+            }
+            return listaAlunos;
+        }
+
+
         [WebMethod]
         public string associaMembroTurma(string email, string turma)
         {
