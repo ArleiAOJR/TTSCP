@@ -6,20 +6,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\Arlei\Desktop\WSAppTTSCP</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\Arlei\Desktop\TTSCP\WSAppTTSCP</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/webapp.dll">
-      <publishTime>03/22/2015 12:12:28</publishTime>
+      <publishTime>03/28/2015 15:32:31</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>03/22/2015 12:12:30</publishTime>
+      <publishTime>03/28/2015 15:32:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/22/2015 11:45:17</publishTime>
+      <publishTime>03/28/2015 15:32:31</publishTime>
     </File>
     <File Include="WSAppTTSCP.asmx">
-      <publishTime>03/21/2015 12:16:20</publishTime>
+      <publishTime>03/27/2015 16:27:10</publishTime>
     </File>
     <File Include="WSAppTTSCP.asmx.cs">
       <publishTime>03/22/2015 11:35:45</publishTime>

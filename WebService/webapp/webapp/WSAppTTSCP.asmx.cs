@@ -25,6 +25,31 @@ namespace webapp
         private const string folderName = @"c:\TTSCP";
         //private const string folderName = @"~\TTSCP";
 
+        private bool emailJaInlcuidoTurma(string email, string turma)
+        {
+            string caminhoArquivo = System.IO.Path.Combine(folderName, turma, turma + "_membros.txt");
+            if (File.Exists(caminhoArquivo))
+            {
+                //verificando se o membro já foi adicionado
+                using (FileStream fs = new FileStream(caminhoArquivo, FileMode.Open, FileAccess.Read))
+                {
+                    using (StreamReader sr = new StreamReader(fs, Encoding.ASCII))
+                    {
+                        string strLinha = null;
+                        while ((strLinha = sr.ReadLine()) != null)
+                        {
+                            if (strLinha.IndexOf(email) > -1)
+                            {
+                                return true;         
+                            }
+                                    
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
         private bool emailExists(string email)
         {
             string caminhoArquivo = System.IO.Path.Combine(folderName, "membros.txt");
@@ -48,6 +73,47 @@ namespace webapp
             }
             return false;
         }
+
+        [WebMethod]
+        public string associaMembroTurma(string email, string turma)
+        {
+            string caminhoCompleto = System.IO.Path.Combine(folderName, turma, turma+"_membros.txt");
+
+            if (!emailJaInlcuidoTurma(email, turma))
+            {
+                try
+                {
+                    FileMode fm = new FileMode();
+                    if (File.Exists(caminhoCompleto))
+                    {
+                        fm = FileMode.Append;
+                    }
+                    else
+                    {
+                        fm = FileMode.Create;
+                    }
+
+                    using (System.IO.FileStream fs = new FileStream(caminhoCompleto, fm, FileAccess.Write))
+                    {
+                        using (StreamWriter sw = new StreamWriter(fs, Encoding.ASCII))
+                        {
+                            sw.WriteLine(email);
+                            sw.Close();
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    return "Não foi possível adicionar o membro na turma. Erro na base de dados!";
+                }
+            }
+            else
+            {
+                return "Este membro já foi adicionado a turma!";
+            }
+            return "Membro adicionado na base da turma com sucesso!";
+        }
+
 
         [WebMethod]
         public bool autenticaMembro(string email, string pass)
