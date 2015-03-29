@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="frmAlteraSenha.aspx" />
+    <Content Include="frmAssociaMembroTurma.aspx" />
     <Content Include="frmLogin.aspx" />
     <Content Include="frmMembro.aspx" />
     <Content Include="frmTurma.aspx" />
@@ -115,6 +116,13 @@
     </Compile>
     <Compile Include="frmAlteraSenha.aspx.designer.cs">
       <DependentUpon>frmAlteraSenha.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAssociaMembroTurma.aspx.cs">
+      <DependentUpon>frmAssociaMembroTurma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAssociaMembroTurma.aspx.designer.cs">
+      <DependentUpon>frmAssociaMembroTurma.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.aspx.cs">
       <DependentUpon>frmLogin.aspx</DependentUpon>

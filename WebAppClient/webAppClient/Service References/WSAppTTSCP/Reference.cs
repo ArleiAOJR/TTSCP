@@ -20,6 +20,10 @@ namespace WebAppClient.WSAppTTSCP {
         WebAppClient.WSAppTTSCP.dadosMembroResponse dadosMembro(WebAppClient.WSAppTTSCP.dadosMembroRequest request);
         
         // CODEGEN: Generating message contract since element name turma from namespace WSAppTTSCP is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="WSAppTTSCP/dadosTodosMembrosTurma", ReplyAction="*")]
+        WebAppClient.WSAppTTSCP.dadosTodosMembrosTurmaResponse dadosTodosMembrosTurma(WebAppClient.WSAppTTSCP.dadosTodosMembrosTurmaRequest request);
+        
+        // CODEGEN: Generating message contract since element name dadosTodosMembrosResult from namespace WSAppTTSCP is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="WSAppTTSCP/dadosTodosMembros", ReplyAction="*")]
         WebAppClient.WSAppTTSCP.dadosTodosMembrosResponse dadosTodosMembros(WebAppClient.WSAppTTSCP.dadosTodosMembrosRequest request);
         
@@ -120,6 +124,74 @@ namespace WebAppClient.WSAppTTSCP {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class dadosTodosMembrosTurmaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="dadosTodosMembrosTurma", Namespace="WSAppTTSCP", Order=0)]
+        public WebAppClient.WSAppTTSCP.dadosTodosMembrosTurmaRequestBody Body;
+        
+        public dadosTodosMembrosTurmaRequest() {
+        }
+        
+        public dadosTodosMembrosTurmaRequest(WebAppClient.WSAppTTSCP.dadosTodosMembrosTurmaRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="WSAppTTSCP")]
+    public partial class dadosTodosMembrosTurmaRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string turma;
+        
+        public dadosTodosMembrosTurmaRequestBody() {
+        }
+        
+        public dadosTodosMembrosTurmaRequestBody(string turma) {
+            this.turma = turma;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class dadosTodosMembrosTurmaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="dadosTodosMembrosTurmaResponse", Namespace="WSAppTTSCP", Order=0)]
+        public WebAppClient.WSAppTTSCP.dadosTodosMembrosTurmaResponseBody Body;
+        
+        public dadosTodosMembrosTurmaResponse() {
+        }
+        
+        public dadosTodosMembrosTurmaResponse(WebAppClient.WSAppTTSCP.dadosTodosMembrosTurmaResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="WSAppTTSCP")]
+    public partial class dadosTodosMembrosTurmaResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string dadosTodosMembrosTurmaResult;
+        
+        public dadosTodosMembrosTurmaResponseBody() {
+        }
+        
+        public dadosTodosMembrosTurmaResponseBody(string dadosTodosMembrosTurmaResult) {
+            this.dadosTodosMembrosTurmaResult = dadosTodosMembrosTurmaResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class dadosTodosMembrosRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="dadosTodosMembros", Namespace="WSAppTTSCP", Order=0)]
@@ -136,17 +208,10 @@ namespace WebAppClient.WSAppTTSCP {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="WSAppTTSCP")]
+    [System.Runtime.Serialization.DataContractAttribute()]
     public partial class dadosTodosMembrosRequestBody {
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string turma;
-        
         public dadosTodosMembrosRequestBody() {
-        }
-        
-        public dadosTodosMembrosRequestBody(string turma) {
-            this.turma = turma;
         }
     }
     
@@ -650,14 +715,26 @@ namespace WebAppClient.WSAppTTSCP {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        WebAppClient.WSAppTTSCP.dadosTodosMembrosTurmaResponse WebAppClient.WSAppTTSCP.WSAppTTSCPSoap.dadosTodosMembrosTurma(WebAppClient.WSAppTTSCP.dadosTodosMembrosTurmaRequest request) {
+            return base.Channel.dadosTodosMembrosTurma(request);
+        }
+        
+        public string dadosTodosMembrosTurma(string turma) {
+            WebAppClient.WSAppTTSCP.dadosTodosMembrosTurmaRequest inValue = new WebAppClient.WSAppTTSCP.dadosTodosMembrosTurmaRequest();
+            inValue.Body = new WebAppClient.WSAppTTSCP.dadosTodosMembrosTurmaRequestBody();
+            inValue.Body.turma = turma;
+            WebAppClient.WSAppTTSCP.dadosTodosMembrosTurmaResponse retVal = ((WebAppClient.WSAppTTSCP.WSAppTTSCPSoap)(this)).dadosTodosMembrosTurma(inValue);
+            return retVal.Body.dadosTodosMembrosTurmaResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         WebAppClient.WSAppTTSCP.dadosTodosMembrosResponse WebAppClient.WSAppTTSCP.WSAppTTSCPSoap.dadosTodosMembros(WebAppClient.WSAppTTSCP.dadosTodosMembrosRequest request) {
             return base.Channel.dadosTodosMembros(request);
         }
         
-        public string dadosTodosMembros(string turma) {
+        public string dadosTodosMembros() {
             WebAppClient.WSAppTTSCP.dadosTodosMembrosRequest inValue = new WebAppClient.WSAppTTSCP.dadosTodosMembrosRequest();
             inValue.Body = new WebAppClient.WSAppTTSCP.dadosTodosMembrosRequestBody();
-            inValue.Body.turma = turma;
             WebAppClient.WSAppTTSCP.dadosTodosMembrosResponse retVal = ((WebAppClient.WSAppTTSCP.WSAppTTSCPSoap)(this)).dadosTodosMembros(inValue);
             return retVal.Body.dadosTodosMembrosResult;
         }

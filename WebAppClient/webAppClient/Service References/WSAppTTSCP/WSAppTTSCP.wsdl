@@ -16,12 +16,22 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="dadosTodosMembros">
+      <s:element name="dadosTodosMembrosTurma">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
           </s:sequence>
         </s:complexType>
+      </s:element>
+      <s:element name="dadosTodosMembrosTurmaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dadosTodosMembrosTurmaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="dadosTodosMembros">
+        <s:complexType />
       </s:element>
       <s:element name="dadosTodosMembrosResponse">
         <s:complexType>
@@ -124,6 +134,12 @@
   <wsdl:message name="dadosMembroSoapOut">
     <wsdl:part name="parameters" element="tns:dadosMembroResponse" />
   </wsdl:message>
+  <wsdl:message name="dadosTodosMembrosTurmaSoapIn">
+    <wsdl:part name="parameters" element="tns:dadosTodosMembrosTurma" />
+  </wsdl:message>
+  <wsdl:message name="dadosTodosMembrosTurmaSoapOut">
+    <wsdl:part name="parameters" element="tns:dadosTodosMembrosTurmaResponse" />
+  </wsdl:message>
   <wsdl:message name="dadosTodosMembrosSoapIn">
     <wsdl:part name="parameters" element="tns:dadosTodosMembros" />
   </wsdl:message>
@@ -171,6 +187,10 @@
       <wsdl:input message="tns:dadosMembroSoapIn" />
       <wsdl:output message="tns:dadosMembroSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="dadosTodosMembrosTurma">
+      <wsdl:input message="tns:dadosTodosMembrosTurmaSoapIn" />
+      <wsdl:output message="tns:dadosTodosMembrosTurmaSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="dadosTodosMembros">
       <wsdl:input message="tns:dadosTodosMembrosSoapIn" />
       <wsdl:output message="tns:dadosTodosMembrosSoapOut" />
@@ -204,6 +224,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="dadosMembro">
       <soap:operation soapAction="WSAppTTSCP/dadosMembro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dadosTodosMembrosTurma">
+      <soap:operation soapAction="WSAppTTSCP/dadosTodosMembrosTurma" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -279,6 +308,15 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="dadosMembro">
       <soap12:operation soapAction="WSAppTTSCP/dadosMembro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dadosTodosMembrosTurma">
+      <soap12:operation soapAction="WSAppTTSCP/dadosTodosMembrosTurma" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

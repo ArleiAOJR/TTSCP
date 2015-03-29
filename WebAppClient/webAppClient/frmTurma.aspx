@@ -14,7 +14,7 @@
         <asp:Label ID="LResultado" runat="server" Text="Resultado: "></asp:Label>
         <br />
         <br />
-        <asp:Button ID="BVerTurmas" runat="server" OnClick="BVerTurmas_Click" Text="Ver Turmas" Width="100px" />
+        <asp:Button ID="BVerTurmas" runat="server" OnClick="BVerTurmas_Click" Text="Atualizar Lista" Width="100px" />
         <br />
         <br />
         <asp:Label ID="Label3" runat="server" Font-Bold="True" Text="Lista de Turmas"></asp:Label>

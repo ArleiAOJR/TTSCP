@@ -24,6 +24,15 @@
         <br />
         <asp:Label ID="LResultado" runat="server" Text="Resultado: "></asp:Label>
         <br />
+        <br />
+        <asp:Button ID="BVerMembros" runat="server" OnClick="BVerMembros_Click" Text="Ver Membros" Width="100px" />
+        <br />
+        <br />
+        <asp:Label ID="Label6" runat="server" Font-Bold="True" Text="Lista de Membros"></asp:Label>
+        <br />
+        <asp:Table ID="TMembros" runat="server">
+        </asp:Table>
+        <br />
     </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Footer" runat="server">

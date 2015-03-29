@@ -11,5 +11,6 @@ namespace WebAppClient
         public static bool MembroAutenticado = false;
         public static string NomeMembroAutenticado = "";
         public static string EmailMembroAutenticado = "";
+        public static string TurmaAAssociar = "";
     }
 }
