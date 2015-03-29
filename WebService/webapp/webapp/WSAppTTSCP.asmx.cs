@@ -101,7 +101,7 @@ namespace webapp
         }
 
         [WebMethod]
-        public string dadosTodosMembros(string turma)
+        public string dadosTodosMembrosTurma(string turma)
         {
             string caminhoArquivoTurma = System.IO.Path.Combine(folderName, turma, turma + "_membros.txt");
             String listaAlunos = "";
@@ -127,6 +127,42 @@ namespace webapp
             return listaAlunos;
         }
 
+        [WebMethod]
+        public string dadosTodosMembros()
+        {
+            string caminhoArquivo = System.IO.Path.Combine(folderName, "membros.txt");
+            String listaMembros = "";
+
+            if (File.Exists(caminhoArquivo))
+            {
+                using (FileStream fs = new FileStream(caminhoArquivo, FileMode.Open, FileAccess.Read))
+                {
+                    using (StreamReader sr = new StreamReader(fs, Encoding.ASCII))
+                    {
+                        string strLinha = null;
+                        while ((strLinha = sr.ReadLine()) != null)
+                        {
+                            string[] dados = strLinha.Split(new Char[] { '|' });
+                            string tipoMembro = "";
+                            if (dados[3].CompareTo("0")==0)
+                            {
+                                tipoMembro = "Professor(a)";
+                            }
+                            else
+                            {
+                                tipoMembro = "Aluno(a)";
+                            }
+                            listaMembros = listaMembros + dados[0] + "|" + dados[2] + "|" + tipoMembro + "&";
+                        }
+                    }
+                }
+            }
+            else
+            {
+                return "Não existem membros cadastrados!";
+            }
+            return listaMembros;
+        }
 
         [WebMethod]
         public string associaMembroTurma(string email, string turma)

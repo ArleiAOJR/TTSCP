@@ -5,22 +5,31 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebAppClient;
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+       
     }
 
     protected string RenderMenu()
     {
         var result = new StringBuilder();
         RenderMenuItem("Home", "Default.aspx", result);
-        RenderMenuItem("Login", "frmLogin.aspx", result);
-        RenderMenuItem("Turmas", "Turmas.aspx", result);
-        RenderMenuItem("Membros", "Membros.aspx", result);
-        RenderMenuItem("Sobre", "Sobre.aspx", result);
+
+        if (!GlobalVar.MembroAutenticado)
+        {
+            RenderMenuItem("Login", "frmLogin.aspx", result);
+        }
+        
+        if (GlobalVar.MembroAutenticado)
+        {
+            RenderMenuItem("Turmas", "frmTurma.aspx", result);
+            RenderMenuItem("Membros", "frmMembro.aspx", result);
+            RenderMenuItem("Sobre", "Default.aspx", result);
+        }
         return result.ToString();
     }
 

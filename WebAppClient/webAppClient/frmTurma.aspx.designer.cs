@@ -10,7 +10,7 @@
 namespace WebAppClient {
     
     
-    public partial class frmLogin {
+    public partial class frmTurma {
         
         /// <summary>
         /// form1 control.
@@ -22,22 +22,49 @@ namespace WebAppClient {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Label4 control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// TBemail control.
+        /// TBTurma control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBemail;
+        protected global::System.Web.UI.WebControls.TextBox TBTurma;
+        
+        /// <summary>
+        /// BCriaTurma control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BCriaTurma;
+        
+        /// <summary>
+        /// LResultado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LResultado;
+        
+        /// <summary>
+        /// BVerTurmas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BVerTurmas;
         
         /// <summary>
         /// Label3 control.
@@ -49,21 +76,12 @@ namespace WebAppClient {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// TBSenha control.
+        /// TTurmas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBSenha;
-        
-        /// <summary>
-        /// Blogin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Blogin;
+        protected global::System.Web.UI.WebControls.Table TTurmas;
     }
 }

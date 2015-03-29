@@ -7,20 +7,12 @@
         <br />
         <asp:TextBox ID="TBemail" runat="server" Width="300px"></asp:TextBox>
         <br />
-        <asp:Label ID="Label5" runat="server" Text="Tipo Membro"></asp:Label>
-        <br />
-        <asp:DropDownList ID="DDLTipoMembro" runat="server" Height="18px" Width="307px">
-            <asp:ListItem Selected="True" Value="1">Aluno</asp:ListItem>
-            <asp:ListItem Value="0">Professor</asp:ListItem>
-        </asp:DropDownList>
-        <br />
         <asp:Label ID="Label3" runat="server" Text="Senha"></asp:Label>
         <br />
         <asp:TextBox ID="TBSenha" runat="server" Width="300px" TextMode="Password"></asp:TextBox>
         <br />
-        <asp:Button ID="Blogin" runat="server" Text="Entrar" OnClick="Blogin_Click" />
         <br />
-        <asp:Label ID="LResult" runat="server" Text="Resultado: "></asp:Label>
+        <asp:Button ID="Blogin" runat="server" Text="Entrar" OnClick="Blogin_Click" Width="100px" />
     </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Footer" runat="server">

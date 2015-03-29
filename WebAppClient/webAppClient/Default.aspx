@@ -3,7 +3,7 @@
 <asp:Content ContentPlaceHolderID="Head" Runat="Server"></asp:Content>
 
 <asp:Content ContentPlaceHolderID="Content" Runat="Server">
-    Your content goes here.
+    Welcome to Teacher To Students Communication Platform - TTSCP
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="Footer" Runat="Server"></asp:Content>

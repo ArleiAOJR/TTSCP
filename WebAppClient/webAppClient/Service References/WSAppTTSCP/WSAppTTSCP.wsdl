@@ -2,13 +2,54 @@
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="WSAppTTSCP" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="WSAppTTSCP" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="WSAppTTSCP">
+      <s:element name="dadosMembro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="dadosMembroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dadosMembroResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="dadosTodosMembros">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="dadosTodosMembrosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dadosTodosMembrosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="associaMembroTurma">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="associaMembroTurmaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="associaMembroTurmaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="autenticaMembro">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="tipoMembro" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -16,6 +57,22 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="autenticaMembroResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="alteraSenha">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="currentPass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newPass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="alteraSenhaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="alteraSenhaResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -46,7 +103,6 @@
       <s:element name="criarMembro">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="nomeMembro" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="emailMembro" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="tipoMembro" type="s:int" />
@@ -62,11 +118,35 @@
       </s:element>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="dadosMembroSoapIn">
+    <wsdl:part name="parameters" element="tns:dadosMembro" />
+  </wsdl:message>
+  <wsdl:message name="dadosMembroSoapOut">
+    <wsdl:part name="parameters" element="tns:dadosMembroResponse" />
+  </wsdl:message>
+  <wsdl:message name="dadosTodosMembrosSoapIn">
+    <wsdl:part name="parameters" element="tns:dadosTodosMembros" />
+  </wsdl:message>
+  <wsdl:message name="dadosTodosMembrosSoapOut">
+    <wsdl:part name="parameters" element="tns:dadosTodosMembrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="associaMembroTurmaSoapIn">
+    <wsdl:part name="parameters" element="tns:associaMembroTurma" />
+  </wsdl:message>
+  <wsdl:message name="associaMembroTurmaSoapOut">
+    <wsdl:part name="parameters" element="tns:associaMembroTurmaResponse" />
+  </wsdl:message>
   <wsdl:message name="autenticaMembroSoapIn">
     <wsdl:part name="parameters" element="tns:autenticaMembro" />
   </wsdl:message>
   <wsdl:message name="autenticaMembroSoapOut">
     <wsdl:part name="parameters" element="tns:autenticaMembroResponse" />
+  </wsdl:message>
+  <wsdl:message name="alteraSenhaSoapIn">
+    <wsdl:part name="parameters" element="tns:alteraSenha" />
+  </wsdl:message>
+  <wsdl:message name="alteraSenhaSoapOut">
+    <wsdl:part name="parameters" element="tns:alteraSenhaResponse" />
   </wsdl:message>
   <wsdl:message name="listaTurmasSoapIn">
     <wsdl:part name="parameters" element="tns:listaTurmas" />
@@ -87,9 +167,25 @@
     <wsdl:part name="parameters" element="tns:criarMembroResponse" />
   </wsdl:message>
   <wsdl:portType name="WSAppTTSCPSoap">
+    <wsdl:operation name="dadosMembro">
+      <wsdl:input message="tns:dadosMembroSoapIn" />
+      <wsdl:output message="tns:dadosMembroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="dadosTodosMembros">
+      <wsdl:input message="tns:dadosTodosMembrosSoapIn" />
+      <wsdl:output message="tns:dadosTodosMembrosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="associaMembroTurma">
+      <wsdl:input message="tns:associaMembroTurmaSoapIn" />
+      <wsdl:output message="tns:associaMembroTurmaSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="autenticaMembro">
       <wsdl:input message="tns:autenticaMembroSoapIn" />
       <wsdl:output message="tns:autenticaMembroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="alteraSenha">
+      <wsdl:input message="tns:alteraSenhaSoapIn" />
+      <wsdl:output message="tns:alteraSenhaSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="listaTurmas">
       <wsdl:input message="tns:listaTurmasSoapIn" />
@@ -106,8 +202,44 @@
   </wsdl:portType>
   <wsdl:binding name="WSAppTTSCPSoap" type="tns:WSAppTTSCPSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="dadosMembro">
+      <soap:operation soapAction="WSAppTTSCP/dadosMembro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dadosTodosMembros">
+      <soap:operation soapAction="WSAppTTSCP/dadosTodosMembros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="associaMembroTurma">
+      <soap:operation soapAction="WSAppTTSCP/associaMembroTurma" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="autenticaMembro">
       <soap:operation soapAction="WSAppTTSCP/autenticaMembro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="alteraSenha">
+      <soap:operation soapAction="WSAppTTSCP/alteraSenha" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -145,8 +277,44 @@
   </wsdl:binding>
   <wsdl:binding name="WSAppTTSCPSoap12" type="tns:WSAppTTSCPSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="dadosMembro">
+      <soap12:operation soapAction="WSAppTTSCP/dadosMembro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dadosTodosMembros">
+      <soap12:operation soapAction="WSAppTTSCP/dadosTodosMembros" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="associaMembroTurma">
+      <soap12:operation soapAction="WSAppTTSCP/associaMembroTurma" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="autenticaMembro">
       <soap12:operation soapAction="WSAppTTSCP/autenticaMembro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="alteraSenha">
+      <soap12:operation soapAction="WSAppTTSCP/alteraSenha" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

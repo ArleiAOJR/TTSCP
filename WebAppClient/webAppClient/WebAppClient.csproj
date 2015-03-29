@@ -59,7 +59,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="frmAlteraSenha.aspx" />
     <Content Include="frmLogin.aspx" />
+    <Content Include="frmMembro.aspx" />
+    <Content Include="frmTurma.aspx" />
     <Content Include="MasterPage.master" />
     <None Include="Service References\WSAppTTSCP\WSAppTTSCP.disco" />
     <None Include="Service References\WSAppTTSCP\configuration91.svcinfo" />
@@ -106,6 +109,13 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="frmAlteraSenha.aspx.cs">
+      <DependentUpon>frmAlteraSenha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAlteraSenha.aspx.designer.cs">
+      <DependentUpon>frmAlteraSenha.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.aspx.cs">
       <DependentUpon>frmLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -113,6 +123,21 @@
     <Compile Include="frmLogin.aspx.designer.cs">
       <DependentUpon>frmLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmMembro.aspx.cs">
+      <DependentUpon>frmMembro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMembro.aspx.designer.cs">
+      <DependentUpon>frmMembro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmTurma.aspx.cs">
+      <DependentUpon>frmTurma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmTurma.aspx.designer.cs">
+      <DependentUpon>frmTurma.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalVar.cs" />
     <Compile Include="MasterPage.master.cs">
       <DependentUpon>MasterPage.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -138,6 +163,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\WSAppTTSCP\" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
