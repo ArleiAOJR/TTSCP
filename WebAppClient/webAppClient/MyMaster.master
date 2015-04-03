@@ -1,4 +1,4 @@
-<%@ Master Language="C#" CodeFile="MasterPage.master.cs" Inherits="MasterPage" EnableViewState="false" %><!DOCTYPE html>
+<%@ Master Language="C#" CodeFile="MyMaster.master.cs" Inherits="MyMaster" EnableViewState="false" %><!DOCTYPE html>
 <html>
 <head runat="server">
     <title>Teacher To Students Communication Platform - TTSCP</title>
@@ -15,7 +15,7 @@
           <div class="HeaderTitle">
             <h1><a href="#">Teacher To Students Communication Platform - TTSCP</a></h1>
             <h2>Tópicos em Engenharia de Software - 2015/01</h2>
-            <asp:Label ID="LAutenticado" runat="server" Text="Membro: "></asp:Label>
+              <asp:Label ID="LAutenticado" runat="server" Text="Membro: "></asp:Label>
           </div>
         </div><div class="Menu">
              <ul><%= RenderMenu() %></ul>

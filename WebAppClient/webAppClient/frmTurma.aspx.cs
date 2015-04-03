@@ -24,8 +24,15 @@ namespace WebAppClient
         protected void btn_click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            GlobalVar.TurmaAAssociar = btn.ID;
+            GlobalVar.TurmaAAssociar = btn.CommandArgument;
             Server.Transfer("frmAssociaMembroTurma.aspx", true);
+        }
+
+        protected void btnPesq_click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            GlobalVar.TurmaAAssociar = btn.CommandArgument;
+            Server.Transfer("frmAssociaPesquisaTurma.aspx", true);
         }
 
         protected void carregaTurmas()
@@ -41,16 +48,24 @@ namespace WebAppClient
                 {
                     TableRow tRow = new TableRow();
                     TTurmas.Rows.Add(tRow);
-
-                    //TableCell tCell = new TableCell();
-                    //tCell.Text = "Turma: " + t[i];
-                    //tRow.Cells.Add(tCell);
-
                     TableCell tCellIncluir = new TableCell();
-                    Button b = new Button { ID = t[i], Text = "Associar membros -> " + t[i] };
+
+                    //label da turma
+                    Label l = new Label { ID = "L" + t[i], Text = t[i]+" -> "};
+                    tCellIncluir.Controls.Add(l);
+                    tRow.Cells.Add(tCellIncluir);
+
+                    //Botões de associar membro com a turma
+                    Button b = new Button { ID = "AM"+t[i], Text = "Add Membro", CommandArgument = t[i]};
                     b.Click += new EventHandler(btn_click);
                     tCellIncluir.Controls.Add(b);
                     tRow.Cells.Add(tCellIncluir);
+
+                    //Botôes de associar pesquisa com a turma
+                    //Button bpesq = new Button { ID = "AP" + t[i], Text = "Add Pesquisa", CommandArgument = t[i] };
+                    //bpesq.Click += new EventHandler(btnPesq_click);
+                    //tCellIncluir.Controls.Add(bpesq);
+                    //tRow.Cells.Add(tCellIncluir);
                 }
             }
         }

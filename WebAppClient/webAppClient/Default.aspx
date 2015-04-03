@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" CodeFile="Default.aspx.cs" Inherits="Default" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/MyMaster.master" CodeFile="Default.aspx.cs" Inherits="Default" %>
 
 <asp:Content ContentPlaceHolderID="Head" Runat="Server"></asp:Content>
 

@@ -20,7 +20,7 @@ namespace WebAppClient
         {
             Button btn = (Button)sender;
             WSAppTTSCP.WSAppTTSCPSoapClient cliente = new WSAppTTSCP.WSAppTTSCPSoapClient();
-            string membros = cliente.associaMembroTurma(btn.ID, GlobalVar.TurmaAAssociar);
+            LUltimaAcao.Text = "Última ação: " + cliente.associaMembroTurma(btn.ID, GlobalVar.TurmaAAssociar);
         }
 
          protected void todosMembrosTurma()
@@ -95,12 +95,17 @@ namespace WebAppClient
                     tRow.Cells.Add(tCell3);
 
                     TableCell tCellIncluir = new TableCell();
-                    Button b = new Button { ID =  mIndividual[1], Text = "Associar este membro..." };
+                    Button b = new Button { ID =  mIndividual[1], Text = " + " };
                     b.Click += new EventHandler(btn_click);
                     tCellIncluir.Controls.Add(b);
                     tRow.Cells.Add(tCellIncluir);
                 }
             }
+        }
+
+        protected void BAtualiza_Click(object sender, EventArgs e)
+        {
+
         }
         
     }

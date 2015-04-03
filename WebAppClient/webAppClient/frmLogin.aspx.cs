@@ -25,11 +25,21 @@ namespace WebAppClient
                 GlobalVar.TipoMembro = Convert.ToInt32(d[2]);
                 GlobalVar.NomeMembroAutenticado = d[0];
                 GlobalVar.EmailMembroAutenticado = d[1];
+
+                //Indicar o nome do membro que se autenticou no form
+                
+
                 if (TBSenha.Text.CompareTo("password") == 0)
                 {
                     GlobalVar.MembroAutenticado = false;
                     Server.Transfer("frmAlteraSenha.aspx", true);
                 }
+                
+                if (GlobalVar.TipoMembro==0)
+                {
+                    Server.Transfer("frmTurma.aspx", true);
+                }
+
             }
             else
             {

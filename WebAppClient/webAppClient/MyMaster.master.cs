@@ -7,13 +7,19 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebAppClient;
 
-public partial class MasterPage : System.Web.UI.MasterPage
+public partial class MyMaster : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
        
     }
 
+    public void LoadNomeMembroAutenticado()
+    {
+        Label l = (Label)Master.FindControl("LAutenticado");
+        l.Text = GlobalVar.NomeMembroAutenticado;
+    }
+    
     protected string RenderMenu()
     {
         var result = new StringBuilder();

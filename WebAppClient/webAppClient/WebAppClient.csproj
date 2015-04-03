@@ -64,7 +64,7 @@
     <Content Include="frmLogin.aspx" />
     <Content Include="frmMembro.aspx" />
     <Content Include="frmTurma.aspx" />
-    <Content Include="MasterPage.master" />
+    <Content Include="MyMaster.master" />
     <None Include="Service References\WSAppTTSCP\WSAppTTSCP.disco" />
     <None Include="Service References\WSAppTTSCP\configuration91.svcinfo" />
     <None Include="Service References\WSAppTTSCP\configuration.svcinfo" />
@@ -146,8 +146,8 @@
       <DependentUpon>frmTurma.aspx</DependentUpon>
     </Compile>
     <Compile Include="GlobalVar.cs" />
-    <Compile Include="MasterPage.master.cs">
-      <DependentUpon>MasterPage.master</DependentUpon>
+    <Compile Include="MyMaster.master.cs">
+      <DependentUpon>MyMaster.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

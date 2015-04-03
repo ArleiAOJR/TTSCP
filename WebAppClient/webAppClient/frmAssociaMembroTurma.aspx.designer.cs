@@ -31,6 +31,24 @@ namespace WebAppClient {
         protected global::System.Web.UI.WebControls.Label LTurma;
         
         /// <summary>
+        /// BAtualiza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BAtualiza;
+        
+        /// <summary>
+        /// LUltimaAcao control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LUltimaAcao;
+        
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
