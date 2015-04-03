@@ -17,24 +17,25 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected string RenderMenu()
     {
         var result = new StringBuilder();
-        RenderMenuItem("Home", "Default.aspx", result);
-        RenderMenuItem("Login", "frmLogin.aspx", result);
-        RenderMenuItem("Altera Senha", "frmAlteraSenha.aspx", result);
-        RenderMenuItem("Turmas", "frmTurma.aspx", result);
-        RenderMenuItem("Membros", "frmMembro.aspx", result);
-        //RenderMenuItem("Sobre", "Default.aspx", result);
+        //RenderMenuItem("Home", "Default.aspx", result);
+        //RenderMenuItem("Login", "frmLogin.aspx", result);
+        //RenderMenuItem("Turmas", "frmTurma.aspx", result);
+        //RenderMenuItem("Membros", "frmMembro.aspx", result);
         
-        //if (!GlobalVar.MembroAutenticado)
-        //{
-        //    RenderMenuItem("Login", "frmLogin.aspx", result);
-        //}
+        if (!GlobalVar.MembroAutenticado)
+        {
+            RenderMenuItem("Login", "frmLogin.aspx", result);
+        }
         
-        //if (GlobalVar.MembroAutenticado)
-        //{
-        //    RenderMenuItem("Turmas", "frmTurma.aspx", result);
-        //    RenderMenuItem("Membros", "frmMembro.aspx", result);
-        //    RenderMenuItem("Sobre", "Default.aspx", result);
-        //}
+        if (GlobalVar.MembroAutenticado)
+        {
+            if (GlobalVar.TipoMembro == 0) //professor
+            {
+                RenderMenuItem("Turmas", "frmTurma.aspx", result);
+                RenderMenuItem("Membros", "frmMembro.aspx", result);
+            }
+            RenderMenuItem("Altera Senha", "frmAlteraSenha.aspx", result);
+        }
         return result.ToString();
     }
 
