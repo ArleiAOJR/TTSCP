@@ -10,7 +10,7 @@
 namespace WebAppClient {
     
     
-    public partial class frmLogin {
+    public partial class frmTurmasMembro {
         
         /// <summary>
         /// form1 control.
@@ -22,22 +22,13 @@ namespace WebAppClient {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Label4 control.
+        /// BVerTurmas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
-        /// <summary>
-        /// TBemail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBemail;
+        protected global::System.Web.UI.WebControls.Button BVerTurmas;
         
         /// <summary>
         /// Label3 control.
@@ -49,30 +40,12 @@ namespace WebAppClient {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// TBSenha control.
+        /// TTurmas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBSenha;
-        
-        /// <summary>
-        /// Blogin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Blogin;
-        
-        /// <summary>
-        /// LResult control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LResult;
+        protected global::System.Web.UI.WebControls.Table TTurmas;
     }
 }

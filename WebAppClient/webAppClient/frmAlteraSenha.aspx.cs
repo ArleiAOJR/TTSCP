@@ -16,6 +16,12 @@ namespace WebAppClient
 
         protected void Blogin_Click(object sender, EventArgs e)
         {
+            if (TBNovaSenha.Text.Length<5)
+            {
+                LResult.Text = "A nova senha precisa ter pelo menos 5 caracteres!";
+                return;
+            }
+                        
             if (TBNovaSenha.Text.CompareTo(TBNovaSenha2.Text)==0)
             {
                 WSAppTTSCP.WSAppTTSCPSoapClient cliente = new WSAppTTSCP.WSAppTTSCPSoapClient();
@@ -23,7 +29,9 @@ namespace WebAppClient
                 if (LResult.Text.CompareTo("Resultado: Senha alterada com sucesso!") == 0)
                 {
                     GlobalVar.MembroAutenticado = true;
-                    Server.Transfer("Default.aspx", true);
+                    TBSenha.Text = "";
+                    TBNovaSenha.Text = "";
+                    TBNovaSenha2.Text = "";
                 }
             }
             else

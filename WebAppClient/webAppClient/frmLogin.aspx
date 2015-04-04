@@ -13,6 +13,9 @@
         <br />
         <br />
         <asp:Button ID="Blogin" runat="server" Text="Entrar" OnClick="Blogin_Click" Width="100px" />
+        <br />
+        <br />
+        <asp:Label ID="LResult" runat="server" Text="Resultado: "></asp:Label>
     </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Footer" runat="server">

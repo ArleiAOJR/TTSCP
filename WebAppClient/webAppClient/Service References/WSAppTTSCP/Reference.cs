@@ -59,6 +59,14 @@ namespace WebAppClient.WSAppTTSCP {
         [System.ServiceModel.OperationContractAttribute(Action="WSAppTTSCP/listaTurmas", ReplyAction="*")]
         WebAppClient.WSAppTTSCP.listaTurmasResponse listaTurmas(WebAppClient.WSAppTTSCP.listaTurmasRequest request);
         
+        // CODEGEN: Generating message contract since element name email from namespace WSAppTTSCP is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="WSAppTTSCP/listaTurmasPorMembro", ReplyAction="*")]
+        WebAppClient.WSAppTTSCP.listaTurmasPorMembroResponse listaTurmasPorMembro(WebAppClient.WSAppTTSCP.listaTurmasPorMembroRequest request);
+        
+        // CODEGEN: Generating message contract since element name turma from namespace WSAppTTSCP is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="WSAppTTSCP/listaPesquisaPorTurmaMembro", ReplyAction="*")]
+        WebAppClient.WSAppTTSCP.listaPesquisaPorTurmaMembroResponse listaPesquisaPorTurmaMembro(WebAppClient.WSAppTTSCP.listaPesquisaPorTurmaMembroRequest request);
+        
         // CODEGEN: Generating message contract since element name turma from namespace WSAppTTSCP is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="WSAppTTSCP/criarTurma", ReplyAction="*")]
         WebAppClient.WSAppTTSCP.criarTurmaResponse criarTurma(WebAppClient.WSAppTTSCP.criarTurmaRequest request);
@@ -850,6 +858,146 @@ namespace WebAppClient.WSAppTTSCP {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class listaTurmasPorMembroRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="listaTurmasPorMembro", Namespace="WSAppTTSCP", Order=0)]
+        public WebAppClient.WSAppTTSCP.listaTurmasPorMembroRequestBody Body;
+        
+        public listaTurmasPorMembroRequest() {
+        }
+        
+        public listaTurmasPorMembroRequest(WebAppClient.WSAppTTSCP.listaTurmasPorMembroRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="WSAppTTSCP")]
+    public partial class listaTurmasPorMembroRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string email;
+        
+        public listaTurmasPorMembroRequestBody() {
+        }
+        
+        public listaTurmasPorMembroRequestBody(string email) {
+            this.email = email;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class listaTurmasPorMembroResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="listaTurmasPorMembroResponse", Namespace="WSAppTTSCP", Order=0)]
+        public WebAppClient.WSAppTTSCP.listaTurmasPorMembroResponseBody Body;
+        
+        public listaTurmasPorMembroResponse() {
+        }
+        
+        public listaTurmasPorMembroResponse(WebAppClient.WSAppTTSCP.listaTurmasPorMembroResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="WSAppTTSCP")]
+    public partial class listaTurmasPorMembroResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string listaTurmasPorMembroResult;
+        
+        public listaTurmasPorMembroResponseBody() {
+        }
+        
+        public listaTurmasPorMembroResponseBody(string listaTurmasPorMembroResult) {
+            this.listaTurmasPorMembroResult = listaTurmasPorMembroResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class listaPesquisaPorTurmaMembroRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="listaPesquisaPorTurmaMembro", Namespace="WSAppTTSCP", Order=0)]
+        public WebAppClient.WSAppTTSCP.listaPesquisaPorTurmaMembroRequestBody Body;
+        
+        public listaPesquisaPorTurmaMembroRequest() {
+        }
+        
+        public listaPesquisaPorTurmaMembroRequest(WebAppClient.WSAppTTSCP.listaPesquisaPorTurmaMembroRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="WSAppTTSCP")]
+    public partial class listaPesquisaPorTurmaMembroRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string turma;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string email;
+        
+        public listaPesquisaPorTurmaMembroRequestBody() {
+        }
+        
+        public listaPesquisaPorTurmaMembroRequestBody(string turma, string email) {
+            this.turma = turma;
+            this.email = email;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class listaPesquisaPorTurmaMembroResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="listaPesquisaPorTurmaMembroResponse", Namespace="WSAppTTSCP", Order=0)]
+        public WebAppClient.WSAppTTSCP.listaPesquisaPorTurmaMembroResponseBody Body;
+        
+        public listaPesquisaPorTurmaMembroResponse() {
+        }
+        
+        public listaPesquisaPorTurmaMembroResponse(WebAppClient.WSAppTTSCP.listaPesquisaPorTurmaMembroResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="WSAppTTSCP")]
+    public partial class listaPesquisaPorTurmaMembroResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string listaPesquisaPorTurmaMembroResult;
+        
+        public listaPesquisaPorTurmaMembroResponseBody() {
+        }
+        
+        public listaPesquisaPorTurmaMembroResponseBody(string listaPesquisaPorTurmaMembroResult) {
+            this.listaPesquisaPorTurmaMembroResult = listaPesquisaPorTurmaMembroResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class criarTurmaRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="criarTurma", Namespace="WSAppTTSCP", Order=0)]
@@ -1167,6 +1315,33 @@ namespace WebAppClient.WSAppTTSCP {
             inValue.Body = new WebAppClient.WSAppTTSCP.listaTurmasRequestBody();
             WebAppClient.WSAppTTSCP.listaTurmasResponse retVal = ((WebAppClient.WSAppTTSCP.WSAppTTSCPSoap)(this)).listaTurmas(inValue);
             return retVal.Body.listaTurmasResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        WebAppClient.WSAppTTSCP.listaTurmasPorMembroResponse WebAppClient.WSAppTTSCP.WSAppTTSCPSoap.listaTurmasPorMembro(WebAppClient.WSAppTTSCP.listaTurmasPorMembroRequest request) {
+            return base.Channel.listaTurmasPorMembro(request);
+        }
+        
+        public string listaTurmasPorMembro(string email) {
+            WebAppClient.WSAppTTSCP.listaTurmasPorMembroRequest inValue = new WebAppClient.WSAppTTSCP.listaTurmasPorMembroRequest();
+            inValue.Body = new WebAppClient.WSAppTTSCP.listaTurmasPorMembroRequestBody();
+            inValue.Body.email = email;
+            WebAppClient.WSAppTTSCP.listaTurmasPorMembroResponse retVal = ((WebAppClient.WSAppTTSCP.WSAppTTSCPSoap)(this)).listaTurmasPorMembro(inValue);
+            return retVal.Body.listaTurmasPorMembroResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        WebAppClient.WSAppTTSCP.listaPesquisaPorTurmaMembroResponse WebAppClient.WSAppTTSCP.WSAppTTSCPSoap.listaPesquisaPorTurmaMembro(WebAppClient.WSAppTTSCP.listaPesquisaPorTurmaMembroRequest request) {
+            return base.Channel.listaPesquisaPorTurmaMembro(request);
+        }
+        
+        public string listaPesquisaPorTurmaMembro(string turma, string email) {
+            WebAppClient.WSAppTTSCP.listaPesquisaPorTurmaMembroRequest inValue = new WebAppClient.WSAppTTSCP.listaPesquisaPorTurmaMembroRequest();
+            inValue.Body = new WebAppClient.WSAppTTSCP.listaPesquisaPorTurmaMembroRequestBody();
+            inValue.Body.turma = turma;
+            inValue.Body.email = email;
+            WebAppClient.WSAppTTSCP.listaPesquisaPorTurmaMembroResponse retVal = ((WebAppClient.WSAppTTSCP.WSAppTTSCPSoap)(this)).listaPesquisaPorTurmaMembro(inValue);
+            return retVal.Body.listaPesquisaPorTurmaMembroResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

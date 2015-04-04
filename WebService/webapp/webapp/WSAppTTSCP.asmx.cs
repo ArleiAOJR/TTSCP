@@ -554,6 +554,129 @@ namespace webapp
             return lista;
         }
 
+        protected bool membroDestaTurma(string turma, string email)
+        {
+            string caminhoMembrosTurma = System.IO.Path.Combine(folderName, turma, turma+"_membros.txt");
+            if (File.Exists(caminhoMembrosTurma))
+            {
+                string[] linhas = System.IO.File.ReadAllLines(caminhoMembrosTurma);
+
+                foreach (string l in linhas)
+                {
+                    //a estrutra da linha é sempre Nome|senha|email|tipo
+                    if ((!String.IsNullOrEmpty(l)) & (l.CompareTo("\0") != 0))
+                    {
+                        if (l.CompareTo(email) == 0)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        
+        [WebMethod]
+        public string listaTurmasPorMembro(string email)
+        {
+            if (email.Length<5)
+            {
+                return "Informe o email para busca!";
+            }
+            
+            string lista_aux = listaTurmas();
+            string lista = "";
+
+            if (lista_aux.CompareTo("Não há turmas cadastradas!")!=0)
+            {
+                string[] turmas = lista_aux.Split(new Char[] { '|' });
+                for (int i=0; i<turmas.Length; i++)
+                {
+                    if (turmas[i].Length > 3)
+                    {
+                        if (membroDestaTurma(turmas[i], email))
+                        {
+                            lista = lista + turmas[i] + "|";
+                        }
+                    }
+                }
+                if (lista.CompareTo("")==0)
+                {
+                    return "Este membro não está associado a nenhuma turma!";
+                }
+                return lista;
+            }
+            return "Não foram encontradas turmas para este membro!";
+        }
+
+        protected bool membroDestaPesquisa(string turma, string pesquisa, string email)
+        {
+            string caminhoMembrosTurmaPesquisa = System.IO.Path.Combine(folderName, turma, pesquisa);
+            if (File.Exists(caminhoMembrosTurmaPesquisa))
+            {
+                string[] linhas = System.IO.File.ReadAllLines(caminhoMembrosTurmaPesquisa);
+
+                foreach (string l in linhas)
+                {
+                    //a estrutra da linha é sempre Nome|senha|email|tipo
+                    if ((!String.IsNullOrEmpty(l)) & (l.CompareTo("\0") != 0))
+                    {
+                        if (l.CompareTo(email) == 0)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+
+        [WebMethod]
+        public string listaPesquisaPorTurmaMembro(string turma, string email)
+        {
+            if (email.Length < 5)
+            {
+                return "Informe o email para busca!";
+            }
+
+            if (email.Length < 3)
+            {
+                return "Informe o turma para busca!";
+            }
+
+            string listaPesquisasTurma = listaPesquisasDaTurma(turma);
+
+            if (listaPesquisasTurma.CompareTo("Não existem pesquisas associados a esta turma!") != 0)
+            {
+                string lPesquisasMembro = "";
+                string[] pesquisas = listaPesquisasTurma.Split(new Char[] { '&' });
+                
+                //lista de todas as pesquisas da turma
+                for (int i=0; i<pesquisas.Length; i++)
+                {
+                    if (pesquisas[i].Length > 3)
+                    {
+                        string[] pesquisa = pesquisas[i].Split(new Char[] { '|' });
+
+                        //formato dos dados Ex:
+                        //1|Pesquisa 1|Pesquisa 1|2015-04-05
+                        if (membroDestaPesquisa(turma, "Pesquisa"+pesquisa[0]+".txt", email))
+                        {
+                            lPesquisasMembro = lPesquisasMembro + pesquisa[0] + "|" + pesquisa[1] + "|" + pesquisa[2] + "|" + pesquisa[3] + "&";
+                        }
+                    }
+                }
+                if (lPesquisasMembro.CompareTo("")==0)
+                {
+                    return "Não foram encontradas pesquisas para este membro!";
+                }
+                return lPesquisasMembro;
+            }
+            return "Não foram encontradas pesquisas para este membro nesta turma!";
+        }
+
+
         [WebMethod]
         public string criarTurma(string turma)
         {

@@ -10,7 +10,7 @@
 namespace WebAppClient {
     
     
-    public partial class frmLogin {
+    public partial class frmMembroTurmaPesquisa {
         
         /// <summary>
         /// form1 control.
@@ -22,22 +22,22 @@ namespace WebAppClient {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Label4 control.
+        /// BVerPesquisas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Button BVerPesquisas;
         
         /// <summary>
-        /// TBemail control.
+        /// LResult control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBemail;
+        protected global::System.Web.UI.WebControls.Label LResult;
         
         /// <summary>
         /// Label3 control.
@@ -49,30 +49,12 @@ namespace WebAppClient {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// TBSenha control.
+        /// TPesquisas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBSenha;
-        
-        /// <summary>
-        /// Blogin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Blogin;
-        
-        /// <summary>
-        /// LResult control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LResult;
+        protected global::System.Web.UI.WebControls.Table TPesquisas;
     }
 }

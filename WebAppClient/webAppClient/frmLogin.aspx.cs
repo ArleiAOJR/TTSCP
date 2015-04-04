@@ -35,9 +35,16 @@ namespace WebAppClient
                     Server.Transfer("frmAlteraSenha.aspx", true);
                 }
                 
+                //se for professor é direcionado para o form de turmas
                 if (GlobalVar.TipoMembro==0)
                 {
                     Server.Transfer("frmTurma.aspx", true);
+                }
+
+                //se for aluno deve ser direcionado para as minhas turmas
+                if (GlobalVar.TipoMembro == 1)
+                {
+                    Server.Transfer("frmTurmasMembro.aspx", true);
                 }
 
             }
@@ -47,6 +54,7 @@ namespace WebAppClient
                 GlobalVar.TipoMembro = 3;
                 GlobalVar.NomeMembroAutenticado = "";
                 GlobalVar.EmailMembroAutenticado = "";
+                LResult.Text = "Resultado: Usuário e senha não conferem!";
             }
         }
     }

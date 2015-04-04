@@ -23,10 +23,6 @@ public partial class MyMaster : System.Web.UI.MasterPage
     protected string RenderMenu()
     {
         var result = new StringBuilder();
-        //RenderMenuItem("Home", "Default.aspx", result);
-        //RenderMenuItem("Login", "frmLogin.aspx", result);
-        //RenderMenuItem("Turmas", "frmTurma.aspx", result);
-        //RenderMenuItem("Membros", "frmMembro.aspx", result);
         
         if (!GlobalVar.MembroAutenticado)
         {
@@ -39,6 +35,10 @@ public partial class MyMaster : System.Web.UI.MasterPage
             {
                 RenderMenuItem("Turmas", "frmTurma.aspx", result);
                 RenderMenuItem("Membros", "frmMembro.aspx", result);
+            }
+            if (GlobalVar.TipoMembro == 1) //aluno
+            {
+                RenderMenuItem("Turmas", "frmTurmasMembro.aspx", result);
             }
             RenderMenuItem("Altera Senha", "frmAlteraSenha.aspx", result);
         }

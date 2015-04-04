@@ -159,6 +159,35 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="listaTurmasPorMembro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaTurmasPorMembroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listaTurmasPorMembroResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaPesquisaPorTurmaMembro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaPesquisaPorTurmaMembroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listaPesquisaPorTurmaMembroResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="criarTurma">
         <s:complexType>
           <s:sequence>
@@ -257,6 +286,18 @@
   <wsdl:message name="listaTurmasSoapOut">
     <wsdl:part name="parameters" element="tns:listaTurmasResponse" />
   </wsdl:message>
+  <wsdl:message name="listaTurmasPorMembroSoapIn">
+    <wsdl:part name="parameters" element="tns:listaTurmasPorMembro" />
+  </wsdl:message>
+  <wsdl:message name="listaTurmasPorMembroSoapOut">
+    <wsdl:part name="parameters" element="tns:listaTurmasPorMembroResponse" />
+  </wsdl:message>
+  <wsdl:message name="listaPesquisaPorTurmaMembroSoapIn">
+    <wsdl:part name="parameters" element="tns:listaPesquisaPorTurmaMembro" />
+  </wsdl:message>
+  <wsdl:message name="listaPesquisaPorTurmaMembroSoapOut">
+    <wsdl:part name="parameters" element="tns:listaPesquisaPorTurmaMembroResponse" />
+  </wsdl:message>
   <wsdl:message name="criarTurmaSoapIn">
     <wsdl:part name="parameters" element="tns:criarTurma" />
   </wsdl:message>
@@ -313,6 +354,14 @@
     <wsdl:operation name="listaTurmas">
       <wsdl:input message="tns:listaTurmasSoapIn" />
       <wsdl:output message="tns:listaTurmasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listaTurmasPorMembro">
+      <wsdl:input message="tns:listaTurmasPorMembroSoapIn" />
+      <wsdl:output message="tns:listaTurmasPorMembroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listaPesquisaPorTurmaMembro">
+      <wsdl:input message="tns:listaPesquisaPorTurmaMembroSoapIn" />
+      <wsdl:output message="tns:listaPesquisaPorTurmaMembroSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="criarTurma">
       <wsdl:input message="tns:criarTurmaSoapIn" />
@@ -417,6 +466,24 @@
     </wsdl:operation>
     <wsdl:operation name="listaTurmas">
       <soap:operation soapAction="WSAppTTSCP/listaTurmas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaTurmasPorMembro">
+      <soap:operation soapAction="WSAppTTSCP/listaTurmasPorMembro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaPesquisaPorTurmaMembro">
+      <soap:operation soapAction="WSAppTTSCP/listaPesquisaPorTurmaMembro" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -537,6 +604,24 @@
     </wsdl:operation>
     <wsdl:operation name="listaTurmas">
       <soap12:operation soapAction="WSAppTTSCP/listaTurmas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaTurmasPorMembro">
+      <soap12:operation soapAction="WSAppTTSCP/listaTurmasPorMembro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaPesquisaPorTurmaMembro">
+      <soap12:operation soapAction="WSAppTTSCP/listaPesquisaPorTurmaMembro" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -31,22 +31,49 @@ namespace WebAppClient
              { 
                  string[] m = membros.Split(new Char[] { '&' });
 
+                 TableRow tRow = new TableRow();
+                 tRow.BorderStyle = BorderStyle.Double;
+                 TMembrosAssociados.Rows.Add(tRow);
+
+                 //nome do membro
+                 TableCell tCell = new TableCell();
+                 tCell.BorderStyle = BorderStyle.Groove;
+                 tCell.Text = "Nome do Membro";
+                 tRow.Cells.Add(tCell);
+
+                 //email do membro
+                 tCell = new TableCell();
+                 tCell.BorderStyle = BorderStyle.Groove;
+                 tCell.Text = "Email do Membro";
+                 tRow.Cells.Add(tCell);
+
+                 //tipo do membro
+                 tCell = new TableCell();
+                 tCell.BorderStyle = BorderStyle.Groove;
+                 tCell.Text = "Tipo do Membro";
+                 tRow.Cells.Add(tCell);
+
                  for (int i = 0; i < m.Length; i++)
                  {
                      if ((!String.IsNullOrEmpty(m[i])) & (m[i].CompareTo("\0") != 0))
                      {
                          string[] mIndividual = m[i].Split(new Char[] { '|' });
 
-                         TableRow tRow = new TableRow();
+                         tRow = new TableRow();
+                         tRow.BorderStyle = BorderStyle.Double;
                          TMembrosAssociados.Rows.Add(tRow);
 
-                         TableCell tCell = new TableCell();
-                         tCell.Text = "Nome: " + mIndividual[0];
+                         //nome do membro
+                         tCell = new TableCell();
+                         tCell.BorderStyle = BorderStyle.Groove;
+                         tCell.Text = mIndividual[0];
                          tRow.Cells.Add(tCell);
 
-                         TableCell tCell2 = new TableCell();
-                         tCell2.Text = "e-Mail: " + mIndividual[1];
-                         tRow.Cells.Add(tCell2);
+                         //email do membro
+                         tCell = new TableCell();
+                         tCell.BorderStyle = BorderStyle.Groove;
+                         tCell.Text = mIndividual[1];
+                         tRow.Cells.Add(tCell);
 
                          string tipoMembro = "";
 
@@ -59,9 +86,11 @@ namespace WebAppClient
                              tipoMembro = "Aluno(a)";
                          }
 
-                         TableCell tCell3 = new TableCell();
-                         tCell3.Text = "Tipo: " + tipoMembro;
-                         tRow.Cells.Add(tCell3);
+                         //tipo do membro
+                         tCell = new TableCell();
+                         tCell.BorderStyle = BorderStyle.Groove;
+                         tCell.Text = tipoMembro;
+                         tRow.Cells.Add(tCell);
                      }
                  }
              }
@@ -71,34 +100,75 @@ namespace WebAppClient
         {
             WSAppTTSCP.WSAppTTSCPSoapClient cliente = new WSAppTTSCP.WSAppTTSCPSoapClient();
             string membros = cliente.dadosTodosMembros();
-            string[] m = membros.Split(new Char[] { '&' });
-            
-            for (int i = 0; i<m.Length; i++)
+
+            if (membros.CompareTo("Não existem membros cadastrados!") != 0)
             {
-                if ((!String.IsNullOrEmpty(m[i])) & (m[i].CompareTo("\0") != 0))
+                string[] m = membros.Split(new Char[] { '&' });
+
+                TableRow tRow = new TableRow();
+                tRow.BorderStyle = BorderStyle.Double;
+                TTodosOsMembros.Rows.Add(tRow);
+
+                //nome do membro
+                TableCell tCell = new TableCell();
+                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.Text = "Nome do Membro";
+                tRow.Cells.Add(tCell);
+
+                //email do membro
+                tCell = new TableCell();
+                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.Text = "Email do Membro";
+                tRow.Cells.Add(tCell);
+
+                //tipo do membro
+                tCell = new TableCell();
+                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.Text = "Tipo do Membro";
+                tRow.Cells.Add(tCell);
+
+                //botão de adicionar membro
+                tCell = new TableCell();
+                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.Text = "Add Membro";
+                tRow.Cells.Add(tCell);
+                
+                for (int i = 0; i < m.Length; i++)
                 {
-                    string[] mIndividual = m[i].Split(new Char[] { '|' });
-                               
-                    TableRow tRow = new TableRow();
-                    TTodosOsMembros.Rows.Add(tRow);
-                    
-                    TableCell tCell = new TableCell();
-                    tCell.Text = "Nome: " + mIndividual[0];
-                    tRow.Cells.Add(tCell);
+                    if ((!String.IsNullOrEmpty(m[i])) & (m[i].CompareTo("\0") != 0))
+                    {
+                        string[] mIndividual = m[i].Split(new Char[] { '|' });
 
-                    TableCell tCell2 = new TableCell();
-                    tCell2.Text = "e-Mail: " + mIndividual[1];
-                    tRow.Cells.Add(tCell2);
-                    
-                    TableCell tCell3 = new TableCell();
-                    tCell3.Text = "Tipo: " + mIndividual[2];
-                    tRow.Cells.Add(tCell3);
+                        tRow = new TableRow();
+                        tRow.BorderStyle = BorderStyle.Double;
+                        TTodosOsMembros.Rows.Add(tRow);
 
-                    TableCell tCellIncluir = new TableCell();
-                    Button b = new Button { ID =  mIndividual[1], Text = " + " };
-                    b.Click += new EventHandler(btn_click);
-                    tCellIncluir.Controls.Add(b);
-                    tRow.Cells.Add(tCellIncluir);
+                        //nome do membro
+                        tCell = new TableCell();
+                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.Text = mIndividual[0];
+                        tRow.Cells.Add(tCell);
+
+                        //email do membro
+                        tCell = new TableCell();
+                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.Text = mIndividual[1];
+                        tRow.Cells.Add(tCell);
+
+                        //tipo do membro
+                        tCell = new TableCell();
+                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.Text = mIndividual[2];
+                        tRow.Cells.Add(tCell);
+
+                        //botão para adicionar membro
+                        tCell = new TableCell();
+                        tCell.BorderStyle = BorderStyle.Groove;
+                        Button b = new Button { ID = mIndividual[1], Text = " + " };
+                        b.Click += new EventHandler(btn_click);
+                        tCell.Controls.Add(b);
+                        tRow.Cells.Add(tCell);
+                    }
                 }
             }
         }

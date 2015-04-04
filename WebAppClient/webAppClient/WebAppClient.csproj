@@ -64,7 +64,10 @@
     <Content Include="frmAssociaPesquisaTurma.aspx" />
     <Content Include="frmLogin.aspx" />
     <Content Include="frmMembro.aspx" />
+    <Content Include="frmMembroTurmaPesquisa.aspx" />
+    <Content Include="frmResultadoPesquisa.aspx" />
     <Content Include="frmTurma.aspx" />
+    <Content Include="frmTurmasMembro.aspx" />
     <Content Include="MyMaster.master" />
     <None Include="Service References\WSAppTTSCP\WSAppTTSCP.disco" />
     <None Include="Service References\WSAppTTSCP\configuration91.svcinfo" />
@@ -146,12 +149,33 @@
     <Compile Include="frmMembro.aspx.designer.cs">
       <DependentUpon>frmMembro.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmMembroTurmaPesquisa.aspx.cs">
+      <DependentUpon>frmMembroTurmaPesquisa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMembroTurmaPesquisa.aspx.designer.cs">
+      <DependentUpon>frmMembroTurmaPesquisa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmResultadoPesquisa.aspx.cs">
+      <DependentUpon>frmResultadoPesquisa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmResultadoPesquisa.aspx.designer.cs">
+      <DependentUpon>frmResultadoPesquisa.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmTurma.aspx.cs">
       <DependentUpon>frmTurma.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="frmTurma.aspx.designer.cs">
       <DependentUpon>frmTurma.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmTurmasMembro.aspx.cs">
+      <DependentUpon>frmTurmasMembro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmTurmasMembro.aspx.designer.cs">
+      <DependentUpon>frmTurmasMembro.aspx</DependentUpon>
     </Compile>
     <Compile Include="GlobalVar.cs" />
     <Compile Include="MyMaster.master.cs">

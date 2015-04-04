@@ -1,0 +1,1 @@
+root|password|root@ttscp.br|0
