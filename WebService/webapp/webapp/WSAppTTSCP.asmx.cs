@@ -99,6 +99,244 @@ namespace webapp
             }
             return dadosReturn = "Membro não encontrado!";
         }
+        
+        private string idPesquisa(string turma)
+        {
+            string pesquisaNextID = System.IO.Path.Combine(folderName, turma, "Pesquisas_NextID.txt");
+            string nextID = "1";
+            try
+            {
+                FileMode fm = new FileMode();
+                if (File.Exists(pesquisaNextID)) 
+                {
+                    fm = FileMode.Open;
+                    using (System.IO.FileStream f = new FileStream(pesquisaNextID, fm, FileAccess.ReadWrite))
+                    {
+                        using (StreamReader sr = new StreamReader(f, Encoding.ASCII))
+                        {
+                            nextID = Convert.ToString(Convert.ToInt32(sr.ReadLine())+1);
+                            sr.Close();
+                        }
+                    }
+                    fm = FileMode.Create;
+                    using (System.IO.FileStream f = new FileStream(pesquisaNextID, fm, FileAccess.ReadWrite))
+                    {
+                        using (StreamWriter sw = new StreamWriter(f, Encoding.ASCII))
+                        {
+                            sw.WriteLine(nextID);
+                            sw.Close();
+                        }
+                    }
+                }
+                else
+                {
+                    fm = FileMode.Create;
+                    using (System.IO.FileStream f = new FileStream(pesquisaNextID, fm, FileAccess.ReadWrite))
+                    {
+                        using (StreamWriter sw = new StreamWriter(f, Encoding.ASCII))
+                        {
+                            sw.WriteLine("1");
+                            sw.Close();
+                        }
+                    }
+                }   
+            }
+            catch (Exception e)
+            {
+                return "Não foi possível recuperar o ID da pesquisa!";
+            }
+            return nextID;
+        }
+        
+        [WebMethod]
+        public string adicionaPesquisa(string turma, string pesquisa, string descricao, string data)
+        {
+            //o arquivo de pesquisas terá o seguinte formato
+            //ID|Titulo|Descricao|Data
+            string pesquisaDesc = System.IO.Path.Combine(folderName, turma, "Pesquisas_Desc.txt");
+            
+            if (pesquisa.IndexOf('|')>-1)
+            {
+                return "Erro: O caracter | não pode ser usado para o título da pesquisa!";
+            }
+
+            if (descricao.IndexOf('|')>-1)
+            {
+                return "Erro: O caracter | não pode ser usado para a descrição da pesquisa!";
+            }
+
+            if (pesquisa.Length>50)
+            {
+                return "Erro: Título da pesquisa não pode ter mais de 50 caracteres!";
+            }
+
+            if (descricao.Length>250)
+            {
+                return "Erro: Descrição da pesquisa não pode ter mais de 250 caracteres!";
+            }
+
+            string nextID = idPesquisa(turma);
+
+            if (nextID.CompareTo("Não foi possível recuperar o ID da pesquisa!") == 0)
+            {
+                return "Erro: Não foi possível adicionar pesquisa!";
+            }
+            else
+            {
+                string pesquisaVotos = System.IO.Path.Combine(folderName, turma, "Pesquisa"+nextID+".txt");
+                try
+                {
+                    string membrosTurma = System.IO.Path.Combine(folderName, turma, turma + "_membros.txt"); 
+                    
+                    System.IO.File.Copy(membrosTurma, pesquisaVotos);
+                                 
+                    FileMode fm = new FileMode();
+                    if (File.Exists(pesquisaDesc))
+                    {
+                        fm = FileMode.Append;
+                    }
+                    else
+                    {
+                        fm = FileMode.Create;
+                    }
+
+                    using (System.IO.FileStream fs = new FileStream(pesquisaDesc, fm, FileAccess.Write))
+                    {
+                        using (StreamWriter sw = new StreamWriter(fs, Encoding.ASCII))
+                        {
+                            //ID|Titulo|Descricao|Data
+                            sw.WriteLine(nextID+"|"+pesquisa+"|"+descricao+"|"+data);
+                            sw.Close();
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    return "Erro: Não foi possível adicionar pesquisa!";
+                }
+            }
+
+            return "Pesquisa adicionada com sucesso!";
+        }
+
+        [WebMethod]
+        public string adicionaVotoPesquisa(string turma, string idPesquisa, string email, bool voto)
+        {
+            string pesquisaVotos = System.IO.Path.Combine(folderName, turma, "Pesquisa" + idPesquisa + ".txt");
+            string pesquisaVotosTemp = System.IO.Path.Combine(folderName, turma, "Pesquisa" + idPesquisa + ".temp");
+            string pesquisaBKP = System.IO.Path.Combine(folderName, turma, "Pesquisa" + idPesquisa + ".bkp");
+            string strVoto = "";
+
+            if (voto) 
+            {
+                strVoto="1";
+            }
+            else 
+            {
+                strVoto="0";
+            }
+            
+            using (FileStream fs = new FileStream(pesquisaVotos, FileMode.Open, FileAccess.Read))
+            {
+                using (StreamReader sr = new StreamReader(fs, Encoding.ASCII))
+                {
+                    using (FileStream fsTmp = new FileStream(pesquisaVotosTemp, FileMode.Create, FileAccess.Write))
+                    {
+                        using (StreamWriter sw = new StreamWriter(fsTmp, Encoding.ASCII))
+                        {
+                            string strLinha = null;
+                            while ((strLinha = sr.ReadLine()) != null)
+                            {
+                                if (strLinha.IndexOf(email) > -1)
+                                {
+                                    if (strLinha.IndexOf("|") > -1)
+                                    {
+                                        return "Erro: Este membro já respondeu esta pesquisa!";
+                                    }
+                                    strLinha = strLinha.Replace(email, email+"|"+strVoto);
+                                }
+                                sw.WriteLine(strLinha);
+                            }
+                        }
+                    }
+                }
+            }
+            try
+            {
+                System.IO.File.Move(pesquisaVotos, pesquisaBKP);
+                System.IO.File.Move(pesquisaVotosTemp, pesquisaVotos);
+                System.IO.File.Delete(pesquisaBKP);
+            }
+            catch (Exception e0)
+            {
+                return "Não foi possível adicionar o voto!";
+            }
+            return "Voto computado com sucesso!";
+        }
+
+        [WebMethod]
+        public string resultadoPesquisa(string turma, string idPesquisa)
+        {
+            string pesquisaVotos = System.IO.Path.Combine(folderName, turma, "Pesquisa" + idPesquisa + ".txt");
+            int sim = 0;
+            int nao = 0;
+            int nulo = 0;
+            int total = 0;
+
+            using (FileStream fs = new FileStream(pesquisaVotos, FileMode.Open, FileAccess.Read))
+            {
+                using (StreamReader sr = new StreamReader(fs, Encoding.ASCII))
+                {
+                    string strLinha = null;
+                    while ((strLinha = sr.ReadLine()) != null)
+                    {
+                        if (strLinha.IndexOf("|0") > -1)
+                        {
+                            nao++;
+                        }
+                        else if (strLinha.IndexOf("|1") > -1)
+                        {
+                            sim++;
+                        }
+                        else
+                        {
+                            nulo++;
+                        }
+                        total++;
+                    }
+                }
+            }
+            return "Total: " + Convert.ToString(total) + " Sim: " + Convert.ToString(sim) + " Não: " + Convert.ToString(nao) + " Não votaram: " + Convert.ToString(nulo);
+        }
+
+        [WebMethod]
+        public string listaPesquisasDaTurma(string turma)
+        {
+            //o arquivo de pesquisas terá o seguinte formato
+            //ID|Titulo|Descricao|Data
+            string pesquisaDesc = System.IO.Path.Combine(folderName, turma, "Pesquisas_Desc.txt");
+            String listaPesquisas = "";
+
+            if (File.Exists(pesquisaDesc))
+            {
+                using (FileStream fs = new FileStream(pesquisaDesc, FileMode.Open, FileAccess.Read))
+                {
+                    using (StreamReader sr = new StreamReader(fs, Encoding.ASCII))
+                    {
+                        string strLinha = null;
+                        while ((strLinha = sr.ReadLine()) != null)
+                        {
+                            listaPesquisas = listaPesquisas + strLinha + "&";
+                        }
+                    }
+                }
+            }
+            else
+            {
+                return "Não existem pesquisas associados a esta turma!";
+            }
+            return listaPesquisas;
+        }
 
         [WebMethod]
         public string dadosTodosMembrosTurma(string turma)
@@ -424,7 +662,5 @@ namespace webapp
 
             return "Membro adicionado com sucesso!";
         }
-
     }
-
 }

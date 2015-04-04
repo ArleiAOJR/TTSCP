@@ -62,10 +62,10 @@ namespace WebAppClient
                     tRow.Cells.Add(tCellIncluir);
 
                     //Botôes de associar pesquisa com a turma
-                    //Button bpesq = new Button { ID = "AP" + t[i], Text = "Add Pesquisa", CommandArgument = t[i] };
-                    //bpesq.Click += new EventHandler(btnPesq_click);
-                    //tCellIncluir.Controls.Add(bpesq);
-                    //tRow.Cells.Add(tCellIncluir);
+                    Button bpesq = new Button { ID = "AP" + t[i], Text = "Add Pesquisa", CommandArgument = t[i] };
+                    bpesq.Click += new EventHandler(btnPesq_click);
+                    tCellIncluir.Controls.Add(bpesq);
+                    tRow.Cells.Add(tCellIncluir);
                 }
             }
         }

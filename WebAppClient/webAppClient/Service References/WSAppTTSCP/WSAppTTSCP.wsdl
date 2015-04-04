@@ -16,6 +16,69 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="adicionaPesquisa">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pesquisa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="descricao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="adicionaPesquisaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="adicionaPesquisaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="adicionaVotoPesquisa">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idPesquisa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="voto" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="adicionaVotoPesquisaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="adicionaVotoPesquisaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="resultadoPesquisa">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idPesquisa" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="resultadoPesquisaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="resultadoPesquisaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaPesquisasDaTurma">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaPesquisasDaTurmaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listaPesquisasDaTurmaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="dadosTodosMembrosTurma">
         <s:complexType>
           <s:sequence>
@@ -134,6 +197,30 @@
   <wsdl:message name="dadosMembroSoapOut">
     <wsdl:part name="parameters" element="tns:dadosMembroResponse" />
   </wsdl:message>
+  <wsdl:message name="adicionaPesquisaSoapIn">
+    <wsdl:part name="parameters" element="tns:adicionaPesquisa" />
+  </wsdl:message>
+  <wsdl:message name="adicionaPesquisaSoapOut">
+    <wsdl:part name="parameters" element="tns:adicionaPesquisaResponse" />
+  </wsdl:message>
+  <wsdl:message name="adicionaVotoPesquisaSoapIn">
+    <wsdl:part name="parameters" element="tns:adicionaVotoPesquisa" />
+  </wsdl:message>
+  <wsdl:message name="adicionaVotoPesquisaSoapOut">
+    <wsdl:part name="parameters" element="tns:adicionaVotoPesquisaResponse" />
+  </wsdl:message>
+  <wsdl:message name="resultadoPesquisaSoapIn">
+    <wsdl:part name="parameters" element="tns:resultadoPesquisa" />
+  </wsdl:message>
+  <wsdl:message name="resultadoPesquisaSoapOut">
+    <wsdl:part name="parameters" element="tns:resultadoPesquisaResponse" />
+  </wsdl:message>
+  <wsdl:message name="listaPesquisasDaTurmaSoapIn">
+    <wsdl:part name="parameters" element="tns:listaPesquisasDaTurma" />
+  </wsdl:message>
+  <wsdl:message name="listaPesquisasDaTurmaSoapOut">
+    <wsdl:part name="parameters" element="tns:listaPesquisasDaTurmaResponse" />
+  </wsdl:message>
   <wsdl:message name="dadosTodosMembrosTurmaSoapIn">
     <wsdl:part name="parameters" element="tns:dadosTodosMembrosTurma" />
   </wsdl:message>
@@ -187,6 +274,22 @@
       <wsdl:input message="tns:dadosMembroSoapIn" />
       <wsdl:output message="tns:dadosMembroSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="adicionaPesquisa">
+      <wsdl:input message="tns:adicionaPesquisaSoapIn" />
+      <wsdl:output message="tns:adicionaPesquisaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="adicionaVotoPesquisa">
+      <wsdl:input message="tns:adicionaVotoPesquisaSoapIn" />
+      <wsdl:output message="tns:adicionaVotoPesquisaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="resultadoPesquisa">
+      <wsdl:input message="tns:resultadoPesquisaSoapIn" />
+      <wsdl:output message="tns:resultadoPesquisaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listaPesquisasDaTurma">
+      <wsdl:input message="tns:listaPesquisasDaTurmaSoapIn" />
+      <wsdl:output message="tns:listaPesquisasDaTurmaSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="dadosTodosMembrosTurma">
       <wsdl:input message="tns:dadosTodosMembrosTurmaSoapIn" />
       <wsdl:output message="tns:dadosTodosMembrosTurmaSoapOut" />
@@ -224,6 +327,42 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="dadosMembro">
       <soap:operation soapAction="WSAppTTSCP/dadosMembro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="adicionaPesquisa">
+      <soap:operation soapAction="WSAppTTSCP/adicionaPesquisa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="adicionaVotoPesquisa">
+      <soap:operation soapAction="WSAppTTSCP/adicionaVotoPesquisa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resultadoPesquisa">
+      <soap:operation soapAction="WSAppTTSCP/resultadoPesquisa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaPesquisasDaTurma">
+      <soap:operation soapAction="WSAppTTSCP/listaPesquisasDaTurma" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -308,6 +447,42 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="dadosMembro">
       <soap12:operation soapAction="WSAppTTSCP/dadosMembro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="adicionaPesquisa">
+      <soap12:operation soapAction="WSAppTTSCP/adicionaPesquisa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="adicionaVotoPesquisa">
+      <soap12:operation soapAction="WSAppTTSCP/adicionaVotoPesquisa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resultadoPesquisa">
+      <soap12:operation soapAction="WSAppTTSCP/resultadoPesquisa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaPesquisasDaTurma">
+      <soap12:operation soapAction="WSAppTTSCP/listaPesquisasDaTurma" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

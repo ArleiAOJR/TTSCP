@@ -14,4 +14,3 @@ C:\Users\Arlei\Desktop\TTSCP\WebService\webapp\webapp\bin\webapp.dll
 C:\Users\Arlei\Desktop\TTSCP\WebService\webapp\webapp\bin\webapp.pdb
 C:\Users\Arlei\Desktop\TTSCP\WebService\webapp\webapp\obj\Debug\webapp.dll
 C:\Users\Arlei\Desktop\TTSCP\WebService\webapp\webapp\obj\Debug\webapp.pdb
-C:\Users\Arlei\Desktop\TTSCP\WebService\webapp\webapp\obj\Debug\webapp.csprojResolveAssemblyReference.cache
