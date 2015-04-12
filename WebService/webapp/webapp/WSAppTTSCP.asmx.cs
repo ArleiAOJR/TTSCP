@@ -1,13 +1,14 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Services;
 using System.IO;
-using System.Net.Mail;
+using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
+using System.Web.Services;
 
 namespace webapp
 {
@@ -20,29 +21,63 @@ namespace webapp
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     // [System.Web.Script.Services.ScriptService]
+    
+    [TestFixture]
+    
     public class WSAppTTSCP : System.Web.Services.WebService
     {
         private const string folderName = @"c:\TTSCP";
         //private const string folderName = @"~\TTSCP";
 
+        [Test]
+        public void emailJaInlcuidoTurma_Success()
+        {
+            bool result = emailJaInlcuidoTurma("arlei.aojr@gmail.com", "Turma0001");
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void emailJaInlcuidoTurma_IsEmailEmpty()
+        {
+            bool result = emailJaInlcuidoTurma("", "Turma0001");
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void emailJaInlcuidoTurma_IsTurmaEmpty()
+        {
+            bool result = emailJaInlcuidoTurma("arlei.aojr@gmail.com", "");
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void emailJaInlcuidoTurma_IsEmailTurmaEmpty()
+        {
+            bool result = emailJaInlcuidoTurma("", "");
+            Assert.IsFalse(result);
+        }
+
         private bool emailJaInlcuidoTurma(string email, string turma)
         {
-            string caminhoArquivo = System.IO.Path.Combine(folderName, turma, turma + "_membros.txt");
-            if (File.Exists(caminhoArquivo))
+            if ((!String.IsNullOrEmpty(email)) && (!String.IsNullOrEmpty(turma)))
             {
-                //verificando se o membro já foi adicionado
-                using (FileStream fs = new FileStream(caminhoArquivo, FileMode.Open, FileAccess.Read))
+                string caminhoArquivo = System.IO.Path.Combine(folderName, turma, turma + "_membros.txt");
+                if (File.Exists(caminhoArquivo))
                 {
-                    using (StreamReader sr = new StreamReader(fs, Encoding.ASCII))
+                    //verificando se o membro já foi adicionado
+                    using (FileStream fs = new FileStream(caminhoArquivo, FileMode.Open, FileAccess.Read))
                     {
-                        string strLinha = null;
-                        while ((strLinha = sr.ReadLine()) != null)
+                        using (StreamReader sr = new StreamReader(fs, Encoding.ASCII))
                         {
-                            if (strLinha.IndexOf(email) > -1)
+                            string strLinha = null;
+                            while ((strLinha = sr.ReadLine()) != null)
                             {
-                                return true;         
+                                if (strLinha.IndexOf(email) > -1)
+                                {
+                                    return true;
+                                }
+
                             }
-                                    
                         }
                     }
                 }
@@ -50,56 +85,132 @@ namespace webapp
             return false;
         }
 
+        [Test]
+        public void emailExists_Success()
+        {
+            bool result = emailExists("arlei.aojr@gmail.com");
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void emailExists_Fail()
+        {
+            bool result = emailExists("arle.aojr@gmail.com");
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void emailExists_IsEmailEmpty()
+        {
+            bool result = emailExists("");
+            Assert.IsFalse(result);
+        }
+
         private bool emailExists(string email)
         {
-            string caminhoArquivo = System.IO.Path.Combine(folderName, "membros.txt");
-
-            if (File.Exists(caminhoArquivo))
+            if (!String.IsNullOrEmpty(email))
             {
-                string[] linhas = System.IO.File.ReadAllLines(caminhoArquivo);
+                string caminhoArquivo = System.IO.Path.Combine(folderName, "membros.txt");
 
-                foreach (string l in linhas)
+                if (File.Exists(caminhoArquivo))
                 {
-                    //a estrutra da linha é sempre Nome|senha|email|tipo
-                    if ((!String.IsNullOrEmpty(l)) & (l.CompareTo("\0") != 0))
+                    string[] linhas = System.IO.File.ReadAllLines(caminhoArquivo);
+
+                    foreach (string l in linhas)
                     {
-                        string[] dados = l.Split(new Char[] { '|' });
-                        if (dados[2].CompareTo(email) == 0)
+                        //a estrutra da linha é sempre Nome|senha|email|tipo
+                        if ((!String.IsNullOrEmpty(l)) & (l.CompareTo("\0") != 0))
                         {
-                            return true;
+                            string[] dados = l.Split(new Char[] { '|' });
+                            if (dados[2].CompareTo(email) == 0)
+                            {
+                                return true;
+                            }
                         }
                     }
                 }
             }
             return false;
+        }
+
+        [Test]
+        public void dadosMembro_IsEmailEmpty()
+        {
+            string result = dadosMembro("");
+            if (result.CompareTo("Email informado vazio!")==0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void dadosMembro_EmailNaoEncontrado()
+        {
+            string result = dadosMembro("arlei.");
+            if (result.CompareTo("Membro não encontrado!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void dadosMembro_EmailEncontrado()
+        {
+            string result = dadosMembro("arlei.aojr@gmail.com");
+            if (result.CompareTo("Arlei de Almeida|arlei.aojr@gmail.com|0") == 0)
+            {
+                Assert.Pass();
+            }
         }
 
         [WebMethod]
         public string dadosMembro(string email)
         {
-            string dadosReturn="";
-            string caminhoArquivo = System.IO.Path.Combine(folderName, "membros.txt");
-            if (File.Exists(caminhoArquivo))
+            if (!String.IsNullOrEmpty(email))
             {
-                string[] linhas = System.IO.File.ReadAllLines(caminhoArquivo);
-
-                foreach (string l in linhas)
+                string dadosReturn = "";
+                string caminhoArquivo = System.IO.Path.Combine(folderName, "membros.txt");
+                if (File.Exists(caminhoArquivo))
                 {
-                    //a estrutra da linha é sempre Nome|senha|email|tipo
-                    if ((!String.IsNullOrEmpty(l)) & (l.CompareTo("\0") != 0))
+                    string[] linhas = System.IO.File.ReadAllLines(caminhoArquivo);
+
+                    foreach (string l in linhas)
                     {
-                        string[] dados = l.Split(new Char[] { '|' });
-                        if (dados[2].CompareTo(email) == 0)
+                        //a estrutra da linha é sempre Nome|senha|email|tipo
+                        if ((!String.IsNullOrEmpty(l)) & (l.CompareTo("\0") != 0))
                         {
-                            dadosReturn = dados[0] + "|" + dados[2] + "|" + dados[3];
-                            return dadosReturn;
+                            string[] dados = l.Split(new Char[] { '|' });
+                            if (dados[2].CompareTo(email) == 0)
+                            {
+                                dadosReturn = dados[0] + "|" + dados[2] + "|" + dados[3];
+                                return dadosReturn;
+                            }
                         }
                     }
                 }
+                return "Membro não encontrado!";
             }
-            return dadosReturn = "Membro não encontrado!";
+            return "Email informado vazio!";
         }
         
+        [Test]
+        public void idPesquisa_Work()
+        {
+            int id = Convert.ToInt32(idPesquisa("Teste0001"));
+            int nextId = Convert.ToInt32(idPesquisa("Teste0001"));
+            Assert.AreEqual(id + 1, nextId);
+        }
+
+        [Test]
+        public void idPesquisa_ArquivoNaoExiste()
+        {
+            string id = idPesquisa("TesteNaoExiste");
+            if (id.CompareTo("Não foi possível recuperar o ID da pesquisa!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
         private string idPesquisa(string turma)
         {
             string pesquisaNextID = System.IO.Path.Combine(folderName, turma, "Pesquisas_NextID.txt");
@@ -147,7 +258,80 @@ namespace webapp
             }
             return nextID;
         }
+
+        [Test]
+        public void adicionaPesquisa_CaracterePipeNoTituloDaPesquisa()
+        {
+            string result = adicionaPesquisa("Teste0001", "Pesq|0001", "Teste 0001", "10/03/2015");
+            if (result.CompareTo("Erro: O caracter | não pode ser usado para o título da pesquisa!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void adicionaPesquisa_CaracterePipeNaDescricaoDaPesquisa()
+        {
+            string result = adicionaPesquisa("Teste0001", "Pesq0001", "Teste |0001", "10/03/2015");
+            if (result.CompareTo("Erro: O caracter | não pode ser usado para a descrição da pesquisa!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void adicionaPesquisa_TamanhoMaiorQuePermitidoNoTituloDaPesquisa()
+        {
+            string result = adicionaPesquisa("Teste0001", "123456789012345678901234567890123456789012345678901", "Teste0001", "10/03/2015");
+            if (result.CompareTo("Erro: Título da pesquisa não pode ter mais de 50 caracteres!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void adicionaPesquisa_TamanhoMaiorQuePermitidoNaDescricaoDaPesquisa()
+        {
+            string result = adicionaPesquisa("Teste0001", "12345678901234567890123456789012345678901234567890",
+                "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"+
+                "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"+
+                "123456789012345678901234567890123456789012345678901", "10/03/2015");
+            if (result.CompareTo("Erro: Descrição da pesquisa não pode ter mais de 250 caracteres!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void adicionaPesquisa_NaoFoiPossivelRecuperarIdDaPesquisa()
+        {
+            string result = adicionaPesquisa("TesteNaoExiste", "TesteNaoExiste", "TesteNaoExiste", "10/03/2015");
+            if (result.CompareTo("Erro: Não foi possível adicionar pesquisa!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void adicionaPesquisa_PesquisaAdicionadaComSucesso()
+        {
+            string result = adicionaPesquisa("Teste0002", "PesquisaTeste0002", "PesquisaTeste0002", "10/03/2015");
+            if (result.CompareTo("Pesquisa adicionada com sucesso!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
         
+        [Test]
+        public void adicionaPesquisa_NaoExistemMembrosNaTurma()
+        {
+            string result = adicionaPesquisa("Teste0001", "PesquisaTeste0001", "PesquisaTeste0001", "10/03/2015");
+            if (result.CompareTo("Erro: Não existem membros para esta turma. Pesquisa não pode ser adicionada!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
         [WebMethod]
         public string adicionaPesquisa(string turma, string pesquisa, string descricao, string data)
         {
@@ -186,9 +370,16 @@ namespace webapp
                 string pesquisaVotos = System.IO.Path.Combine(folderName, turma, "Pesquisa"+nextID+".txt");
                 try
                 {
-                    string membrosTurma = System.IO.Path.Combine(folderName, turma, turma + "_membros.txt"); 
-                    
-                    System.IO.File.Copy(membrosTurma, pesquisaVotos);
+                    string membrosTurma = System.IO.Path.Combine(folderName, turma, turma + "_membros.txt");
+
+                    try
+                    {
+                        System.IO.File.Copy(membrosTurma, pesquisaVotos);
+                    }
+                    catch (Exception e)
+                    {
+                        return "Erro: Não existem membros para esta turma. Pesquisa não pode ser adicionada!";
+                    }
                                  
                     FileMode fm = new FileMode();
                     if (File.Exists(pesquisaDesc))
@@ -219,6 +410,38 @@ namespace webapp
             return "Pesquisa adicionada com sucesso!";
         }
 
+        [Test]
+        public void adicionaVotoPesquisa_Sucesso()
+        {
+            string result = adicionaVotoPesquisa("Teste0002", "1", "arlei.aojr@gmail.com", true);
+            if (result.CompareTo("Voto computado com sucesso!") == 0)
+            {
+                Assert.Pass();
+            }
+            Assert.Fail();
+        }
+        
+        [Test]
+        public void adicionaVotoPesquisa_NaoFoiPossivelAdicionarVotoNaPesquisa()
+        {
+            string result = adicionaVotoPesquisa("", "", "", true);
+            if (result.CompareTo("Erro: Este arquivo de pesquisas não existe!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void adicionaVotoPesquisa_MembroJaRespondeuPesquisa()
+        {
+            string result = adicionaVotoPesquisa("Teste0002", "1", "arlei.aojr@gmail.com", true);
+            if (result.CompareTo("Erro: Este membro já respondeu esta pesquisa!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+
         [WebMethod]
         public string adicionaVotoPesquisa(string turma, string idPesquisa, string email, bool voto)
         {
@@ -226,6 +449,11 @@ namespace webapp
             string pesquisaVotosTemp = System.IO.Path.Combine(folderName, turma, "Pesquisa" + idPesquisa + ".temp");
             string pesquisaBKP = System.IO.Path.Combine(folderName, turma, "Pesquisa" + idPesquisa + ".bkp");
             string strVoto = "";
+
+            if (!File.Exists(pesquisaVotos))
+            {
+                return "Erro: Este arquivo de pesquisas não existe!";
+            }
 
             if (voto) 
             {
@@ -442,6 +670,19 @@ namespace webapp
             return "Membro adicionado na base da turma com sucesso!";
         }
 
+        [Test]
+        public void autenticaMembroTest_Success()
+        {
+            bool result = autenticaMembro("arlei.aojr@gmail.com", "123");
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void autenticaMembroTest_Fail()
+        {
+            bool result = autenticaMembro("", "");
+            Assert.IsFalse(result);
+        }
 
         [WebMethod]
         public bool autenticaMembro(string email, string pass)
