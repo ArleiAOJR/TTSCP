@@ -62,10 +62,13 @@
     <Content Include="frmAlteraSenha.aspx" />
     <Content Include="frmAssociaMembroTurma.aspx" />
     <Content Include="frmAssociaPesquisaTurma.aspx" />
+    <Content Include="frmBoletimFaltas.aspx" />
+    <Content Include="frmChamada.aspx" />
     <Content Include="frmLogin.aspx" />
     <Content Include="frmMembro.aspx" />
     <Content Include="frmMembroDelete.aspx" />
     <Content Include="frmMembroTurmaPesquisa.aspx" />
+    <Content Include="frmMembroTurmaPresenca.aspx" />
     <Content Include="frmPesquisaDelete.aspx" />
     <Content Include="frmResultadoPesquisa.aspx" />
     <Content Include="frmTurma.aspx" />
@@ -138,6 +141,20 @@
     <Compile Include="frmAssociaPesquisaTurma.aspx.designer.cs">
       <DependentUpon>frmAssociaPesquisaTurma.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmBoletimFaltas.aspx.cs">
+      <DependentUpon>frmBoletimFaltas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmBoletimFaltas.aspx.designer.cs">
+      <DependentUpon>frmBoletimFaltas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmChamada.aspx.cs">
+      <DependentUpon>frmChamada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmChamada.aspx.designer.cs">
+      <DependentUpon>frmChamada.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.aspx.cs">
       <DependentUpon>frmLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -165,6 +182,13 @@
     </Compile>
     <Compile Include="frmMembroTurmaPesquisa.aspx.designer.cs">
       <DependentUpon>frmMembroTurmaPesquisa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMembroTurmaPresenca.aspx.cs">
+      <DependentUpon>frmMembroTurmaPresenca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMembroTurmaPresenca.aspx.designer.cs">
+      <DependentUpon>frmMembroTurmaPresenca.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmPesquisaDelete.aspx.cs">
       <DependentUpon>frmPesquisaDelete.aspx</DependentUpon>

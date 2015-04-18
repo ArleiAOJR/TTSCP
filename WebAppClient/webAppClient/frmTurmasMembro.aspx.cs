@@ -26,6 +26,13 @@ namespace WebAppClient
             Server.Transfer("frmMembroTurmaPesquisa.aspx", true);
         }
 
+        protected void btnPresenca_click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            GlobalVar.TurmaAAssociar = btn.CommandArgument;
+            Server.Transfer("frmMembroTurmaPresenca.aspx", true);
+        }
+
         protected void carregaTurmas()
         {
             WSAppTTSCP.WSAppTTSCPSoapClient cliente = new WSAppTTSCP.WSAppTTSCPSoapClient();
@@ -49,6 +56,11 @@ namespace WebAppClient
 
                 tCell = new TableCell();
                 tCell.Text = "Pesquisas";
+                tCell.BorderStyle = BorderStyle.Groove;
+                tRow.Cells.Add(tCell);
+
+                tCell = new TableCell();
+                tCell.Text = "Presença";
                 tCell.BorderStyle = BorderStyle.Groove;
                 tRow.Cells.Add(tCell);
 
@@ -76,6 +88,13 @@ namespace WebAppClient
                         tCell.Controls.Add(b);
                         tRow.Cells.Add(tCell);
 
+                        //Botões acessar as presencas
+                        tCell = new TableCell();
+                        tCell.BorderStyle = BorderStyle.Groove;
+                        b = new Button { ID = "Presenca" + t[i], Text = "Presença", CommandArgument = t[i] };
+                        b.Click += new EventHandler(btnPresenca_click);
+                        tCell.Controls.Add(b);
+                        tRow.Cells.Add(tCell);
                     }
                 }
             }

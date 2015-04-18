@@ -16,6 +16,65 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="presencaInicia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="presencaIniciaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="presencaIniciaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="presencaAtualiza">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="membro" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigoPresenca" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="presencaAtualizaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="presencaAtualizaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="presencaBoletim">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="filtro" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="presencaBoletimResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="presencaBoletimResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="presencaFinaliza">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="presencaFinalizaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="presencaFinalizaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="excluirPesquisa">
         <s:complexType>
           <s:sequence>
@@ -284,6 +343,30 @@
   <wsdl:message name="dadosMembroSoapOut">
     <wsdl:part name="parameters" element="tns:dadosMembroResponse" />
   </wsdl:message>
+  <wsdl:message name="presencaIniciaSoapIn">
+    <wsdl:part name="parameters" element="tns:presencaInicia" />
+  </wsdl:message>
+  <wsdl:message name="presencaIniciaSoapOut">
+    <wsdl:part name="parameters" element="tns:presencaIniciaResponse" />
+  </wsdl:message>
+  <wsdl:message name="presencaAtualizaSoapIn">
+    <wsdl:part name="parameters" element="tns:presencaAtualiza" />
+  </wsdl:message>
+  <wsdl:message name="presencaAtualizaSoapOut">
+    <wsdl:part name="parameters" element="tns:presencaAtualizaResponse" />
+  </wsdl:message>
+  <wsdl:message name="presencaBoletimSoapIn">
+    <wsdl:part name="parameters" element="tns:presencaBoletim" />
+  </wsdl:message>
+  <wsdl:message name="presencaBoletimSoapOut">
+    <wsdl:part name="parameters" element="tns:presencaBoletimResponse" />
+  </wsdl:message>
+  <wsdl:message name="presencaFinalizaSoapIn">
+    <wsdl:part name="parameters" element="tns:presencaFinaliza" />
+  </wsdl:message>
+  <wsdl:message name="presencaFinalizaSoapOut">
+    <wsdl:part name="parameters" element="tns:presencaFinalizaResponse" />
+  </wsdl:message>
   <wsdl:message name="excluirPesquisaSoapIn">
     <wsdl:part name="parameters" element="tns:excluirPesquisa" />
   </wsdl:message>
@@ -397,6 +480,22 @@
       <wsdl:input message="tns:dadosMembroSoapIn" />
       <wsdl:output message="tns:dadosMembroSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="presencaInicia">
+      <wsdl:input message="tns:presencaIniciaSoapIn" />
+      <wsdl:output message="tns:presencaIniciaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="presencaAtualiza">
+      <wsdl:input message="tns:presencaAtualizaSoapIn" />
+      <wsdl:output message="tns:presencaAtualizaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="presencaBoletim">
+      <wsdl:input message="tns:presencaBoletimSoapIn" />
+      <wsdl:output message="tns:presencaBoletimSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="presencaFinaliza">
+      <wsdl:input message="tns:presencaFinalizaSoapIn" />
+      <wsdl:output message="tns:presencaFinalizaSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="excluirPesquisa">
       <wsdl:input message="tns:excluirPesquisaSoapIn" />
       <wsdl:output message="tns:excluirPesquisaSoapOut" />
@@ -474,6 +573,42 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="dadosMembro">
       <soap:operation soapAction="WSAppTTSCP/dadosMembro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="presencaInicia">
+      <soap:operation soapAction="WSAppTTSCP/presencaInicia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="presencaAtualiza">
+      <soap:operation soapAction="WSAppTTSCP/presencaAtualiza" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="presencaBoletim">
+      <soap:operation soapAction="WSAppTTSCP/presencaBoletim" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="presencaFinaliza">
+      <soap:operation soapAction="WSAppTTSCP/presencaFinaliza" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -648,6 +783,42 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="dadosMembro">
       <soap12:operation soapAction="WSAppTTSCP/dadosMembro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="presencaInicia">
+      <soap12:operation soapAction="WSAppTTSCP/presencaInicia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="presencaAtualiza">
+      <soap12:operation soapAction="WSAppTTSCP/presencaAtualiza" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="presencaBoletim">
+      <soap12:operation soapAction="WSAppTTSCP/presencaBoletim" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="presencaFinaliza">
+      <soap12:operation soapAction="WSAppTTSCP/presencaFinaliza" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

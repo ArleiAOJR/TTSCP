@@ -20,6 +20,22 @@ namespace WebAppClient.WSAppTTSCP {
         WebAppClient.WSAppTTSCP.dadosMembroResponse dadosMembro(WebAppClient.WSAppTTSCP.dadosMembroRequest request);
         
         // CODEGEN: Generating message contract since element name turma from namespace WSAppTTSCP is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="WSAppTTSCP/presencaInicia", ReplyAction="*")]
+        WebAppClient.WSAppTTSCP.presencaIniciaResponse presencaInicia(WebAppClient.WSAppTTSCP.presencaIniciaRequest request);
+        
+        // CODEGEN: Generating message contract since element name turma from namespace WSAppTTSCP is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="WSAppTTSCP/presencaAtualiza", ReplyAction="*")]
+        WebAppClient.WSAppTTSCP.presencaAtualizaResponse presencaAtualiza(WebAppClient.WSAppTTSCP.presencaAtualizaRequest request);
+        
+        // CODEGEN: Generating message contract since element name turma from namespace WSAppTTSCP is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="WSAppTTSCP/presencaBoletim", ReplyAction="*")]
+        WebAppClient.WSAppTTSCP.presencaBoletimResponse presencaBoletim(WebAppClient.WSAppTTSCP.presencaBoletimRequest request);
+        
+        // CODEGEN: Generating message contract since element name turma from namespace WSAppTTSCP is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="WSAppTTSCP/presencaFinaliza", ReplyAction="*")]
+        WebAppClient.WSAppTTSCP.presencaFinalizaResponse presencaFinaliza(WebAppClient.WSAppTTSCP.presencaFinalizaRequest request);
+        
+        // CODEGEN: Generating message contract since element name turma from namespace WSAppTTSCP is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="WSAppTTSCP/excluirPesquisa", ReplyAction="*")]
         WebAppClient.WSAppTTSCP.excluirPesquisaResponse excluirPesquisa(WebAppClient.WSAppTTSCP.excluirPesquisaRequest request);
         
@@ -157,6 +173,290 @@ namespace WebAppClient.WSAppTTSCP {
         
         public dadosMembroResponseBody(string dadosMembroResult) {
             this.dadosMembroResult = dadosMembroResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class presencaIniciaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="presencaInicia", Namespace="WSAppTTSCP", Order=0)]
+        public WebAppClient.WSAppTTSCP.presencaIniciaRequestBody Body;
+        
+        public presencaIniciaRequest() {
+        }
+        
+        public presencaIniciaRequest(WebAppClient.WSAppTTSCP.presencaIniciaRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="WSAppTTSCP")]
+    public partial class presencaIniciaRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string turma;
+        
+        public presencaIniciaRequestBody() {
+        }
+        
+        public presencaIniciaRequestBody(string turma) {
+            this.turma = turma;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class presencaIniciaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="presencaIniciaResponse", Namespace="WSAppTTSCP", Order=0)]
+        public WebAppClient.WSAppTTSCP.presencaIniciaResponseBody Body;
+        
+        public presencaIniciaResponse() {
+        }
+        
+        public presencaIniciaResponse(WebAppClient.WSAppTTSCP.presencaIniciaResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="WSAppTTSCP")]
+    public partial class presencaIniciaResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string presencaIniciaResult;
+        
+        public presencaIniciaResponseBody() {
+        }
+        
+        public presencaIniciaResponseBody(string presencaIniciaResult) {
+            this.presencaIniciaResult = presencaIniciaResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class presencaAtualizaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="presencaAtualiza", Namespace="WSAppTTSCP", Order=0)]
+        public WebAppClient.WSAppTTSCP.presencaAtualizaRequestBody Body;
+        
+        public presencaAtualizaRequest() {
+        }
+        
+        public presencaAtualizaRequest(WebAppClient.WSAppTTSCP.presencaAtualizaRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="WSAppTTSCP")]
+    public partial class presencaAtualizaRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string turma;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string membro;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string codigoPresenca;
+        
+        public presencaAtualizaRequestBody() {
+        }
+        
+        public presencaAtualizaRequestBody(string turma, string membro, string codigoPresenca) {
+            this.turma = turma;
+            this.membro = membro;
+            this.codigoPresenca = codigoPresenca;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class presencaAtualizaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="presencaAtualizaResponse", Namespace="WSAppTTSCP", Order=0)]
+        public WebAppClient.WSAppTTSCP.presencaAtualizaResponseBody Body;
+        
+        public presencaAtualizaResponse() {
+        }
+        
+        public presencaAtualizaResponse(WebAppClient.WSAppTTSCP.presencaAtualizaResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="WSAppTTSCP")]
+    public partial class presencaAtualizaResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string presencaAtualizaResult;
+        
+        public presencaAtualizaResponseBody() {
+        }
+        
+        public presencaAtualizaResponseBody(string presencaAtualizaResult) {
+            this.presencaAtualizaResult = presencaAtualizaResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class presencaBoletimRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="presencaBoletim", Namespace="WSAppTTSCP", Order=0)]
+        public WebAppClient.WSAppTTSCP.presencaBoletimRequestBody Body;
+        
+        public presencaBoletimRequest() {
+        }
+        
+        public presencaBoletimRequest(WebAppClient.WSAppTTSCP.presencaBoletimRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="WSAppTTSCP")]
+    public partial class presencaBoletimRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string turma;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public int filtro;
+        
+        public presencaBoletimRequestBody() {
+        }
+        
+        public presencaBoletimRequestBody(string turma, int filtro) {
+            this.turma = turma;
+            this.filtro = filtro;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class presencaBoletimResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="presencaBoletimResponse", Namespace="WSAppTTSCP", Order=0)]
+        public WebAppClient.WSAppTTSCP.presencaBoletimResponseBody Body;
+        
+        public presencaBoletimResponse() {
+        }
+        
+        public presencaBoletimResponse(WebAppClient.WSAppTTSCP.presencaBoletimResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="WSAppTTSCP")]
+    public partial class presencaBoletimResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string presencaBoletimResult;
+        
+        public presencaBoletimResponseBody() {
+        }
+        
+        public presencaBoletimResponseBody(string presencaBoletimResult) {
+            this.presencaBoletimResult = presencaBoletimResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class presencaFinalizaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="presencaFinaliza", Namespace="WSAppTTSCP", Order=0)]
+        public WebAppClient.WSAppTTSCP.presencaFinalizaRequestBody Body;
+        
+        public presencaFinalizaRequest() {
+        }
+        
+        public presencaFinalizaRequest(WebAppClient.WSAppTTSCP.presencaFinalizaRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="WSAppTTSCP")]
+    public partial class presencaFinalizaRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string turma;
+        
+        public presencaFinalizaRequestBody() {
+        }
+        
+        public presencaFinalizaRequestBody(string turma) {
+            this.turma = turma;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class presencaFinalizaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="presencaFinalizaResponse", Namespace="WSAppTTSCP", Order=0)]
+        public WebAppClient.WSAppTTSCP.presencaFinalizaResponseBody Body;
+        
+        public presencaFinalizaResponse() {
+        }
+        
+        public presencaFinalizaResponse(WebAppClient.WSAppTTSCP.presencaFinalizaResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="WSAppTTSCP")]
+    public partial class presencaFinalizaResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string presencaFinalizaResult;
+        
+        public presencaFinalizaResponseBody() {
+        }
+        
+        public presencaFinalizaResponseBody(string presencaFinalizaResult) {
+            this.presencaFinalizaResult = presencaFinalizaResult;
         }
     }
     
@@ -1472,6 +1772,61 @@ namespace WebAppClient.WSAppTTSCP {
             inValue.Body.email = email;
             WebAppClient.WSAppTTSCP.dadosMembroResponse retVal = ((WebAppClient.WSAppTTSCP.WSAppTTSCPSoap)(this)).dadosMembro(inValue);
             return retVal.Body.dadosMembroResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        WebAppClient.WSAppTTSCP.presencaIniciaResponse WebAppClient.WSAppTTSCP.WSAppTTSCPSoap.presencaInicia(WebAppClient.WSAppTTSCP.presencaIniciaRequest request) {
+            return base.Channel.presencaInicia(request);
+        }
+        
+        public string presencaInicia(string turma) {
+            WebAppClient.WSAppTTSCP.presencaIniciaRequest inValue = new WebAppClient.WSAppTTSCP.presencaIniciaRequest();
+            inValue.Body = new WebAppClient.WSAppTTSCP.presencaIniciaRequestBody();
+            inValue.Body.turma = turma;
+            WebAppClient.WSAppTTSCP.presencaIniciaResponse retVal = ((WebAppClient.WSAppTTSCP.WSAppTTSCPSoap)(this)).presencaInicia(inValue);
+            return retVal.Body.presencaIniciaResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        WebAppClient.WSAppTTSCP.presencaAtualizaResponse WebAppClient.WSAppTTSCP.WSAppTTSCPSoap.presencaAtualiza(WebAppClient.WSAppTTSCP.presencaAtualizaRequest request) {
+            return base.Channel.presencaAtualiza(request);
+        }
+        
+        public string presencaAtualiza(string turma, string membro, string codigoPresenca) {
+            WebAppClient.WSAppTTSCP.presencaAtualizaRequest inValue = new WebAppClient.WSAppTTSCP.presencaAtualizaRequest();
+            inValue.Body = new WebAppClient.WSAppTTSCP.presencaAtualizaRequestBody();
+            inValue.Body.turma = turma;
+            inValue.Body.membro = membro;
+            inValue.Body.codigoPresenca = codigoPresenca;
+            WebAppClient.WSAppTTSCP.presencaAtualizaResponse retVal = ((WebAppClient.WSAppTTSCP.WSAppTTSCPSoap)(this)).presencaAtualiza(inValue);
+            return retVal.Body.presencaAtualizaResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        WebAppClient.WSAppTTSCP.presencaBoletimResponse WebAppClient.WSAppTTSCP.WSAppTTSCPSoap.presencaBoletim(WebAppClient.WSAppTTSCP.presencaBoletimRequest request) {
+            return base.Channel.presencaBoletim(request);
+        }
+        
+        public string presencaBoletim(string turma, int filtro) {
+            WebAppClient.WSAppTTSCP.presencaBoletimRequest inValue = new WebAppClient.WSAppTTSCP.presencaBoletimRequest();
+            inValue.Body = new WebAppClient.WSAppTTSCP.presencaBoletimRequestBody();
+            inValue.Body.turma = turma;
+            inValue.Body.filtro = filtro;
+            WebAppClient.WSAppTTSCP.presencaBoletimResponse retVal = ((WebAppClient.WSAppTTSCP.WSAppTTSCPSoap)(this)).presencaBoletim(inValue);
+            return retVal.Body.presencaBoletimResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        WebAppClient.WSAppTTSCP.presencaFinalizaResponse WebAppClient.WSAppTTSCP.WSAppTTSCPSoap.presencaFinaliza(WebAppClient.WSAppTTSCP.presencaFinalizaRequest request) {
+            return base.Channel.presencaFinaliza(request);
+        }
+        
+        public string presencaFinaliza(string turma) {
+            WebAppClient.WSAppTTSCP.presencaFinalizaRequest inValue = new WebAppClient.WSAppTTSCP.presencaFinalizaRequest();
+            inValue.Body = new WebAppClient.WSAppTTSCP.presencaFinalizaRequestBody();
+            inValue.Body.turma = turma;
+            WebAppClient.WSAppTTSCP.presencaFinalizaResponse retVal = ((WebAppClient.WSAppTTSCP.WSAppTTSCPSoap)(this)).presencaFinaliza(inValue);
+            return retVal.Body.presencaFinalizaResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

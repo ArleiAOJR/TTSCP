@@ -49,6 +49,20 @@ namespace WebAppClient
             Server.Transfer("frmTurmaDelete.aspx", true);
         }
 
+        protected void btnChamada_click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            GlobalVar.TurmaAAssociar = btn.CommandArgument;
+            Server.Transfer("frmChamada.aspx", true);
+        }
+
+        protected void btnBoletimFaltas_click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            GlobalVar.TurmaAAssociar = btn.CommandArgument;
+            Server.Transfer("frmBoletimFaltas.aspx", true);
+        }
+
         protected void carregaTurmas()
         {
             WSAppTTSCP.WSAppTTSCPSoapClient cliente = new WSAppTTSCP.WSAppTTSCPSoapClient();
@@ -84,6 +98,15 @@ namespace WebAppClient
                 tCell.BorderStyle = BorderStyle.Groove;
                 tRow.Cells.Add(tCell);
 
+                tCell = new TableCell();
+                tCell.Text = "Chamada";
+                tCell.BorderStyle = BorderStyle.Groove;
+                tRow.Cells.Add(tCell);
+
+                tCell = new TableCell();
+                tCell.Text = "Boletim";
+                tCell.BorderStyle = BorderStyle.Groove;
+                tRow.Cells.Add(tCell);
 
                 for (int i = 0; i < t.Length; i++)
                 {
@@ -122,8 +145,23 @@ namespace WebAppClient
                         tCell.BorderStyle = BorderStyle.Groove;
                         Button bexlcuiTurma = new Button { ID = "ExcluirTurma" + t[i], Text = "Excluir Turma", CommandArgument = t[i]};
                         bexlcuiTurma.Click += new EventHandler(btnExcluiTurma_click);
-                        
                         tCell.Controls.Add(bexlcuiTurma);
+                        tRow.Cells.Add(tCell);
+
+                        //Botôes de chamada
+                        tCell = new TableCell();
+                        tCell.BorderStyle = BorderStyle.Groove;
+                        Button bchamada = new Button { ID = "Chamada" + t[i], Text = "Chamada", CommandArgument = t[i] };
+                        bchamada.Click += new EventHandler(btnChamada_click);
+                        tCell.Controls.Add(bchamada);
+                        tRow.Cells.Add(tCell);
+
+                        //Botôes de chamada
+                        tCell = new TableCell();
+                        tCell.BorderStyle = BorderStyle.Groove;
+                        Button bboletim = new Button { ID = "Boletim" + t[i], Text = "Boletim", CommandArgument = t[i] };
+                        bboletim.Click += new EventHandler(btnBoletimFaltas_click);
+                        tCell.Controls.Add(bboletim);
                         tRow.Cells.Add(tCell);
                     }
                 }
