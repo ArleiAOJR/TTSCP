@@ -65,6 +65,7 @@
     <Content Include="frmBoletimFaltas.aspx" />
     <Content Include="frmChamada.aspx" />
     <Content Include="frmLogin.aspx" />
+    <Content Include="frmLogout.aspx" />
     <Content Include="frmMembro.aspx" />
     <Content Include="frmMembroDelete.aspx" />
     <Content Include="frmMembroTurmaPesquisa.aspx" />
@@ -161,6 +162,13 @@
     </Compile>
     <Compile Include="frmLogin.aspx.designer.cs">
       <DependentUpon>frmLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogout.aspx.cs">
+      <DependentUpon>frmLogout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmLogout.aspx.designer.cs">
+      <DependentUpon>frmLogout.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmMembro.aspx.cs">
       <DependentUpon>frmMembro.aspx</DependentUpon>

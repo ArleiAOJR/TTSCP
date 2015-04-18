@@ -5,6 +5,7 @@
     <form id="form1" runat="server">
         <asp:Label ID="LTurma" runat="server" Font-Bold="True" Text="Turma: "></asp:Label>
         &nbsp;<asp:Button ID="BAtualiza" runat="server" OnClick="BAtualiza_Click" Text="Atualizar Lista" Width="100px" />
+        &nbsp;<asp:Button ID="BVoltar" runat="server" OnClick="BVoltar_Click" Text="Voltar" Width="100px" />
         <br />
         <br />
         <asp:Label ID="LUltimaAcao" runat="server" Text="Útima ação:"></asp:Label>

@@ -37,9 +37,9 @@ namespace WebAppClient
 
         protected void btnPesq_click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            GlobalVar.TurmaAAssociar = btn.CommandArgument;
-            Server.Transfer("frmAssociaPesquisaTurma.aspx", true);
+            //Button btn = (Button)sender;
+            //GlobalVar.TurmaAAssociar = btn.CommandArgument;
+            //Server.Transfer("frmAssociaPesquisaTurma.aspx", true);
         }
 
         protected void btnExcluiTurma_click(object sender, EventArgs e)
@@ -51,16 +51,16 @@ namespace WebAppClient
 
         protected void btnChamada_click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            GlobalVar.TurmaAAssociar = btn.CommandArgument;
-            Server.Transfer("frmChamada.aspx", true);
+            //Button btn = (Button)sender;
+            //GlobalVar.TurmaAAssociar = btn.CommandArgument;
+            //Server.Transfer("frmChamada.aspx", true);
         }
 
         protected void btnBoletimFaltas_click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            GlobalVar.TurmaAAssociar = btn.CommandArgument;
-            Server.Transfer("frmBoletimFaltas.aspx", true);
+            //Button btn = (Button)sender;
+            //GlobalVar.TurmaAAssociar = btn.CommandArgument;
+            //Server.Transfer("frmBoletimFaltas.aspx", true);
         }
 
         protected void carregaTurmas()
@@ -170,7 +170,7 @@ namespace WebAppClient
 
         protected void BVerTurmas_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

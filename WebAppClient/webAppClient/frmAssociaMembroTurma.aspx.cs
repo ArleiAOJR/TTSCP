@@ -194,6 +194,11 @@ namespace WebAppClient
             }
         }
 
+        protected void BVoltar_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("frmTurma.aspx", true);
+        }
+
         protected void BAtualiza_Click(object sender, EventArgs e)
         {
 

@@ -41,6 +41,7 @@ public partial class MyMaster : System.Web.UI.MasterPage
                 RenderMenuItem("Turmas", "frmTurmasMembro.aspx", result);
             }
             RenderMenuItem("Altera Senha", "frmAlteraSenha.aspx", result);
+            RenderMenuItem("Logout", "frmLogout.aspx", result);
         }
         return result.ToString();
     }

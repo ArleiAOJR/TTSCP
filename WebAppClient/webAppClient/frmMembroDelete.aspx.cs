@@ -18,6 +18,7 @@ namespace WebAppClient
         {
             WSAppTTSCP.WSAppTTSCPSoapClient cliente = new WSAppTTSCP.WSAppTTSCPSoapClient();
             LResult.Text = "Resultado: " + cliente.exlcuirMembro(GlobalVar.emailMembroAExlcuir);
+            LResult.Text = LResult.Text.Replace("|", "<br><br>");
         }
 
         protected void BCancelar_Click(object sender, EventArgs e)
