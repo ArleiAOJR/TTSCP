@@ -13,5 +13,6 @@ namespace WebAppClient
         public static string EmailMembroAutenticado = "";
         public static string TurmaAAssociar = "";
         public static string idPesquisa = "";
+        public static string emailMembroAExlcuir = "";
     }
 }

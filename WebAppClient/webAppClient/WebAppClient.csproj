@@ -64,9 +64,12 @@
     <Content Include="frmAssociaPesquisaTurma.aspx" />
     <Content Include="frmLogin.aspx" />
     <Content Include="frmMembro.aspx" />
+    <Content Include="frmMembroDelete.aspx" />
     <Content Include="frmMembroTurmaPesquisa.aspx" />
+    <Content Include="frmPesquisaDelete.aspx" />
     <Content Include="frmResultadoPesquisa.aspx" />
     <Content Include="frmTurma.aspx" />
+    <Content Include="frmTurmaDelete.aspx" />
     <Content Include="frmTurmasMembro.aspx" />
     <Content Include="MyMaster.master" />
     <None Include="Service References\WSAppTTSCP\WSAppTTSCP.disco" />
@@ -149,12 +152,26 @@
     <Compile Include="frmMembro.aspx.designer.cs">
       <DependentUpon>frmMembro.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmMembroDelete.aspx.cs">
+      <DependentUpon>frmMembroDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMembroDelete.aspx.designer.cs">
+      <DependentUpon>frmMembroDelete.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmMembroTurmaPesquisa.aspx.cs">
       <DependentUpon>frmMembroTurmaPesquisa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="frmMembroTurmaPesquisa.aspx.designer.cs">
       <DependentUpon>frmMembroTurmaPesquisa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPesquisaDelete.aspx.cs">
+      <DependentUpon>frmPesquisaDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPesquisaDelete.aspx.designer.cs">
+      <DependentUpon>frmPesquisaDelete.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmResultadoPesquisa.aspx.cs">
       <DependentUpon>frmResultadoPesquisa.aspx</DependentUpon>
@@ -169,6 +186,13 @@
     </Compile>
     <Compile Include="frmTurma.aspx.designer.cs">
       <DependentUpon>frmTurma.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmTurmaDelete.aspx.cs">
+      <DependentUpon>frmTurmaDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmTurmaDelete.aspx.designer.cs">
+      <DependentUpon>frmTurmaDelete.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmTurmasMembro.aspx.cs">
       <DependentUpon>frmTurmasMembro.aspx</DependentUpon>

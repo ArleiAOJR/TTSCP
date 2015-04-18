@@ -48,6 +48,14 @@ namespace WebAppClient
             Server.Transfer("frmResultadoPesquisa.aspx", true);
         }
 
+        protected void btnExcluiPesquisa_click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            GlobalVar.idPesquisa = btn.CommandArgument;
+            Server.Transfer("frmPesquisaDelete.aspx", true);
+        }
+        
+
         protected void BVerPesquisas_Click(object sender, EventArgs e)
         {
             
@@ -93,6 +101,11 @@ namespace WebAppClient
                 tCell.BorderStyle = BorderStyle.Groove;
                 tRow.Cells.Add(tCell);
 
+                tCell = new TableCell();
+                tCell.Text = "Excluir Pesquisa";
+                tCell.BorderStyle = BorderStyle.Groove;
+                tRow.Cells.Add(tCell);
+
                 for (int i = 0; i < p.Length; i++)
                 {
                     if ((!String.IsNullOrEmpty(p[i])) & (p[i].CompareTo("\0") != 0))
@@ -134,6 +147,14 @@ namespace WebAppClient
                         Button bresultado = new Button { ID = "BR" + pDados[0], Text = "Resultado", CommandArgument = pDados[0] };
                         bresultado.Click += new EventHandler(btnResultado_click);
                         tCell.Controls.Add(bresultado);
+                        tRow.Cells.Add(tCell);
+
+                        //Botão para excluir pesquisa
+                        tCell = new TableCell();
+                        tCell.BorderStyle = BorderStyle.Groove;
+                        Button bExlcuiPesq = new Button { ID = "BExlcuiPesquisa" + pDados[0], Text = "Excluir Pesquisa", CommandArgument = pDados[0] };
+                        bExlcuiPesq.Click += new EventHandler(btnExcluiPesquisa_click);
+                        tCell.Controls.Add(bExlcuiPesq);
                         tRow.Cells.Add(tCell);
                     }
                 }

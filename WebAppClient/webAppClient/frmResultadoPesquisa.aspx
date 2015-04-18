@@ -5,6 +5,7 @@
     <form id="form1" runat="server">
     <p>
         <asp:Button ID="BResult" runat="server" Text="Ver Resultado" Width="100px" />
+    &nbsp;<asp:Button ID="BVoltar" runat="server" OnClick="BVoltar_Click" Text="Voltar" Width="100px" />
     </p>
     <p>
         <asp:Label ID="LResult" runat="server" Text="Resultado: "></asp:Label>

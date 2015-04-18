@@ -17,11 +17,18 @@ namespace WebAppClient
         }
 
          protected void btn_click(object sender, EventArgs e)
-        {
+         {
             Button btn = (Button)sender;
             WSAppTTSCP.WSAppTTSCPSoapClient cliente = new WSAppTTSCP.WSAppTTSCPSoapClient();
             LUltimaAcao.Text = "Última ação: " + cliente.associaMembroTurma(btn.ID, GlobalVar.TurmaAAssociar);
-        }
+         }
+
+         protected void btnExcluirMembro_click(object sender, EventArgs e)
+         {
+            Button btn = (Button)sender;
+            WSAppTTSCP.WSAppTTSCPSoapClient cliente = new WSAppTTSCP.WSAppTTSCPSoapClient();
+            LUltimaAcao.Text = "Última ação: " + cliente.retiraMembroTurma(btn.CommandArgument, GlobalVar.TurmaAAssociar);
+         }
 
          protected void todosMembrosTurma()
          {
@@ -51,6 +58,12 @@ namespace WebAppClient
                  tCell = new TableCell();
                  tCell.BorderStyle = BorderStyle.Groove;
                  tCell.Text = "Tipo do Membro";
+                 tRow.Cells.Add(tCell);
+
+                 //botão de exlcuir membro desta turma
+                 tCell = new TableCell();
+                 tCell.BorderStyle = BorderStyle.Groove;
+                 tCell.Text = "Excluir Membro";
                  tRow.Cells.Add(tCell);
 
                  for (int i = 0; i < m.Length; i++)
@@ -91,6 +104,14 @@ namespace WebAppClient
                          tCell.BorderStyle = BorderStyle.Groove;
                          tCell.Text = tipoMembro;
                          tRow.Cells.Add(tCell);
+
+                         //botão para excluir membro da turma
+                         tCell = new TableCell();
+                         tCell.BorderStyle = BorderStyle.Groove;
+                         Button b = new Button { ID = "ExCluirMembro" + mIndividual[1], Text = "Excluir Membro", CommandArgument = mIndividual[1] };
+                         b.Click += new EventHandler(btnExcluirMembro_click);
+                         tCell.Controls.Add(b);
+                         tRow.Cells.Add(tCell);
                      }
                  }
              }
@@ -130,7 +151,7 @@ namespace WebAppClient
                 //botão de adicionar membro
                 tCell = new TableCell();
                 tCell.BorderStyle = BorderStyle.Groove;
-                tCell.Text = "Add Membro";
+                tCell.Text = "Incluir Membro";
                 tRow.Cells.Add(tCell);
                 
                 for (int i = 0; i < m.Length; i++)
@@ -164,7 +185,7 @@ namespace WebAppClient
                         //botão para adicionar membro
                         tCell = new TableCell();
                         tCell.BorderStyle = BorderStyle.Groove;
-                        Button b = new Button { ID = mIndividual[1], Text = " + " };
+                        Button b = new Button { ID = mIndividual[1], Text = "Incluir Membro" };
                         b.Click += new EventHandler(btn_click);
                         tCell.Controls.Add(b);
                         tRow.Cells.Add(tCell);

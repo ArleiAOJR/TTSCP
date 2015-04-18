@@ -16,6 +16,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="excluirPesquisa">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idPesquisa" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="excluirPesquisaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="excluirPesquisaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="adicionaPesquisa">
         <s:complexType>
           <s:sequence>
@@ -100,6 +115,21 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="dadosTodosMembrosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="retiraMembroTurma">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="retiraMembroTurmaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="retiraMembroTurmaResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -202,6 +232,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="excluirTurma">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="turma" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="excluirTurmaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="excluirTurmaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="criarMembro">
         <s:complexType>
           <s:sequence>
@@ -218,6 +262,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="exlcuirMembro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="emailMembro" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="exlcuirMembroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="exlcuirMembroResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="dadosMembroSoapIn">
@@ -225,6 +283,12 @@
   </wsdl:message>
   <wsdl:message name="dadosMembroSoapOut">
     <wsdl:part name="parameters" element="tns:dadosMembroResponse" />
+  </wsdl:message>
+  <wsdl:message name="excluirPesquisaSoapIn">
+    <wsdl:part name="parameters" element="tns:excluirPesquisa" />
+  </wsdl:message>
+  <wsdl:message name="excluirPesquisaSoapOut">
+    <wsdl:part name="parameters" element="tns:excluirPesquisaResponse" />
   </wsdl:message>
   <wsdl:message name="adicionaPesquisaSoapIn">
     <wsdl:part name="parameters" element="tns:adicionaPesquisa" />
@@ -261,6 +325,12 @@
   </wsdl:message>
   <wsdl:message name="dadosTodosMembrosSoapOut">
     <wsdl:part name="parameters" element="tns:dadosTodosMembrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="retiraMembroTurmaSoapIn">
+    <wsdl:part name="parameters" element="tns:retiraMembroTurma" />
+  </wsdl:message>
+  <wsdl:message name="retiraMembroTurmaSoapOut">
+    <wsdl:part name="parameters" element="tns:retiraMembroTurmaResponse" />
   </wsdl:message>
   <wsdl:message name="associaMembroTurmaSoapIn">
     <wsdl:part name="parameters" element="tns:associaMembroTurma" />
@@ -304,16 +374,32 @@
   <wsdl:message name="criarTurmaSoapOut">
     <wsdl:part name="parameters" element="tns:criarTurmaResponse" />
   </wsdl:message>
+  <wsdl:message name="excluirTurmaSoapIn">
+    <wsdl:part name="parameters" element="tns:excluirTurma" />
+  </wsdl:message>
+  <wsdl:message name="excluirTurmaSoapOut">
+    <wsdl:part name="parameters" element="tns:excluirTurmaResponse" />
+  </wsdl:message>
   <wsdl:message name="criarMembroSoapIn">
     <wsdl:part name="parameters" element="tns:criarMembro" />
   </wsdl:message>
   <wsdl:message name="criarMembroSoapOut">
     <wsdl:part name="parameters" element="tns:criarMembroResponse" />
   </wsdl:message>
+  <wsdl:message name="exlcuirMembroSoapIn">
+    <wsdl:part name="parameters" element="tns:exlcuirMembro" />
+  </wsdl:message>
+  <wsdl:message name="exlcuirMembroSoapOut">
+    <wsdl:part name="parameters" element="tns:exlcuirMembroResponse" />
+  </wsdl:message>
   <wsdl:portType name="WSAppTTSCPSoap">
     <wsdl:operation name="dadosMembro">
       <wsdl:input message="tns:dadosMembroSoapIn" />
       <wsdl:output message="tns:dadosMembroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="excluirPesquisa">
+      <wsdl:input message="tns:excluirPesquisaSoapIn" />
+      <wsdl:output message="tns:excluirPesquisaSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="adicionaPesquisa">
       <wsdl:input message="tns:adicionaPesquisaSoapIn" />
@@ -338,6 +424,10 @@
     <wsdl:operation name="dadosTodosMembros">
       <wsdl:input message="tns:dadosTodosMembrosSoapIn" />
       <wsdl:output message="tns:dadosTodosMembrosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="retiraMembroTurma">
+      <wsdl:input message="tns:retiraMembroTurmaSoapIn" />
+      <wsdl:output message="tns:retiraMembroTurmaSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="associaMembroTurma">
       <wsdl:input message="tns:associaMembroTurmaSoapIn" />
@@ -367,15 +457,32 @@
       <wsdl:input message="tns:criarTurmaSoapIn" />
       <wsdl:output message="tns:criarTurmaSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="excluirTurma">
+      <wsdl:input message="tns:excluirTurmaSoapIn" />
+      <wsdl:output message="tns:excluirTurmaSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="criarMembro">
       <wsdl:input message="tns:criarMembroSoapIn" />
       <wsdl:output message="tns:criarMembroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="exlcuirMembro">
+      <wsdl:input message="tns:exlcuirMembroSoapIn" />
+      <wsdl:output message="tns:exlcuirMembroSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSAppTTSCPSoap" type="tns:WSAppTTSCPSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="dadosMembro">
       <soap:operation soapAction="WSAppTTSCP/dadosMembro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="excluirPesquisa">
+      <soap:operation soapAction="WSAppTTSCP/excluirPesquisa" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -430,6 +537,15 @@
     </wsdl:operation>
     <wsdl:operation name="dadosTodosMembros">
       <soap:operation soapAction="WSAppTTSCP/dadosTodosMembros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retiraMembroTurma">
+      <soap:operation soapAction="WSAppTTSCP/retiraMembroTurma" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -500,8 +616,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="excluirTurma">
+      <soap:operation soapAction="WSAppTTSCP/excluirTurma" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="criarMembro">
       <soap:operation soapAction="WSAppTTSCP/criarMembro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exlcuirMembro">
+      <soap:operation soapAction="WSAppTTSCP/exlcuirMembro" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -514,6 +648,15 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="dadosMembro">
       <soap12:operation soapAction="WSAppTTSCP/dadosMembro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="excluirPesquisa">
+      <soap12:operation soapAction="WSAppTTSCP/excluirPesquisa" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -568,6 +711,15 @@
     </wsdl:operation>
     <wsdl:operation name="dadosTodosMembros">
       <soap12:operation soapAction="WSAppTTSCP/dadosTodosMembros" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retiraMembroTurma">
+      <soap12:operation soapAction="WSAppTTSCP/retiraMembroTurma" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -638,8 +790,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="excluirTurma">
+      <soap12:operation soapAction="WSAppTTSCP/excluirTurma" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="criarMembro">
       <soap12:operation soapAction="WSAppTTSCP/criarMembro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exlcuirMembro">
+      <soap12:operation soapAction="WSAppTTSCP/exlcuirMembro" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

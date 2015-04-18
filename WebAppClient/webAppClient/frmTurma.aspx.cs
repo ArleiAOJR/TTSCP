@@ -42,6 +42,13 @@ namespace WebAppClient
             Server.Transfer("frmAssociaPesquisaTurma.aspx", true);
         }
 
+        protected void btnExcluiTurma_click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            GlobalVar.TurmaAAssociar = btn.CommandArgument;
+            Server.Transfer("frmTurmaDelete.aspx", true);
+        }
+
         protected void carregaTurmas()
         {
             WSAppTTSCP.WSAppTTSCPSoapClient cliente = new WSAppTTSCP.WSAppTTSCPSoapClient();
@@ -69,6 +76,11 @@ namespace WebAppClient
 
                 tCell = new TableCell();
                 tCell.Text = "Pesquisas";
+                tCell.BorderStyle = BorderStyle.Groove;
+                tRow.Cells.Add(tCell);
+
+                tCell = new TableCell();
+                tCell.Text = "Excluir Turma";
                 tCell.BorderStyle = BorderStyle.Groove;
                 tRow.Cells.Add(tCell);
 
@@ -103,6 +115,15 @@ namespace WebAppClient
                         Button bpesq = new Button { ID = "AP" + t[i], Text = "Pesquisas", CommandArgument = t[i] };
                         bpesq.Click += new EventHandler(btnPesq_click);
                         tCell.Controls.Add(bpesq);
+                        tRow.Cells.Add(tCell);
+
+                        //Botôes de exlcuir turma
+                        tCell = new TableCell();
+                        tCell.BorderStyle = BorderStyle.Groove;
+                        Button bexlcuiTurma = new Button { ID = "ExcluirTurma" + t[i], Text = "Excluir Turma", CommandArgument = t[i]};
+                        bexlcuiTurma.Click += new EventHandler(btnExcluiTurma_click);
+                        
+                        tCell.Controls.Add(bexlcuiTurma);
                         tRow.Cells.Add(tCell);
                     }
                 }

@@ -8,3 +8,5 @@ C:\Users\Arlei\Desktop\TTSCP\WebService\webapp\webapp\bin\webapp.dll
 C:\Users\Arlei\Desktop\TTSCP\WebService\webapp\webapp\bin\webapp.pdb
 C:\Users\Arlei\Desktop\TTSCP\WebService\webapp\webapp\obj\Release\webapp.dll
 C:\Users\Arlei\Desktop\TTSCP\WebService\webapp\webapp\obj\Release\webapp.pdb
+C:\Users\Arlei\Desktop\TTSCP\WebService\webapp\webapp\bin\nunit.framework.dll
+C:\Users\Arlei\Desktop\TTSCP\WebService\webapp\webapp\bin\nunit.framework.xml

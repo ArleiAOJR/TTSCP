@@ -7,22 +7,22 @@ using System.Web.UI.WebControls;
 
 namespace WebAppClient
 {
-    public partial class frmResultadoPesquisa : System.Web.UI.Page
+    public partial class frmMembroDelete : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            resultadoPesquisa();
+
         }
 
-        protected void resultadoPesquisa()
+        protected void BConfirmar_Click(object sender, EventArgs e)
         {
             WSAppTTSCP.WSAppTTSCPSoapClient cliente = new WSAppTTSCP.WSAppTTSCPSoapClient();
-            LResult.Text = cliente.resultadoPesquisa(GlobalVar.TurmaAAssociar, GlobalVar.idPesquisa);
+            LResult.Text = "Resultado: " + cliente.exlcuirMembro(GlobalVar.emailMembroAExlcuir);
         }
 
-        protected void BVoltar_Click(object sender, EventArgs e)
+        protected void BCancelar_Click(object sender, EventArgs e)
         {
-            Server.Transfer("frmAssociaPesquisaTurma.aspx", true);
+            Server.Transfer("frmMembro.aspx", true);
         }
     }
 }

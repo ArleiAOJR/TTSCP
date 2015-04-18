@@ -11,29 +11,17 @@ namespace WebAppClient
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            verMembros();
         }
 
-        protected void BIncluirMembro_Click(object sender, EventArgs e)
+        protected void btnExcluirMembro_click(object sender, EventArgs e)
         {
-            WSAppTTSCP.WSAppTTSCPSoapClient cliente = new WSAppTTSCP.WSAppTTSCPSoapClient();
-            
-            if (TBNomeMembro.Text.Length<3)
-            {
-                LResultado.Text = "Resultado: Preencha o nome do membro!";
-                return;
-            }
-
-            if (TBEmailMembro.Text.Length < 3)
-            {
-                LResultado.Text = "Resultado: Preencha o e-mail do membro!";
-                return;
-            }
-
-            LResultado.Text = "Resultado: " + cliente.criarMembro(TBNomeMembro.Text, TBEmailMembro.Text, Convert.ToInt32(DDLTipoMembro.SelectedValue));
+            Button btn = (Button)sender;
+            GlobalVar.emailMembroAExlcuir = btn.CommandArgument;
+            Server.Transfer("frmMembroDelete.aspx", true);
         }
 
-        protected void BVerMembros_Click(object sender, EventArgs e)
+        protected void verMembros()
         {
             WSAppTTSCP.WSAppTTSCPSoapClient cliente = new WSAppTTSCP.WSAppTTSCPSoapClient();
             string membros = cliente.dadosTodosMembros();
@@ -59,6 +47,11 @@ namespace WebAppClient
 
                 tCell = new TableCell();
                 tCell.Text = "Tipo do Membro";
+                tCell.BorderStyle = BorderStyle.Groove;
+                tRow.Cells.Add(tCell);
+
+                tCell = new TableCell();
+                tCell.Text = "Excluir Membro";
                 tCell.BorderStyle = BorderStyle.Groove;
                 tRow.Cells.Add(tCell);
 
@@ -89,9 +82,42 @@ namespace WebAppClient
                         tCell.BorderStyle = BorderStyle.Groove;
                         tCell.Text = mIndividual[2];
                         tRow.Cells.Add(tCell);
+
+                        //botão para excluir membro
+                        tCell = new TableCell();
+                        tCell.BorderStyle = BorderStyle.Groove;
+                        Button b = new Button { ID = "ExCluirMembro" + mIndividual[1], Text = "Excluir Membro", CommandArgument = mIndividual[1] };
+                        b.Click += new EventHandler(btnExcluirMembro_click);
+                        tCell.Controls.Add(b);
+                        tRow.Cells.Add(tCell);
                     }
                 }
             }
+
+        }
+
+        protected void BIncluirMembro_Click(object sender, EventArgs e)
+        {
+            WSAppTTSCP.WSAppTTSCPSoapClient cliente = new WSAppTTSCP.WSAppTTSCPSoapClient();
+            
+            if (TBNomeMembro.Text.Length<3)
+            {
+                LResultado.Text = "Resultado: Preencha o nome do membro!";
+                return;
+            }
+
+            if (TBEmailMembro.Text.Length < 3)
+            {
+                LResultado.Text = "Resultado: Preencha o e-mail do membro!";
+                return;
+            }
+
+            LResultado.Text = "Resultado: " + cliente.criarMembro(TBNomeMembro.Text, TBEmailMembro.Text, Convert.ToInt32(DDLTipoMembro.SelectedValue));
+        }
+
+        protected void BVerMembros_Click(object sender, EventArgs e)
+        {
+            
         }
         
     }

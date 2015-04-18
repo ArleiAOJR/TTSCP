@@ -15,7 +15,6 @@
           <div class="HeaderTitle">
             <h1><a href="#">Teacher To Students Communication Platform - TTSCP</a></h1>
             <h2>Tópicos em Engenharia de Software - 2015/01</h2>
-              <asp:Label ID="LAutenticado" runat="server" Text="Membro: "></asp:Label>
           </div>
         </div><div class="Menu">
              <ul><%= RenderMenu() %></ul>

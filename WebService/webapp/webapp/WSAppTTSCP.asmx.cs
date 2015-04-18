@@ -349,14 +349,14 @@ namespace webapp
             try
             {
                 FileMode fm = new FileMode();
-                if (File.Exists(pesquisaNextID)) 
+                if (File.Exists(pesquisaNextID))
                 {
                     fm = FileMode.Open;
                     using (System.IO.FileStream f = new FileStream(pesquisaNextID, fm, FileAccess.ReadWrite))
                     {
                         using (StreamReader sr = new StreamReader(f, Encoding.ASCII))
                         {
-                            nextID = Convert.ToString(Convert.ToInt32(sr.ReadLine())+1);
+                            nextID = Convert.ToString(Convert.ToInt32(sr.ReadLine()) + 1);
                             sr.Close();
                         }
                     }
@@ -381,7 +381,7 @@ namespace webapp
                             sw.Close();
                         }
                     }
-                }   
+                }
             }
             catch (Exception e)
             {
@@ -390,7 +390,264 @@ namespace webapp
             return nextID;
         }
 
-        
+        private static string dataCorrente()
+        {
+            DateTime dt = DateTime.Now;
+            return String.Format("{0:yyyyMMdd}", dt);
+        }
+
+        [WebMethod]
+        public string presencaInicia(string turma)
+        {
+            string codigoPresenca = System.IO.Path.Combine(folderName, turma, "codigo_presenca.txt");
+            string membrosTurma = System.IO.Path.Combine(folderName, turma, turma+"_membros.txt");
+            string nextCode = "";
+           
+            Random randNum = new Random();
+            nextCode = Convert.ToString(randNum.Next());
+                               
+            using (System.IO.FileStream f = new FileStream(codigoPresenca, FileMode.Create, FileAccess.Write))
+            {
+                using (StreamWriter sw = new StreamWriter(f, Encoding.ASCII))
+                {
+                    sw.WriteLine(nextCode);
+                    sw.Close();
+                }
+            }
+
+            string arquivoPresenca = System.IO.Path.Combine(folderName, turma, "presencaApontamento" + dataCorrente()+ ".txt");
+            string arquivoPresencaTemp = System.IO.Path.Combine(folderName, turma, "presencaApontamento" + dataCorrente() + ".tmp");
+            string arquivoPresencaBkp = System.IO.Path.Combine(folderName, turma, "presencaApontamento" + dataCorrente() + ".bkp");
+
+            System.IO.File.Copy(membrosTurma, arquivoPresenca, true);
+
+            using (FileStream fs = new FileStream(arquivoPresenca, FileMode.Open, FileAccess.Read))
+            {
+                using (StreamReader sr = new StreamReader(fs, Encoding.ASCII))
+                {
+                    using (FileStream fsTmp = new FileStream(arquivoPresencaTemp, FileMode.Create, FileAccess.Write))
+                    {
+                        using (StreamWriter sw = new StreamWriter(fsTmp, Encoding.ASCII))
+                        {
+                            string strLinha = null;
+                            while ((strLinha = sr.ReadLine()) != null)
+                            {
+                                sw.WriteLine(strLinha+"|F");
+                            }
+                        }
+                    }
+                }
+            }
+
+            try
+            {
+                System.IO.File.Move(arquivoPresenca, arquivoPresencaBkp);
+                System.IO.File.Move(arquivoPresencaTemp, arquivoPresenca);
+                System.IO.File.Delete(arquivoPresencaBkp);
+            }
+            catch (Exception e)
+            {
+                return "Não foi possível iniciar a chamada!";
+            }
+
+            return nextCode;
+        }
+
+        [WebMethod]
+        public string presencaAtualiza(string turma, string membro, string codigoPresenca)
+        {
+            string codigoPresencaInFile = "";
+            string arquivoCodigoPresenca = System.IO.Path.Combine(folderName, turma, "codigo_presenca.txt");
+            string arquivoPresenca = System.IO.Path.Combine(folderName, turma, "presencaApontamento" + dataCorrente() + ".txt");
+            string arquivoPresencaTemp = System.IO.Path.Combine(folderName, turma, "presencaApontamento" + dataCorrente() + ".tmp");
+            string arquivoPresencaBkp = System.IO.Path.Combine(folderName, turma, "presencaApontamento" + dataCorrente() + ".bkp");
+
+            using (System.IO.FileStream f = new FileStream(arquivoCodigoPresenca, FileMode.Open, FileAccess.Read))
+            {
+                using (StreamReader sr = new StreamReader(f, Encoding.ASCII))
+                {
+                    codigoPresencaInFile = sr.ReadLine();
+                    sr.Close();
+                }
+            }
+
+            if (!String.IsNullOrEmpty(codigoPresencaInFile))
+            {
+                if (codigoPresencaInFile.CompareTo(codigoPresenca) == 0)
+                {
+                    using (FileStream fs = new FileStream(arquivoPresenca, FileMode.Open, FileAccess.Read))
+                    {
+                        using (StreamReader sr = new StreamReader(fs, Encoding.ASCII))
+                        {
+                            using (FileStream fsTmp = new FileStream(arquivoPresencaTemp, FileMode.Create, FileAccess.Write))
+                            {
+                                using (StreamWriter sw = new StreamWriter(fsTmp, Encoding.ASCII))
+                                {
+                                    string strLinha = null;
+                                    while ((strLinha = sr.ReadLine()) != null)
+                                    {
+                                        if (strLinha.IndexOf(membro) > -1)
+                                        {
+                                            sw.WriteLine(membro + "|P");
+                                        }
+                                        else
+                                        {
+                                            sw.WriteLine(strLinha);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    try
+                    {
+                        System.IO.File.Move(arquivoPresenca, arquivoPresencaBkp);
+                        System.IO.File.Move(arquivoPresencaTemp, arquivoPresenca);
+                        System.IO.File.Delete(arquivoPresencaBkp);
+                    }
+                    catch (Exception e)
+                    {
+                        return "Não foi possível computar sua presença!";
+                    }
+                }
+                else
+                {
+                    return "Código de presença informado inválido!";
+                }
+            }
+            else
+            {
+                return "A chamada para hoje já foi encerrada!";
+            }
+
+            return "Presença computada com sucesso!";
+        }
+
+        [WebMethod]
+        public string presencaBoletim(string turma, int filtro)
+        {
+            //filtro 0 - Todos, 1 - Faltantes, 2 - Presentes
+
+            string result = "";
+
+            string caminhoTurma = System.IO.Path.Combine(folderName, turma);
+            DirectoryInfo Dir = new DirectoryInfo(caminhoTurma);
+            // Busca automaticamente todos os arquivos em todos os subdiretórios
+            FileInfo[] Files = Dir.GetFiles("*", SearchOption.AllDirectories);
+            foreach (FileInfo File in Files)
+            {
+                string nomeFile = File.FullName.ToString();
+                if (nomeFile.IndexOf("presencaApontamento")>-1)
+                {
+                    string linha;
+                    string nomeCurto = File.Name.ToString();
+                    string data = nomeCurto.Substring(25, 2) + "/" + nomeCurto.Substring(23, 2) + "/" + nomeCurto.Substring(19, 4);
+                    result = result + "-----" + data + "-----&";
+                    using (System.IO.FileStream f = new FileStream(nomeFile, FileMode.Open, FileAccess.Read))
+                    {
+                        using (StreamReader sr = new StreamReader(f, Encoding.ASCII))
+                        {
+                            while ((linha = sr.ReadLine()) != null)
+                            {
+                                if (!String.IsNullOrEmpty(linha))
+                                {
+                                    if (filtro == 0)
+                                    {
+                                        result = result + linha + "&";
+                                    }
+                                    else if (filtro == 1)
+                                    {
+                                        if (linha.IndexOf("|F") > -1)
+                                        {
+                                            result = result + linha + "&";
+                                        }
+                                    }
+                                    else if (filtro == 2)
+                                    {
+                                        if (linha.IndexOf("|P") > -1)
+                                        {
+                                            result = result + linha + "&";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        [WebMethod]
+        public string presencaFinaliza(string turma)
+        {
+            string codigoPresenca = System.IO.Path.Combine(folderName, turma, "codigo_presenca.txt");
+
+            using (System.IO.FileStream f = new FileStream(codigoPresenca, FileMode.Create, FileAccess.Write))
+            {
+                using (StreamWriter sw = new StreamWriter(f, Encoding.ASCII))
+                {
+                    sw.WriteLine("");
+                    sw.Close();
+                }
+            }
+            return "Lançamento de faltas finalizado!";
+        }
+
+        [WebMethod]
+        public string excluirPesquisa(string turma, string idPesquisa)
+        {
+            //o arquivo de pesquisas terá o seguinte formato
+            //ID|Titulo|Descricao|Data
+
+            string pesquisaDesc = System.IO.Path.Combine(folderName, turma, "Pesquisas_Desc.txt");
+            string pesquisaDescTemp = System.IO.Path.Combine(folderName, turma, "Pesquisas_Desc.tmp");
+            string pesquisaDescBkp = System.IO.Path.Combine(folderName, turma, "Pesquisas_Desc.bkp");
+            string pesquisaVotos = System.IO.Path.Combine(folderName, turma, "Pesquisa" + idPesquisa + ".txt");
+
+
+            if (File.Exists(pesquisaVotos))
+            {
+                using (FileStream fs = new FileStream(pesquisaDesc, FileMode.Open, FileAccess.Read))
+                {
+                    using (StreamReader sr = new StreamReader(fs, Encoding.ASCII))
+                    {
+                        using (FileStream fsTmp = new FileStream(pesquisaDescTemp, FileMode.Create, FileAccess.Write))
+                        {
+                            using (StreamWriter sw = new StreamWriter(fsTmp, Encoding.ASCII))
+                            {
+                                string strLinha = null;
+                                while ((strLinha = sr.ReadLine()) != null)
+                                {
+                                    if (!(strLinha.IndexOf(idPesquisa + "|") > -1))
+                                    {
+                                        sw.WriteLine(strLinha);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                try
+                {
+                    System.IO.File.Move(pesquisaDesc, pesquisaDescBkp);
+                    System.IO.File.Move(pesquisaDescTemp, pesquisaDesc);
+                    System.IO.File.Delete(pesquisaDescBkp);
+                    System.IO.File.Delete(pesquisaVotos);
+                }
+                catch (Exception e0)
+                {
+                    return "Não foi possível exlcuir a pesquisa " + idPesquisa;
+                }
+                return "Pesquisa excluída com sucesso!";
+            }
+            else
+            {
+                return "Pesquisa não encontrada!";
+            }
+        }
+
         [WebMethod]
         public string adicionaPesquisa(string turma, string pesquisa, string descricao, string data)
         {
@@ -656,6 +913,53 @@ namespace webapp
                 return "Não existem membros cadastrados!";
             }
             return listaMembros;
+        }
+
+        [WebMethod]
+        public string retiraMembroTurma(string email, string turma)
+        {
+            string membrosTurmaFile = System.IO.Path.Combine(folderName, turma, turma + "_membros.txt");
+            string membrosTurmaFileTemp = System.IO.Path.Combine(folderName, turma, turma + "_membros.tmp");
+            string membrosTurmaFileBkp = System.IO.Path.Combine(folderName, turma, turma + "_membros.bkp");
+
+            if (emailJaInlcuidoTurma(email, turma))
+            {
+                using (FileStream fs = new FileStream(membrosTurmaFile, FileMode.Open, FileAccess.Read))
+                {
+                    using (StreamReader sr = new StreamReader(fs, Encoding.ASCII))
+                    {
+                        using (FileStream fsTmp = new FileStream(membrosTurmaFileTemp, FileMode.Create, FileAccess.Write))
+                        {
+                            using (StreamWriter sw = new StreamWriter(fsTmp, Encoding.ASCII))
+                            {
+                                string strLinha = null;
+                                while ((strLinha = sr.ReadLine()) != null)
+                                {
+                                    if (!(strLinha.IndexOf(email) > -1))
+                                    {
+                                        sw.WriteLine(strLinha);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                try
+                {
+                    System.IO.File.Move(membrosTurmaFile, membrosTurmaFileBkp);
+                    System.IO.File.Move(membrosTurmaFileTemp, membrosTurmaFile);
+                    System.IO.File.Delete(membrosTurmaFileBkp);
+                }
+                catch (Exception e0)
+                {
+                    return "Não foi possível retirar o membro "+email+" desta turma!";
+                }
+                return "Membro retirado da base da turma com sucesso!";
+            }
+            else
+            {
+                return "Este membro não pertence a esta turma!";
+            }
         }
 
         [WebMethod]
@@ -962,6 +1266,29 @@ namespace webapp
             return "Turma criada com sucesso!";
         }
 
+        [WebMethod]
+        public string excluirTurma(string turma)
+        {
+            string caminhoCompleto = System.IO.Path.Combine(folderName, turma);
+
+            if (Directory.Exists(caminhoCompleto))
+            {
+                try
+                {
+                    System.IO.Directory.Delete(caminhoCompleto, true);
+                    return "Turma excluída com sucesso!";
+                }
+                catch (Exception e)
+                {
+                    string erro = e.InnerException.ToString();
+                    return "Não foi possível excluir a turma!\n" + e.Message.ToString() + erro;
+                }
+            }
+            else
+            {
+                return "Turma não encontrada!";
+            }
+        }
 
         [WebMethod]
         public string criarMembro(string nomeMembro, string emailMembro, int tipoMembro)
@@ -1041,9 +1368,59 @@ namespace webapp
 
             return "Membro adicionado com sucesso!";
         }
-    }
 
+        [WebMethod]
+        public string exlcuirMembro(string emailMembro)
+        {
+            string membrosFile = System.IO.Path.Combine(folderName, "membros.txt");
+            string membrosFileTemp = System.IO.Path.Combine(folderName, "membros.tmp");
+            string membrosFileBkp = System.IO.Path.Combine(folderName, "membros.bkp");
+
+            string turmasDoMembro = listaTurmasPorMembro(emailMembro);
+
+            if ((turmasDoMembro.CompareTo("Este membro não está associado a nenhuma turma!") == 0) ||
+                (turmasDoMembro.CompareTo("Não foram encontradas turmas para este membro!") == 0))
+            {
+                using (FileStream fs = new FileStream(membrosFile, FileMode.Open, FileAccess.Read))
+                {
+                    using (StreamReader sr = new StreamReader(fs, Encoding.ASCII))
+                    {
+                        using (FileStream fsTmp = new FileStream(membrosFileTemp, FileMode.Create, FileAccess.Write))
+                        {
+                            using (StreamWriter sw = new StreamWriter(fsTmp, Encoding.ASCII))
+                            {
+                                string strLinha = null;
+                                while ((strLinha = sr.ReadLine()) != null)
+                                {
+                                    if (!(strLinha.IndexOf(emailMembro) > -1))
+                                    {
+                                        sw.WriteLine(strLinha);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                try
+                {
+                    System.IO.File.Move(membrosFile, membrosFileBkp);
+                    System.IO.File.Move(membrosFileTemp, membrosFile);
+                    System.IO.File.Delete(membrosFileBkp);
+                }
+                catch (Exception e0)
+                {
+                    return "Não foi possível exlcuir o membro " + emailMembro;
+                }
+                return "Membro excluído com sucesso!";
+            }
+            else
+            {
+                return "Este membro não pode ser excluído! As seguintes turmas estão associadas a ele: " + turmasDoMembro;
+            }
+
+        }
 //-------------------------------------------------------------------------------------------------------------------------------
 //--FINAL IMPLEMENTAÇÃO DOS SERVIÇOS---------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------------------------
+    }
 }

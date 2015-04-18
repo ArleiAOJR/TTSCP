@@ -9,17 +9,23 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <_PublishTargetUrl>C:\Users\Arlei\Desktop\TTSCP\WSAppTTSCP</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="bin/nunit.framework.dll">
+      <publishTime>04/09/2015 10:34:01</publishTime>
+    </File>
     <File Include="bin/webapp.dll">
-      <publishTime>04/04/2015 13:59:30</publishTime>
+      <publishTime>04/18/2015 14:07:48</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>04/09/2015 10:34:10</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>04/04/2015 13:59:30</publishTime>
+      <publishTime>04/18/2015 14:07:49</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/04/2015 10:26:26</publishTime>
+      <publishTime>04/08/2015 17:38:42</publishTime>
     </File>
     <File Include="WSAppTTSCP.asmx">
-      <publishTime>04/04/2015 10:26:26</publishTime>
+      <publishTime>04/08/2015 17:38:42</publishTime>
     </File>
     <File Include="WSAppTTSCP.asmx.cs">
       <publishTime>03/22/2015 11:35:45</publishTime>

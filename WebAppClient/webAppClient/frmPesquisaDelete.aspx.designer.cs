@@ -10,7 +10,7 @@
 namespace WebAppClient {
     
     
-    public partial class frmResultadoPesquisa {
+    public partial class frmPesquisaDelete {
         
         /// <summary>
         /// form1 control.
@@ -22,22 +22,31 @@ namespace WebAppClient {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// BResult control.
+        /// LTurma control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BResult;
+        protected global::System.Web.UI.WebControls.Label LTurma;
         
         /// <summary>
-        /// BVoltar control.
+        /// BConfirmar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BVoltar;
+        protected global::System.Web.UI.WebControls.Button BConfirmar;
+        
+        /// <summary>
+        /// BCancelar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BCancelar;
         
         /// <summary>
         /// LResult control.
