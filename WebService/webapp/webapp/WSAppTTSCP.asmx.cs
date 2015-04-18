@@ -29,33 +29,232 @@ namespace webapp
         private const string folderName = @"c:\TTSCP";
         //private const string folderName = @"~\TTSCP";
 
+//-------------------------------------------------------------------------------------------------------------------------------
+//--IMPLEMENTAÇÃO DOS TESTES-----------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
+
         [Test]
-        public void emailJaInlcuidoTurma_Success()
+        public void test_emailJaInlcuidoTurma_Success()
         {
             bool result = emailJaInlcuidoTurma("arlei.aojr@gmail.com", "Turma0001");
             Assert.IsTrue(result);
         }
 
         [Test]
-        public void emailJaInlcuidoTurma_IsEmailEmpty()
+        public void test_emailJaInlcuidoTurma_IsEmailEmpty()
         {
             bool result = emailJaInlcuidoTurma("", "Turma0001");
             Assert.IsFalse(result);
         }
 
         [Test]
-        public void emailJaInlcuidoTurma_IsTurmaEmpty()
+        public void test_emailJaInlcuidoTurma_IsTurmaEmpty()
         {
             bool result = emailJaInlcuidoTurma("arlei.aojr@gmail.com", "");
             Assert.IsFalse(result);
         }
 
         [Test]
-        public void emailJaInlcuidoTurma_IsEmailTurmaEmpty()
+        public void test_emailJaInlcuidoTurma_IsEmailTurmaEmpty()
         {
             bool result = emailJaInlcuidoTurma("", "");
             Assert.IsFalse(result);
         }
+
+        [Test]
+        public void test_emailExists_Success()
+        {
+            bool result = emailExists("arlei.aojr@gmail.com");
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void test_emailExists_Fail()
+        {
+            bool result = emailExists("arle.aojr@gmail.com");
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void test_emailExists_IsEmailEmpty()
+        {
+            bool result = emailExists("");
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void test_dadosMembro_IsEmailEmpty()
+        {
+            string result = dadosMembro("");
+            if (result.CompareTo("Email informado vazio!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_dadosMembro_EmailNaoEncontrado()
+        {
+            string result = dadosMembro("arlei.");
+            if (result.CompareTo("Membro não encontrado!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_dadosMembro_EmailEncontrado()
+        {
+            string result = dadosMembro("arlei.aojr@gmail.com");
+            if (result.CompareTo("Arlei de Almeida|arlei.aojr@gmail.com|0") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_idPesquisa_Work()
+        {
+            int id = Convert.ToInt32(idPesquisa("Teste0001"));
+            int nextId = Convert.ToInt32(idPesquisa("Teste0001"));
+            Assert.AreEqual(id + 1, nextId);
+        }
+
+        [Test]
+        public void test_idPesquisa_ArquivoNaoExiste()
+        {
+            string id = idPesquisa("TesteNaoExiste");
+            if (id.CompareTo("Não foi possível recuperar o ID da pesquisa!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaPesquisa_CaracterePipeNoTituloDaPesquisa()
+        {
+            string result = adicionaPesquisa("Teste0001", "Pesq|0001", "Teste 0001", "10/03/2015");
+            if (result.CompareTo("Erro: O caracter | não pode ser usado para o título da pesquisa!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaPesquisa_CaracterePipeNaDescricaoDaPesquisa()
+        {
+            string result = adicionaPesquisa("Teste0001", "Pesq0001", "Teste |0001", "10/03/2015");
+            if (result.CompareTo("Erro: O caracter | não pode ser usado para a descrição da pesquisa!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaPesquisa_TamanhoMaiorQuePermitidoNoTituloDaPesquisa()
+        {
+            string result = adicionaPesquisa("Teste0001", "123456789012345678901234567890123456789012345678901", "Teste0001", "10/03/2015");
+            if (result.CompareTo("Erro: Título da pesquisa não pode ter mais de 50 caracteres!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaPesquisa_TamanhoMaiorQuePermitidoNaDescricaoDaPesquisa()
+        {
+            string result = adicionaPesquisa("Teste0001", "12345678901234567890123456789012345678901234567890",
+                "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890" +
+                "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890" +
+                "123456789012345678901234567890123456789012345678901", "10/03/2015");
+            if (result.CompareTo("Erro: Descrição da pesquisa não pode ter mais de 250 caracteres!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaPesquisa_NaoFoiPossivelRecuperarIdDaPesquisa()
+        {
+            string result = adicionaPesquisa("TesteNaoExiste", "TesteNaoExiste", "TesteNaoExiste", "10/03/2015");
+            if (result.CompareTo("Erro: Não foi possível adicionar pesquisa!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaPesquisa_PesquisaAdicionadaComSucesso()
+        {
+            string result = adicionaPesquisa("Teste0002", "PesquisaTeste0002", "PesquisaTeste0002", "10/03/2015");
+            if (result.CompareTo("Pesquisa adicionada com sucesso!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaPesquisa_NaoExistemMembrosNaTurma()
+        {
+            string result = adicionaPesquisa("Teste0001", "PesquisaTeste0001", "PesquisaTeste0001", "10/03/2015");
+            if (result.CompareTo("Erro: Não existem membros para esta turma. Pesquisa não pode ser adicionada!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaVotoPesquisa_Sucesso()
+        {
+            string result = adicionaVotoPesquisa("Teste0002", "1", "arlei.aojr@gmail.com", true);
+            if (result.CompareTo("Voto computado com sucesso!") == 0)
+            {
+                Assert.Pass();
+            }
+            Assert.Fail();
+        }
+
+        [Test]
+        public void test_adicionaVotoPesquisa_NaoFoiPossivelAdicionarVotoNaPesquisa()
+        {
+            string result = adicionaVotoPesquisa("", "", "", true);
+            if (result.CompareTo("Erro: Este arquivo de pesquisas não existe!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaVotoPesquisa_MembroJaRespondeuPesquisa()
+        {
+            string result = adicionaVotoPesquisa("Teste0002", "1", "arlei.aojr@gmail.com", true);
+            if (result.CompareTo("Erro: Este membro já respondeu esta pesquisa!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_autenticaMembroTest_Success()
+        {
+            bool result = autenticaMembro("arlei.aojr@gmail.com", "123");
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void test_autenticaMembroTest_Fail()
+        {
+            bool result = autenticaMembro("", "");
+            Assert.IsFalse(result);
+        }
+
+//-------------------------------------------------------------------------------------------------------------------------------
+//--FINAL DA IMPLEMENTAÇÃO DOS TESTES--------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------------------------------------------
+//--IMPLEMENTAÇÃO DOS SERVIÇOS---------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 
         private bool emailJaInlcuidoTurma(string email, string turma)
         {
@@ -85,27 +284,7 @@ namespace webapp
             return false;
         }
 
-        [Test]
-        public void emailExists_Success()
-        {
-            bool result = emailExists("arlei.aojr@gmail.com");
-            Assert.IsTrue(result);
-        }
-
-        [Test]
-        public void emailExists_Fail()
-        {
-            bool result = emailExists("arle.aojr@gmail.com");
-            Assert.IsFalse(result);
-        }
-
-        [Test]
-        public void emailExists_IsEmailEmpty()
-        {
-            bool result = emailExists("");
-            Assert.IsFalse(result);
-        }
-
+   
         private bool emailExists(string email)
         {
             if (!String.IsNullOrEmpty(email))
@@ -131,37 +310,7 @@ namespace webapp
                 }
             }
             return false;
-        }
-
-        [Test]
-        public void dadosMembro_IsEmailEmpty()
-        {
-            string result = dadosMembro("");
-            if (result.CompareTo("Email informado vazio!")==0)
-            {
-                Assert.Pass();
-            }
-        }
-
-        [Test]
-        public void dadosMembro_EmailNaoEncontrado()
-        {
-            string result = dadosMembro("arlei.");
-            if (result.CompareTo("Membro não encontrado!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
-
-        [Test]
-        public void dadosMembro_EmailEncontrado()
-        {
-            string result = dadosMembro("arlei.aojr@gmail.com");
-            if (result.CompareTo("Arlei de Almeida|arlei.aojr@gmail.com|0") == 0)
-            {
-                Assert.Pass();
-            }
-        }
+        }            
 
         [WebMethod]
         public string dadosMembro(string email)
@@ -191,24 +340,6 @@ namespace webapp
                 return "Membro não encontrado!";
             }
             return "Email informado vazio!";
-        }
-        
-        [Test]
-        public void idPesquisa_Work()
-        {
-            int id = Convert.ToInt32(idPesquisa("Teste0001"));
-            int nextId = Convert.ToInt32(idPesquisa("Teste0001"));
-            Assert.AreEqual(id + 1, nextId);
-        }
-
-        [Test]
-        public void idPesquisa_ArquivoNaoExiste()
-        {
-            string id = idPesquisa("TesteNaoExiste");
-            if (id.CompareTo("Não foi possível recuperar o ID da pesquisa!") == 0)
-            {
-                Assert.Pass();
-            }
         }
 
         private string idPesquisa(string turma)
@@ -259,79 +390,7 @@ namespace webapp
             return nextID;
         }
 
-        [Test]
-        public void adicionaPesquisa_CaracterePipeNoTituloDaPesquisa()
-        {
-            string result = adicionaPesquisa("Teste0001", "Pesq|0001", "Teste 0001", "10/03/2015");
-            if (result.CompareTo("Erro: O caracter | não pode ser usado para o título da pesquisa!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
-
-        [Test]
-        public void adicionaPesquisa_CaracterePipeNaDescricaoDaPesquisa()
-        {
-            string result = adicionaPesquisa("Teste0001", "Pesq0001", "Teste |0001", "10/03/2015");
-            if (result.CompareTo("Erro: O caracter | não pode ser usado para a descrição da pesquisa!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
-
-        [Test]
-        public void adicionaPesquisa_TamanhoMaiorQuePermitidoNoTituloDaPesquisa()
-        {
-            string result = adicionaPesquisa("Teste0001", "123456789012345678901234567890123456789012345678901", "Teste0001", "10/03/2015");
-            if (result.CompareTo("Erro: Título da pesquisa não pode ter mais de 50 caracteres!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
-
-        [Test]
-        public void adicionaPesquisa_TamanhoMaiorQuePermitidoNaDescricaoDaPesquisa()
-        {
-            string result = adicionaPesquisa("Teste0001", "12345678901234567890123456789012345678901234567890",
-                "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"+
-                "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"+
-                "123456789012345678901234567890123456789012345678901", "10/03/2015");
-            if (result.CompareTo("Erro: Descrição da pesquisa não pode ter mais de 250 caracteres!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
-
-        [Test]
-        public void adicionaPesquisa_NaoFoiPossivelRecuperarIdDaPesquisa()
-        {
-            string result = adicionaPesquisa("TesteNaoExiste", "TesteNaoExiste", "TesteNaoExiste", "10/03/2015");
-            if (result.CompareTo("Erro: Não foi possível adicionar pesquisa!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
-
-        [Test]
-        public void adicionaPesquisa_PesquisaAdicionadaComSucesso()
-        {
-            string result = adicionaPesquisa("Teste0002", "PesquisaTeste0002", "PesquisaTeste0002", "10/03/2015");
-            if (result.CompareTo("Pesquisa adicionada com sucesso!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
         
-        [Test]
-        public void adicionaPesquisa_NaoExistemMembrosNaTurma()
-        {
-            string result = adicionaPesquisa("Teste0001", "PesquisaTeste0001", "PesquisaTeste0001", "10/03/2015");
-            if (result.CompareTo("Erro: Não existem membros para esta turma. Pesquisa não pode ser adicionada!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
-
         [WebMethod]
         public string adicionaPesquisa(string turma, string pesquisa, string descricao, string data)
         {
@@ -408,37 +467,6 @@ namespace webapp
             }
 
             return "Pesquisa adicionada com sucesso!";
-        }
-
-        [Test]
-        public void adicionaVotoPesquisa_Sucesso()
-        {
-            string result = adicionaVotoPesquisa("Teste0002", "1", "arlei.aojr@gmail.com", true);
-            if (result.CompareTo("Voto computado com sucesso!") == 0)
-            {
-                Assert.Pass();
-            }
-            Assert.Fail();
-        }
-        
-        [Test]
-        public void adicionaVotoPesquisa_NaoFoiPossivelAdicionarVotoNaPesquisa()
-        {
-            string result = adicionaVotoPesquisa("", "", "", true);
-            if (result.CompareTo("Erro: Este arquivo de pesquisas não existe!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
-
-        [Test]
-        public void adicionaVotoPesquisa_MembroJaRespondeuPesquisa()
-        {
-            string result = adicionaVotoPesquisa("Teste0002", "1", "arlei.aojr@gmail.com", true);
-            if (result.CompareTo("Erro: Este membro já respondeu esta pesquisa!") == 0)
-            {
-                Assert.Pass();
-            }
         }
 
 
@@ -670,19 +698,6 @@ namespace webapp
             return "Membro adicionado na base da turma com sucesso!";
         }
 
-        [Test]
-        public void autenticaMembroTest_Success()
-        {
-            bool result = autenticaMembro("arlei.aojr@gmail.com", "123");
-            Assert.IsTrue(result);
-        }
-
-        [Test]
-        public void autenticaMembroTest_Fail()
-        {
-            bool result = autenticaMembro("", "");
-            Assert.IsFalse(result);
-        }
 
         [WebMethod]
         public bool autenticaMembro(string email, string pass)
@@ -1027,4 +1042,8 @@ namespace webapp
             return "Membro adicionado com sucesso!";
         }
     }
+
+//-------------------------------------------------------------------------------------------------------------------------------
+//--FINAL IMPLEMENTAÇÃO DOS SERVIÇOS---------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 }
