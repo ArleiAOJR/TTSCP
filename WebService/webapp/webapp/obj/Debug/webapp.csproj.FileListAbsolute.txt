@@ -16,4 +16,3 @@ C:\Users\Arlei\Desktop\TTSCP\WebService\webapp\webapp\obj\Debug\webapp.dll
 C:\Users\Arlei\Desktop\TTSCP\WebService\webapp\webapp\obj\Debug\webapp.pdb
 C:\Users\Arlei\Desktop\TTSCP\WebService\webapp\webapp\bin\nunit.framework.dll
 C:\Users\Arlei\Desktop\TTSCP\WebService\webapp\webapp\bin\nunit.framework.xml
-C:\Users\Arlei\Desktop\TTSCP\WebService\webapp\webapp\obj\Debug\webapp.csprojResolveAssemblyReference.cache

@@ -34,6 +34,120 @@ namespace webapp
 //-------------------------------------------------------------------------------------------------------------------------------
 
         [Test]
+        public void config_testes()
+        {
+            criarTurma("Teste0001");
+            associaMembroTurma("arlei.aojr@gmail.com", "Teste0001");
+            associaMembroTurma("arlei.aojr2@gmail.com", "Teste0001");
+            criarTurma("Teste0002");
+            associaMembroTurma("arlei.aojr@gmail.com", "Teste0002");
+            associaMembroTurma("arlei.aojr2@gmail.com", "Teste0002");
+        }
+
+        [Test]
+        public void test_adicionaPesquisa_CaracterePipeNoTituloDaPesquisa()
+        {
+            string result = adicionaPesquisa("Teste0001", "Pesq|0001", "Teste 0001", "10/03/2015");
+            if (result.CompareTo("Erro: O caracter | não pode ser usado para o título da pesquisa!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaPesquisa_CaracterePipeNaDescricaoDaPesquisa()
+        {
+            string result = adicionaPesquisa("Teste0001", "Pesq0001", "Teste |0001", "10/03/2015");
+            if (result.CompareTo("Erro: O caracter | não pode ser usado para a descrição da pesquisa!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaPesquisa_TamanhoMaiorQuePermitidoNoTituloDaPesquisa()
+        {
+            string result = adicionaPesquisa("Teste0001", "123456789012345678901234567890123456789012345678901", "Teste0001", "10/03/2015");
+            if (result.CompareTo("Erro: Título da pesquisa não pode ter mais de 50 caracteres!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaPesquisa_TamanhoMaiorQuePermitidoNaDescricaoDaPesquisa()
+        {
+            string result = adicionaPesquisa("Teste0001", "12345678901234567890123456789012345678901234567890",
+                "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890" +
+                "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890" +
+                "123456789012345678901234567890123456789012345678901", "10/03/2015");
+            if (result.CompareTo("Erro: Descrição da pesquisa não pode ter mais de 250 caracteres!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaPesquisa_NaoFoiPossivelRecuperarIdDaPesquisa()
+        {
+            string result = adicionaPesquisa("TesteNaoExiste", "TesteNaoExiste", "TesteNaoExiste", "10/03/2015");
+            if (result.CompareTo("Erro: Não foi possível adicionar pesquisa!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaPesquisa_PesquisaAdicionadaComSucesso()
+        {
+            string result = adicionaPesquisa("Teste0002", "PesquisaTeste0002", "PesquisaTeste0002", "10/03/2015");
+            if (result.CompareTo("Pesquisa adicionada com sucesso!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaPesquisa_NaoExistemMembrosNaTurma()
+        {
+            string result = adicionaPesquisa("Teste0001", "PesquisaTeste0001", "PesquisaTeste0001", "10/03/2015");
+            if (result.CompareTo("Erro: Não existem membros para esta turma. Pesquisa não pode ser adicionada!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaVotoPesquisa_Sucesso()
+        {
+            string result = adicionaVotoPesquisa("Teste0002", "1", "arlei.aojr@gmail.com", true);
+            if (result.CompareTo("Voto computado com sucesso!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaVotoPesquisa_NaoFoiPossivelAdicionarVotoNaPesquisa()
+        {
+            string result = adicionaVotoPesquisa("", "", "", true);
+            if (result.CompareTo("Erro: Este arquivo de pesquisas não existe!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void test_adicionaVotoPesquisa_MembroJaRespondeuPesquisa()
+        {
+            string result = adicionaVotoPesquisa("Teste0002", "1", "arlei.aojr@gmail.com", true);
+            if (result.CompareTo("Erro: Este membro já respondeu esta pesquisa!") == 0)
+            {
+                Assert.Pass();
+            }
+        }
+        
+        [Test]
         public void test_emailJaInlcuidoTurma_Success()
         {
             bool result = emailJaInlcuidoTurma("arlei.aojr@gmail.com", "Turma0001");
@@ -130,109 +244,7 @@ namespace webapp
             }
         }
 
-        [Test]
-        public void test_adicionaPesquisa_CaracterePipeNoTituloDaPesquisa()
-        {
-            string result = adicionaPesquisa("Teste0001", "Pesq|0001", "Teste 0001", "10/03/2015");
-            if (result.CompareTo("Erro: O caracter | não pode ser usado para o título da pesquisa!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
-
-        [Test]
-        public void test_adicionaPesquisa_CaracterePipeNaDescricaoDaPesquisa()
-        {
-            string result = adicionaPesquisa("Teste0001", "Pesq0001", "Teste |0001", "10/03/2015");
-            if (result.CompareTo("Erro: O caracter | não pode ser usado para a descrição da pesquisa!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
-
-        [Test]
-        public void test_adicionaPesquisa_TamanhoMaiorQuePermitidoNoTituloDaPesquisa()
-        {
-            string result = adicionaPesquisa("Teste0001", "123456789012345678901234567890123456789012345678901", "Teste0001", "10/03/2015");
-            if (result.CompareTo("Erro: Título da pesquisa não pode ter mais de 50 caracteres!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
-
-        [Test]
-        public void test_adicionaPesquisa_TamanhoMaiorQuePermitidoNaDescricaoDaPesquisa()
-        {
-            string result = adicionaPesquisa("Teste0001", "12345678901234567890123456789012345678901234567890",
-                "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890" +
-                "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890" +
-                "123456789012345678901234567890123456789012345678901", "10/03/2015");
-            if (result.CompareTo("Erro: Descrição da pesquisa não pode ter mais de 250 caracteres!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
-
-        [Test]
-        public void test_adicionaPesquisa_NaoFoiPossivelRecuperarIdDaPesquisa()
-        {
-            string result = adicionaPesquisa("TesteNaoExiste", "TesteNaoExiste", "TesteNaoExiste", "10/03/2015");
-            if (result.CompareTo("Erro: Não foi possível adicionar pesquisa!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
-
-        [Test]
-        public void test_adicionaPesquisa_PesquisaAdicionadaComSucesso()
-        {
-            string result = adicionaPesquisa("Teste0002", "PesquisaTeste0002", "PesquisaTeste0002", "10/03/2015");
-            if (result.CompareTo("Pesquisa adicionada com sucesso!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
-
-        [Test]
-        public void test_adicionaPesquisa_NaoExistemMembrosNaTurma()
-        {
-            string result = adicionaPesquisa("Teste0001", "PesquisaTeste0001", "PesquisaTeste0001", "10/03/2015");
-            if (result.CompareTo("Erro: Não existem membros para esta turma. Pesquisa não pode ser adicionada!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
-
-        [Test]
-        public void test_adicionaVotoPesquisa_Sucesso()
-        {
-            string result = adicionaVotoPesquisa("Teste0002", "1", "arlei.aojr@gmail.com", true);
-            if (result.CompareTo("Voto computado com sucesso!") == 0)
-            {
-                Assert.Pass();
-            }
-            Assert.Fail();
-        }
-
-        [Test]
-        public void test_adicionaVotoPesquisa_NaoFoiPossivelAdicionarVotoNaPesquisa()
-        {
-            string result = adicionaVotoPesquisa("", "", "", true);
-            if (result.CompareTo("Erro: Este arquivo de pesquisas não existe!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
-
-        [Test]
-        public void test_adicionaVotoPesquisa_MembroJaRespondeuPesquisa()
-        {
-            string result = adicionaVotoPesquisa("Teste0002", "1", "arlei.aojr@gmail.com", true);
-            if (result.CompareTo("Erro: Este membro já respondeu esta pesquisa!") == 0)
-            {
-                Assert.Pass();
-            }
-        }
+        
 
         [Test]
         public void test_autenticaMembroTest_Success()
@@ -248,6 +260,12 @@ namespace webapp
             Assert.IsFalse(result);
         }
 
+        [Test]
+        public void z_config_testes()
+        {
+            excluirTurma("Teste0001");
+            excluirTurma("Teste0002");
+        }
 //-------------------------------------------------------------------------------------------------------------------------------
 //--FINAL DA IMPLEMENTAÇÃO DOS TESTES--------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -399,6 +417,16 @@ namespace webapp
         [WebMethod]
         public string presencaInicia(string turma)
         {
+            if (String.IsNullOrEmpty(turma))
+            {
+                return "";
+            }
+            
+            if (turma.IndexOf('\0')>-1)
+            {
+                return "";
+            }
+
             string codigoPresenca = System.IO.Path.Combine(folderName, turma, "codigo_presenca.txt");
             string membrosTurma = System.IO.Path.Combine(folderName, turma, turma+"_membros.txt");
             string nextCode = "";
