@@ -21,16 +21,16 @@ namespace WebAppClient
         
         protected void btn_click(object sender, EventArgs e)
         {
-            //Button btn = (Button)sender;
-            //GlobalVar.TurmaAAssociar = btn.CommandArgument;
-            //Server.Transfer("frmMembroTurmaPesquisa.aspx", true);
+            Button btn = (Button)sender;
+            GlobalVar.TurmaAAssociar = btn.CommandArgument;
+            Server.Transfer("frmMembroTurmaPesquisa.aspx", true);
         }
 
         protected void btnPresenca_click(object sender, EventArgs e)
         {
-            //Button btn = (Button)sender;
-            //GlobalVar.TurmaAAssociar = btn.CommandArgument;
-            //Server.Transfer("frmMembroTurmaPresenca.aspx", true);
+            Button btn = (Button)sender;
+            GlobalVar.TurmaAAssociar = btn.CommandArgument;
+            Server.Transfer("frmMembroTurmaPresenca.aspx", true);
         }
 
         protected void carregaTurmas()
