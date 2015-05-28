@@ -70,40 +70,40 @@ namespace WebAppClient
             {
                 string[] p = pesquisas.Split(new Char[] { '&' });
 
-                TPesquisas.BorderStyle = BorderStyle.Double;
+                TPesquisas.BorderStyle = BorderStyle.Solid;
 
                 TableRow tRow = new TableRow();
-                tRow.BorderStyle = BorderStyle.Double;
+                tRow.BorderStyle = BorderStyle.Solid;
                 TPesquisas.Rows.Add(tRow);
 
                 TableCell tCell = new TableCell();
                 tCell.Text = "ID Pesquisa";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Título";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Descrição (pergunta)";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Data Final Para Votação";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Resultado";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Excluir Pesquisa";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 for (int i = 0; i < p.Length; i++)
@@ -113,37 +113,37 @@ namespace WebAppClient
                         string[] pDados = p[i].Split(new Char[] { '|' });
 
                         tRow = new TableRow();
-                        tRow.BorderStyle = BorderStyle.Double;
+                        tRow.BorderStyle = BorderStyle.Solid;
 
                         //id da pesquisa
                         TPesquisas.Rows.Add(tRow);
                         tCell = new TableCell();
                         tCell.Text = pDados[0];
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         tRow.Cells.Add(tCell);
 
                         //titulo da pesquisa
                         TPesquisas.Rows.Add(tRow);
                         tCell = new TableCell();
                         tCell.Text = pDados[1];
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         tRow.Cells.Add(tCell);
 
                         //descricao da pesquisa
                         tCell = new TableCell();
                         tCell.Text = pDados[2];
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         tRow.Cells.Add(tCell);
 
                         //data final para votação
                         tCell = new TableCell();
                         tCell.Text = pDados[3];
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         tRow.Cells.Add(tCell);
 
                         //Botão para ver resultado
                         tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         Button bresultado = new Button { ID = "BR" + pDados[0], Text = "Resultado", CommandArgument = pDados[0] };
                         bresultado.Click += new EventHandler(btnResultado_click);
                         tCell.Controls.Add(bresultado);
@@ -151,7 +151,7 @@ namespace WebAppClient
 
                         //Botão para excluir pesquisa
                         tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         Button bExlcuiPesq = new Button { ID = "BExlcuiPesquisa" + pDados[0], Text = "Excluir Pesquisa", CommandArgument = pDados[0] };
                         bExlcuiPesq.Click += new EventHandler(btnExcluiPesquisa_click);
                         tCell.Controls.Add(bExlcuiPesq);

@@ -30,29 +30,29 @@ namespace WebAppClient
             {
                 string[] m = membros.Split(new Char[] { '&' });
 
-                TMembros.BorderStyle = BorderStyle.Double;
+                TMembros.BorderStyle = BorderStyle.Solid;
                 TableRow tRow = new TableRow();
-                tRow.BorderStyle = BorderStyle.Double;
+                tRow.BorderStyle = BorderStyle.Solid;
                 TMembros.Rows.Add(tRow);
 
                 TableCell tCell = new TableCell();
                 tCell.Text = "Nome do Membro";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "E-mail do Membro";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Tipo do Membro";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Excluir Membro";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 for (int i = 0; i < m.Length; i++)
@@ -62,30 +62,30 @@ namespace WebAppClient
                         string[] mIndividual = m[i].Split(new Char[] { '|' });
 
                         tRow = new TableRow();
-                        tRow.BorderStyle = BorderStyle.Double;
+                        tRow.BorderStyle = BorderStyle.Solid;
                         TMembros.Rows.Add(tRow);
 
                         //nome do membro
                         tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         tCell.Text = mIndividual[0];
                         tRow.Cells.Add(tCell);
 
                         //email do membro
                         tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         tCell.Text = mIndividual[1];
                         tRow.Cells.Add(tCell);
 
                         //tipo do membr
                         tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         tCell.Text = mIndividual[2];
                         tRow.Cells.Add(tCell);
 
                         //botão para excluir membro
                         tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         Button b = new Button { ID = "ExCluirMembro" + mIndividual[1], Text = "Excluir Membro", CommandArgument = mIndividual[1] };
                         b.Click += new EventHandler(btnExcluirMembro_click);
                         tCell.Controls.Add(b);

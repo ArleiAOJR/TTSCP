@@ -72,40 +72,40 @@ namespace WebAppClient
             {
                 string[] t = turmas.Split(new Char[] { '|' });
 
-                TTurmas.BorderStyle = BorderStyle.Double;
+                TTurmas.BorderStyle = BorderStyle.Solid;
 
                 TableRow tRow = new TableRow();
-                tRow.BorderStyle = BorderStyle.Double;
+                tRow.BorderStyle = BorderStyle.None;
                 TTurmas.Rows.Add(tRow);
 
                 TableCell tCell = new TableCell();
                 tCell.Text = "Turma";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Membros";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Pesquisas";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Excluir Turma";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Chamada";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
-                tCell.Text = "Boletim";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.Text = "Frequência";
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 for (int i = 0; i < t.Length; i++)
@@ -114,19 +114,19 @@ namespace WebAppClient
                     if ((!String.IsNullOrEmpty(t[i])) & (t[i].CompareTo("\0") != 0))
                     {
                         tRow = new TableRow();
-                        tRow.BorderStyle = BorderStyle.Double;
+                        tRow.BorderStyle = BorderStyle.None;
                         TTurmas.Rows.Add(tRow);
 
                         //label da turma
                         tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         Label l = new Label { ID = "L" + t[i], Text = t[i] };
                         tCell.Controls.Add(l);
                         tRow.Cells.Add(tCell);
 
                         //Botões de associar membro com a turma
                         tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         Button b = new Button { ID = "AM" + t[i], Text = "Membros", CommandArgument = t[i] };
                         b.Click += new EventHandler(btn_click);
                         tCell.Controls.Add(b);
@@ -134,7 +134,7 @@ namespace WebAppClient
 
                         //Botôes de associar pesquisa com a turma
                         tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         Button bpesq = new Button { ID = "AP" + t[i], Text = "Pesquisas", CommandArgument = t[i] };
                         bpesq.Click += new EventHandler(btnPesq_click);
                         tCell.Controls.Add(bpesq);
@@ -142,7 +142,7 @@ namespace WebAppClient
 
                         //Botôes de exlcuir turma
                         tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         Button bexlcuiTurma = new Button { ID = "ExcluirTurma" + t[i], Text = "Excluir Turma", CommandArgument = t[i]};
                         bexlcuiTurma.Click += new EventHandler(btnExcluiTurma_click);
                         tCell.Controls.Add(bexlcuiTurma);
@@ -150,7 +150,7 @@ namespace WebAppClient
 
                         //Botôes de chamada
                         tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         Button bchamada = new Button { ID = "Chamada" + t[i], Text = "Chamada", CommandArgument = t[i] };
                         bchamada.Click += new EventHandler(btnChamada_click);
                         tCell.Controls.Add(bchamada);
@@ -158,8 +158,8 @@ namespace WebAppClient
 
                         //Botôes de chamada
                         tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.Groove;
-                        Button bboletim = new Button { ID = "Boletim" + t[i], Text = "Boletim", CommandArgument = t[i] };
+                        tCell.BorderStyle = BorderStyle.None;
+                        Button bboletim = new Button { ID = "Boletim" + t[i], Text = "Frequência", CommandArgument = t[i] };
                         bboletim.Click += new EventHandler(btnBoletimFaltas_click);
                         tCell.Controls.Add(bboletim);
                         tRow.Cells.Add(tCell);

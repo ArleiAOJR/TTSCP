@@ -38,40 +38,40 @@ namespace WebAppClient
 
                 string[] pesquisas = listaPesquisas.Split(new Char[] { '&' });
 
-                TPesquisas.BorderStyle = BorderStyle.Double;
+                TPesquisas.BorderStyle = BorderStyle.Solid;
 
                 TableRow tRow = new TableRow();
-                tRow.BorderStyle = BorderStyle.Double;
+                tRow.BorderStyle = BorderStyle.Solid;
                 TPesquisas.Rows.Add(tRow);
 
                 TableCell tCell = new TableCell();
                 tCell.Text = "ID Pesquisa";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Título da Pesquisa";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Descrição da Pesquisa (pergunta/enquete)";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Data Final Para Responder";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Resposta (Sim)";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Resposta (Não)";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 for (int i = 0; i < pesquisas.Length; i++)
@@ -84,7 +84,7 @@ namespace WebAppClient
                         if (pesquisa.Length > 1)
                         {
                             tRow = new TableRow();
-                            tRow.BorderStyle = BorderStyle.Double;
+                            tRow.BorderStyle = BorderStyle.Solid;
                             TPesquisas.Rows.Add(tRow);
 
                             //formato dos dados Ex:
@@ -92,31 +92,31 @@ namespace WebAppClient
 
                             //ID da pesquisa
                             tCell = new TableCell();
-                            tCell.BorderStyle = BorderStyle.Groove;
+                            tCell.BorderStyle = BorderStyle.None;
                             tCell.Text = pesquisa[0];
                             tRow.Cells.Add(tCell);
 
                             //Título da pesquisa
                             tCell = new TableCell();
-                            tCell.BorderStyle = BorderStyle.Groove;
+                            tCell.BorderStyle = BorderStyle.None;
                             tCell.Text = pesquisa[1];
                             tRow.Cells.Add(tCell);
 
                             //Descricao da pesquisa
                             tCell = new TableCell();
-                            tCell.BorderStyle = BorderStyle.Groove;
+                            tCell.BorderStyle = BorderStyle.None;
                             tCell.Text = pesquisa[2];
                             tRow.Cells.Add(tCell);
 
                             //Data da pesquisa
                             tCell = new TableCell();
-                            tCell.BorderStyle = BorderStyle.Groove;
+                            tCell.BorderStyle = BorderStyle.None;
                             tCell.Text = pesquisa[3];
                             tRow.Cells.Add(tCell);
 
                             //Botão para votar sim
                             tCell = new TableCell();
-                            tCell.BorderStyle = BorderStyle.Groove;
+                            tCell.BorderStyle = BorderStyle.None;
                             Button b = new Button { ID = "BVS" + pesquisa[0], Text = "SIM", CommandArgument = pesquisa[0] };
                             b.Click += new EventHandler(btnSim_click);
                             tCell.Controls.Add(b);
@@ -124,7 +124,7 @@ namespace WebAppClient
 
                             //Botão para votar não
                             tCell = new TableCell();
-                            tCell.BorderStyle = BorderStyle.Groove;
+                            tCell.BorderStyle = BorderStyle.None;
                             b = new Button { ID = "BVN" + pesquisa[0], Text = "NÃO", CommandArgument = pesquisa[0] };
                             b.Click += new EventHandler(btnNao_click);
                             tCell.Controls.Add(b);

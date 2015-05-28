@@ -43,25 +43,25 @@ namespace WebAppClient
 
                 string[] t = turmas.Split(new Char[] { '|' });
 
-                TTurmas.BorderStyle = BorderStyle.Double;
+                TTurmas.BorderStyle = BorderStyle.Solid;
 
                 TableRow tRow = new TableRow();
-                tRow.BorderStyle = BorderStyle.Double;
+                tRow.BorderStyle = BorderStyle.Solid;
                 TTurmas.Rows.Add(tRow);
 
                 TableCell tCell = new TableCell();
                 tCell.Text = "Turma";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Pesquisas";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 tCell = new TableCell();
                 tCell.Text = "Presença";
-                tCell.BorderStyle = BorderStyle.Groove;
+                tCell.BorderStyle = BorderStyle.None;
                 tRow.Cells.Add(tCell);
 
                 for (int i = 0; i < t.Length; i++)
@@ -70,19 +70,19 @@ namespace WebAppClient
                     if ((!String.IsNullOrEmpty(t[i])) & (t[i].CompareTo("\0") != 0))
                     {
                         tRow = new TableRow();
-                        tRow.BorderStyle = BorderStyle.Double;
+                        tRow.BorderStyle = BorderStyle.Solid;
                         TTurmas.Rows.Add(tRow);
 
                         //label da turma
                         tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         Label l = new Label { ID = "L" + t[i], Text = t[i] };
                         tCell.Controls.Add(l);
                         tRow.Cells.Add(tCell);
 
                         //Botões acessar as pesquisas desta turma
                         tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         Button b = new Button { ID = "AP" + t[i], Text = "Pesquisas", CommandArgument = t[i] };
                         b.Click += new EventHandler(btn_click);
                         tCell.Controls.Add(b);
@@ -90,7 +90,7 @@ namespace WebAppClient
 
                         //Botões acessar as presencas
                         tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.Groove;
+                        tCell.BorderStyle = BorderStyle.None;
                         b = new Button { ID = "Presenca" + t[i], Text = "Presença", CommandArgument = t[i] };
                         b.Click += new EventHandler(btnPresenca_click);
                         tCell.Controls.Add(b);

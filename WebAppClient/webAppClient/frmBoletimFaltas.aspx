@@ -12,11 +12,11 @@
         </asp:DropDownList>
         <br />
         <br />
-        <asp:Button ID="BBoletim" runat="server" OnClick="BBoletim_Click" Text="Boletim" Width="100px" />
+        <asp:Button ID="BBoletim" runat="server" OnClick="BBoletim_Click" Text="Frequência" Width="100px" />
 &nbsp;<asp:Button ID="BVoltar" runat="server" OnClick="BVoltar_Click" Text="Voltar" Width="100px" />
         <br />
         <br />
-        <asp:Label ID="Label2" runat="server" Font-Bold="True" Text="Boletim"></asp:Label>
+        <asp:Label ID="Label2" runat="server" Font-Bold="True" Text="Frequência"></asp:Label>
         <br />
         <br />
         <asp:Label ID="LBoletim" runat="server" Text="------"></asp:Label>
