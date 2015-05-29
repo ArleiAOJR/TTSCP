@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -71,9 +72,12 @@ namespace WebAppClient
                 string[] p = pesquisas.Split(new Char[] { '&' });
 
                 TPesquisas.BorderStyle = BorderStyle.Solid;
+                TPesquisas.BorderWidth = 1;
 
                 TableRow tRow = new TableRow();
                 tRow.BorderStyle = BorderStyle.Solid;
+                tRow.BorderWidth = 1;
+                tRow.BackColor = Color.FromArgb(16, 148, 171);
                 TPesquisas.Rows.Add(tRow);
 
                 TableCell tCell = new TableCell();
@@ -114,6 +118,9 @@ namespace WebAppClient
 
                         tRow = new TableRow();
                         tRow.BorderStyle = BorderStyle.Solid;
+                        tRow.BorderColor = Color.Black;
+                        tRow.BackColor = (i % 2 == 0 ? Color.White : Color.FromArgb(100, 196, 210));
+                        tRow.BorderWidth = 1;
 
                         //id da pesquisa
                         TPesquisas.Rows.Add(tRow);

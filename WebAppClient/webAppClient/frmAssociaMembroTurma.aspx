@@ -12,11 +12,20 @@
         <br />
         <br />
         <asp:Label ID="Label1" runat="server" Font-Bold="True" Text="Lista de Membros Associados"></asp:Label>
+        &nbsp;<br />
+        <asp:Label ID="Label3" runat="server" Font-Italic="True" Text="Filtro (e-mail)"></asp:Label>
+        :
+        <br />
+        <asp:TextBox ID="tb_email1" runat="server" Width="300px"></asp:TextBox>
         <br />
         <asp:Table ID="TMembrosAssociados" runat="server">
         </asp:Table>
         <br />
         <asp:Label ID="Label2" runat="server" Font-Bold="True" Text="Lista de Todos os Membros"></asp:Label>
+        <br />
+        <asp:Label ID="Label4" runat="server" Font-Italic="True" Text="Filtro (e-mail)"></asp:Label>
+        <br />
+        <asp:TextBox ID="tb_email2" runat="server" Width="300px"></asp:TextBox>
         <br />
         <asp:Table ID="TTodosOsMembros" runat="server">
         </asp:Table>

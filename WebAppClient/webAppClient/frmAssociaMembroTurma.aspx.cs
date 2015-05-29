@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -39,9 +40,12 @@ namespace WebAppClient
                  string[] m = membros.Split(new Char[] { '&' });
 
                  TMembrosAssociados.BorderStyle = BorderStyle.Solid;
+                 TMembrosAssociados.BorderWidth = 1;
                  
                  TableRow tRow = new TableRow();
-                 tRow.BorderStyle = BorderStyle.None;
+                 tRow.BorderStyle = BorderStyle.Solid;
+                 tRow.BorderWidth = 1;
+                 tRow.BackColor = Color.FromArgb(16, 148, 171);
                  TMembrosAssociados.Rows.Add(tRow);
 
                  //nome do membro
@@ -74,46 +78,61 @@ namespace WebAppClient
                      {
                          string[] mIndividual = m[i].Split(new Char[] { '|' });
 
-                         tRow = new TableRow();
-                         tRow.BorderStyle = BorderStyle.Solid;
-                         TMembrosAssociados.Rows.Add(tRow);
-
-                         //nome do membro
-                         tCell = new TableCell();
-                         tCell.BorderStyle = BorderStyle.None;
-                         tCell.Text = mIndividual[0];
-                         tRow.Cells.Add(tCell);
-
-                         //email do membro
-                         tCell = new TableCell();
-                         tCell.BorderStyle = BorderStyle.None;
-                         tCell.Text = mIndividual[1];
-                         tRow.Cells.Add(tCell);
-
-                         string tipoMembro = "";
-
-                         if (mIndividual[2].CompareTo("0") == 0)
+                         if (String.IsNullOrEmpty(tb_email1.Text))
                          {
-                             tipoMembro = "Professor(a)";
+                             goto Inclui;
                          }
-                         else
+                         else if (mIndividual[1].IndexOf(tb_email1.Text) > -1)
                          {
-                             tipoMembro = "Aluno(a)";
+                             goto Inclui;
                          }
+                         else goto Proximo;
 
-                         //tipo do membro
-                         tCell = new TableCell();
-                         tCell.BorderStyle = BorderStyle.None;
-                         tCell.Text = tipoMembro;
-                         tRow.Cells.Add(tCell);
+                         Inclui:
+                             tRow = new TableRow();
+                             tRow.BorderStyle = BorderStyle.Solid;
+                             tRow.BorderColor = Color.Black;
+                             tRow.BackColor = (i % 2 == 0 ? Color.White : Color.FromArgb(100, 196, 210));
+                             tRow.BorderWidth = 1;
+                             TMembrosAssociados.Rows.Add(tRow);
 
-                         //botão para excluir membro da turma
-                         tCell = new TableCell();
-                         tCell.BorderStyle = BorderStyle.None;
-                         Button b = new Button { ID = "ExCluirMembro" + mIndividual[1], Text = "Excluir Membro", CommandArgument = mIndividual[1] };
-                         b.Click += new EventHandler(btnExcluirMembro_click);
-                         tCell.Controls.Add(b);
-                         tRow.Cells.Add(tCell);
+                             //nome do membro
+                             tCell = new TableCell();
+                             tCell.BorderStyle = BorderStyle.None;
+                             tCell.Text = mIndividual[0];
+                             tRow.Cells.Add(tCell);
+
+                             //email do membro
+                             tCell = new TableCell();
+                             tCell.BorderStyle = BorderStyle.None;
+                             tCell.Text = mIndividual[1];
+                             tRow.Cells.Add(tCell);
+
+                             string tipoMembro = "";
+
+                             if (mIndividual[2].CompareTo("0") == 0)
+                             {
+                                 tipoMembro = "Professor(a)";
+                             }
+                             else
+                             {
+                                 tipoMembro = "Aluno(a)";
+                             }
+
+                             //tipo do membro
+                             tCell = new TableCell();
+                             tCell.BorderStyle = BorderStyle.None;
+                             tCell.Text = tipoMembro;
+                             tRow.Cells.Add(tCell);
+
+                             //botão para excluir membro da turma
+                             tCell = new TableCell();
+                             tCell.BorderStyle = BorderStyle.None;
+                             Button b = new Button { ID = "ExCluirMembro" + mIndividual[1], Text = "Excluir Membro", CommandArgument = mIndividual[1] };
+                             b.Click += new EventHandler(btnExcluirMembro_click);
+                             tCell.Controls.Add(b);
+                             tRow.Cells.Add(tCell);
+                         Proximo: ;
                      }
                  }
              }
@@ -129,9 +148,12 @@ namespace WebAppClient
                 string[] m = membros.Split(new Char[] { '&' });
 
                 TTodosOsMembros.BorderStyle = BorderStyle.Solid;
+                TTodosOsMembros.BorderWidth = 1;
 
                 TableRow tRow = new TableRow();
-                tRow.BorderStyle = BorderStyle.None;
+                tRow.BorderStyle = BorderStyle.Solid;
+                tRow.BorderWidth = 1;
+                tRow.BackColor = Color.FromArgb(16, 148, 171);
                 TTodosOsMembros.Rows.Add(tRow);
 
                 //nome do membro
@@ -164,35 +186,50 @@ namespace WebAppClient
                     {
                         string[] mIndividual = m[i].Split(new Char[] { '|' });
 
-                        tRow = new TableRow();
-                        tRow.BorderStyle = BorderStyle.Solid;
-                        TTodosOsMembros.Rows.Add(tRow);
+                        if (String.IsNullOrEmpty(tb_email2.Text))
+                        {
+                            goto Inclui;
+                        }
+                        else if (mIndividual[1].IndexOf(tb_email2.Text) > -1)
+                        {
+                            goto Inclui;
+                        }
+                        else goto Proximo;
 
-                        //nome do membro
-                        tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.None;
-                        tCell.Text = mIndividual[0];
-                        tRow.Cells.Add(tCell);
+                        Inclui:
+                            tRow = new TableRow();
+                            tRow.BorderStyle = BorderStyle.Solid;
+                            tRow.BorderColor = Color.Black;
+                            tRow.BackColor = (i % 2 == 0 ? Color.White : Color.FromArgb(100, 196, 210));
+                            tRow.BorderWidth = 1;
+                            TTodosOsMembros.Rows.Add(tRow);
 
-                        //email do membro
-                        tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.None;
-                        tCell.Text = mIndividual[1];
-                        tRow.Cells.Add(tCell);
+                            //nome do membro
+                            tCell = new TableCell();
+                            tCell.BorderStyle = BorderStyle.None;
+                            tCell.Text = mIndividual[0];
+                            tRow.Cells.Add(tCell);
 
-                        //tipo do membro
-                        tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.None;
-                        tCell.Text = mIndividual[2];
-                        tRow.Cells.Add(tCell);
+                            //email do membro
+                            tCell = new TableCell();
+                            tCell.BorderStyle = BorderStyle.None;
+                            tCell.Text = mIndividual[1];
+                            tRow.Cells.Add(tCell);
 
-                        //botão para adicionar membro
-                        tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.None;
-                        Button b = new Button { ID = mIndividual[1], Text = "Incluir Membro" };
-                        b.Click += new EventHandler(btn_click);
-                        tCell.Controls.Add(b);
-                        tRow.Cells.Add(tCell);
+                            //tipo do membro
+                            tCell = new TableCell();
+                            tCell.BorderStyle = BorderStyle.None;
+                            tCell.Text = mIndividual[2];
+                            tRow.Cells.Add(tCell);
+
+                            //botão para adicionar membro
+                            tCell = new TableCell();
+                            tCell.BorderStyle = BorderStyle.None;
+                            Button b = new Button { ID = mIndividual[1], Text = "Incluir Membro" };
+                            b.Click += new EventHandler(btn_click);
+                            tCell.Controls.Add(b);
+                            tRow.Cells.Add(tCell);
+                        Proximo: ;
                     }
                 }
             }

@@ -30,6 +30,10 @@
         <br />
         <asp:Label ID="Label6" runat="server" Font-Bold="True" Text="Lista de Membros"></asp:Label>
         <br />
+        <asp:Label ID="Label7" runat="server" Font-Italic="True" Text="Filtro (e-mail)"></asp:Label>
+        <br />
+        <asp:TextBox ID="tb_filtro" runat="server" Width="300px"></asp:TextBox>
+        <br />
         <asp:Table ID="TMembros" runat="server">
         </asp:Table>
         <br />

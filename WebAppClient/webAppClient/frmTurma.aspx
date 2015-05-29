@@ -19,6 +19,10 @@
         <br />
         <asp:Label ID="Label3" runat="server" Font-Bold="True" Text="Lista de Turmas"></asp:Label>
         <br />
+        <asp:Label ID="Label4" runat="server" Font-Italic="True" Text="Filtro (turma)"></asp:Label>
+        <br />
+        <asp:TextBox ID="tb_filtro" runat="server" Width="300px"></asp:TextBox>
+        <br />
         <asp:Table ID="TTurmas" runat="server">
         </asp:Table>
     </form>

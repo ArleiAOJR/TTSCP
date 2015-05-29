@@ -7,9 +7,11 @@
         <asp:Button ID="BResult" runat="server" Text="Ver Resultado" Width="100px" />
     &nbsp;<asp:Button ID="BVoltar" runat="server" OnClick="BVoltar_Click" Text="Voltar" Width="100px" />
     </p>
-    <p>
-        <asp:Label ID="LResult" runat="server" Text="Resultado: "></asp:Label>
-    </p>
+        <asp:Label ID="Label1" runat="server" Font-Bold="True" Text="Resultado da Pesquisa"></asp:Label>
+        <br />
+        <br />
+        <asp:Table ID="TPesquisa" runat="server">
+        </asp:Table>
 </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Footer" runat="server">

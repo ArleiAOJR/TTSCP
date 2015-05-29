@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -44,9 +45,12 @@ namespace WebAppClient
                 string[] t = turmas.Split(new Char[] { '|' });
 
                 TTurmas.BorderStyle = BorderStyle.Solid;
+                TTurmas.BorderWidth = 1;
 
                 TableRow tRow = new TableRow();
                 tRow.BorderStyle = BorderStyle.Solid;
+                tRow.BorderWidth = 1;
+                tRow.BackColor = Color.FromArgb(16, 148, 171);
                 TTurmas.Rows.Add(tRow);
 
                 TableCell tCell = new TableCell();
@@ -71,6 +75,9 @@ namespace WebAppClient
                     {
                         tRow = new TableRow();
                         tRow.BorderStyle = BorderStyle.Solid;
+                        tRow.BorderColor = Color.Black;
+                        tRow.BackColor = (i % 2 == 0 ? Color.White : Color.FromArgb(100, 196, 210));
+                        tRow.BorderWidth = 1;
                         TTurmas.Rows.Add(tRow);
 
                         //label da turma

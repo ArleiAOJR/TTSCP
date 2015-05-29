@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -31,8 +32,12 @@ namespace WebAppClient
                 string[] m = membros.Split(new Char[] { '&' });
 
                 TMembros.BorderStyle = BorderStyle.Solid;
+                TMembros.BorderWidth = 1;
+
                 TableRow tRow = new TableRow();
                 tRow.BorderStyle = BorderStyle.Solid;
+                tRow.BorderWidth = 1;
+                tRow.BackColor = Color.FromArgb(16, 148, 171);
                 TMembros.Rows.Add(tRow);
 
                 TableCell tCell = new TableCell();
@@ -61,35 +66,50 @@ namespace WebAppClient
                     {
                         string[] mIndividual = m[i].Split(new Char[] { '|' });
 
-                        tRow = new TableRow();
-                        tRow.BorderStyle = BorderStyle.Solid;
-                        TMembros.Rows.Add(tRow);
+                        if (String.IsNullOrEmpty(tb_filtro.Text))
+                        {
+                            goto Inclui;
+                        }
+                        else if (mIndividual[1].IndexOf(tb_filtro.Text) > -1)
+                        {
+                            goto Inclui;
+                        }
+                        else goto Proximo;
+                        
+                        Inclui:
+                            tRow = new TableRow();
+                            tRow.BorderStyle = BorderStyle.Solid;
+                            tRow.BorderColor = Color.Black;
+                            tRow.BackColor = (i % 2 == 0 ? Color.White : Color.FromArgb(100, 196, 210));
+                            tRow.BorderWidth = 1;
+                            TMembros.Rows.Add(tRow);
 
-                        //nome do membro
-                        tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.None;
-                        tCell.Text = mIndividual[0];
-                        tRow.Cells.Add(tCell);
+                            //nome do membro
+                            tCell = new TableCell();
+                            tCell.BorderStyle = BorderStyle.None;
+                            tCell.Text = mIndividual[0];
+                            tRow.Cells.Add(tCell);
 
-                        //email do membro
-                        tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.None;
-                        tCell.Text = mIndividual[1];
-                        tRow.Cells.Add(tCell);
+                            //email do membro
+                            tCell = new TableCell();
+                            tCell.BorderStyle = BorderStyle.None;
+                            tCell.Text = mIndividual[1];
+                            tRow.Cells.Add(tCell);
 
-                        //tipo do membr
-                        tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.None;
-                        tCell.Text = mIndividual[2];
-                        tRow.Cells.Add(tCell);
+                            //tipo do membr
+                            tCell = new TableCell();
+                            tCell.BorderStyle = BorderStyle.None;
+                            tCell.Text = mIndividual[2];
+                            tRow.Cells.Add(tCell);
 
-                        //botão para excluir membro
-                        tCell = new TableCell();
-                        tCell.BorderStyle = BorderStyle.None;
-                        Button b = new Button { ID = "ExCluirMembro" + mIndividual[1], Text = "Excluir Membro", CommandArgument = mIndividual[1] };
-                        b.Click += new EventHandler(btnExcluirMembro_click);
-                        tCell.Controls.Add(b);
-                        tRow.Cells.Add(tCell);
+                            //botão para excluir membro
+                            tCell = new TableCell();
+                            tCell.BorderStyle = BorderStyle.None;
+                            Button b = new Button { ID = "ExCluirMembro" + mIndividual[1], Text = "Excluir Membro", CommandArgument = mIndividual[1] };
+                            b.Click += new EventHandler(btnExcluirMembro_click);
+                            tCell.Controls.Add(b);
+                            tRow.Cells.Add(tCell);
+                        Proximo: ;
                     }
                 }
             }
